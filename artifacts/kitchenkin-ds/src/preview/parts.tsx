@@ -60,3 +60,89 @@ export function Guidelines({
     </ul>
   );
 }
+
+/**
+ * Structured AI-oriented documentation block for KitchenKin semantic
+ * components. Covers purpose, usage rules, composition guidance,
+ * accessibility notes, and a copy-pasteable JSX example.
+ */
+export function DocBlock({
+  purpose,
+  whenToUse,
+  whenNotToUse,
+  composition,
+  accessibility,
+  example,
+}: {
+  purpose: string;
+  whenToUse: string[];
+  whenNotToUse: string[];
+  composition: string;
+  accessibility: string;
+  example?: string;
+}) {
+  return (
+    <div className="rounded-xl border bg-card p-6 space-y-5 text-sm">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+          Purpose
+        </p>
+        <p className="text-foreground leading-relaxed">{purpose}</p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+            When to use
+          </p>
+          <ul className="space-y-1.5">
+            {whenToUse.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="shrink-0 text-primary font-semibold leading-snug mt-px">✓</span>
+                <span className="text-muted-foreground leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+            When not to use
+          </p>
+          <ul className="space-y-1.5">
+            {whenNotToUse.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="shrink-0 text-destructive font-semibold leading-snug mt-px">✗</span>
+                <span className="text-muted-foreground leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+          Composition guidance
+        </p>
+        <p className="text-muted-foreground leading-relaxed">{composition}</p>
+      </div>
+
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+          Accessibility
+        </p>
+        <p className="text-muted-foreground leading-relaxed">{accessibility}</p>
+      </div>
+
+      {example != null && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+            Example
+          </p>
+          <pre className="rounded-lg bg-muted px-4 py-3 text-xs leading-relaxed font-mono overflow-x-auto whitespace-pre">
+            {example}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -61,6 +61,11 @@ import { RecipeCardSkeletonDemo } from './demos/kkds/recipe-card-skeleton';
 import { RecipeImageDemo } from './demos/kkds/recipe-image';
 import { RecipeMetadataDemo } from './demos/kkds/recipe-metadata';
 import { RecipeSearchBarDemo } from './demos/kkds/recipe-search-bar';
+import { CopyVoicePage } from './demos/kkds/copy-voice';
+import { RecipeDiscoveryPattern } from './demos/kkds/patterns/recipe-discovery';
+import { RecipeDetailPattern } from './demos/kkds/patterns/recipe-detail';
+import { ProfileTabsPattern } from './demos/kkds/patterns/profile-tabs';
+import { LoadingEmptyPattern } from './demos/kkds/patterns/loading-empty';
 import {
   ColorsPage,
   FontsPage,
@@ -557,7 +562,18 @@ export const NAV_GROUPS: NavGroup[] = [
       },
     ],
   },
-  { name: 'Content', entries: [] },
+  {
+    name: 'Content',
+    entries: [
+      {
+        id: 'content-copy-voice',
+        name: 'Copy voice',
+        description:
+          'KitchenKin editorial tone, button label rules, empty state copy, error messages, and placeholder text.',
+        Page: CopyVoicePage,
+      },
+    ],
+  },
   {
     name: 'Charts',
     entries: [
@@ -570,7 +586,39 @@ export const NAV_GROUPS: NavGroup[] = [
     ],
   },
   { name: 'Motion', entries: [] },
-  { name: 'Applied examples', entries: [] },
+  {
+    name: 'Applied examples',
+    entries: [
+      {
+        id: 'pattern-recipe-discovery',
+        name: 'Recipe discovery',
+        description:
+          'RecipeSearchBar + category filters + responsive RecipeCard grid + Pagination. Interactive loading and empty state toggling.',
+        Page: RecipeDiscoveryPattern,
+      },
+      {
+        id: 'pattern-recipe-detail',
+        name: 'Recipe detail',
+        description:
+          'Two-column layout with RecipeImage, FavoriteButton, RecipeAuthor, RecipeMetadata, badges, ingredients, and instructions.',
+        Page: RecipeDetailPattern,
+      },
+      {
+        id: 'pattern-profile-tabs',
+        name: 'Profile tabs',
+        description:
+          'RecipeAuthor header with tabbed My Recipes and Favourites panels, each showing a RecipeCard grid.',
+        Page: ProfileTabsPattern,
+      },
+      {
+        id: 'pattern-loading-empty',
+        name: 'Loading & empty states',
+        description:
+          'KitchenKin loading philosophy: RecipeCardSkeleton, Empty (intrinsic), Empty (no results), and Alert (error) — all four states in one page.',
+        Page: LoadingEmptyPattern,
+      },
+    ],
+  },
 ];
 
 export const ALL_ENTRIES: PreviewEntry[] = [
