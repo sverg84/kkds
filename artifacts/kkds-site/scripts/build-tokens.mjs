@@ -21,7 +21,6 @@ const tokensPath = join(root, "tokens.json");
 const templatePath = join(here, "theme-template.css");
 const cssOut = join(root, "src", "index.css");
 const tsOutDir = join(root, "src", "generated");
-const indexHtmlPath = join(root, "index.html");
 const faviconOut = join(root, "public", "favicon.svg");
 
 /** Resolve a DTCG node's $value, following {alias} references. */
@@ -77,57 +76,9 @@ function toFontStack(value) {
   return Array.isArray(value) ? value.join(", ") : value;
 }
 
-function normalizeHex(hex) {
-  let h = hex.replace("#", "").trim();
-  if (h.length === 3) {
-    h = h
-      .split("")
-      .map((c) => c + c)
-      .join("");
-  }
-  return `#${h}`;
-}
-
-/** Pick black or white text for best contrast on the given background hex. */
-function contrastColor(hex) {
-  const h = normalizeHex(hex).slice(1);
-  const r = parseInt(h.slice(0, 2), 16) / 255;
-  const g = parseInt(h.slice(2, 4), 16) / 255;
-  const b = parseInt(h.slice(4, 6), 16) / 255;
-  const lin = (c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
-  const luminance = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
-  return luminance > 0.5 ? "#000000" : "#ffffff";
-}
-
-/** First alphanumeric character of the design system's title, uppercased. */
-function faviconLetter() {
-  let title = "";
-  try {
-    const html = readFileSync(indexHtmlPath, "utf8");
-    title = html.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "";
-  } catch {
-    title = "";
-  }
-  const match = title.match(/[A-Za-z0-9]/);
-  return (match?.[0] ?? "D").toUpperCase();
-}
-
-function escapeXml(value) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
-
-function buildFavicon(tokens) {
-  const primary = normalizeHex(resolveValue(tokens.color.light.primary, tokens));
-  const letter = escapeXml(faviconLetter());
-  const fg = contrastColor(primary);
-  return `<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="180" height="180" rx="36" fill="${primary}"/>
-  <text x="90" y="92" fill="${fg}" font-family="ui-sans-serif, system-ui, sans-serif" font-size="104" font-weight="700" text-anchor="middle" dominant-baseline="central">${letter}</text>
-</svg>
-`;
+function buildFavicon() {
+  const logoPath = join(root, "public", "logo.svg");
+  return readFileSync(logoPath, "utf8");
 }
 
 function colorEntries(scope, tokens) {
@@ -206,7 +157,7 @@ export function buildTokens() {
   mkdirSync(tsOutDir, { recursive: true });
   writeFileSync(join(tsOutDir, "tokens.tsx"), buildTs(tokens));
   mkdirSync(dirname(faviconOut), { recursive: true });
-  writeFileSync(faviconOut, buildFavicon(tokens));
+  writeFileSync(faviconOut, buildFavicon());
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
