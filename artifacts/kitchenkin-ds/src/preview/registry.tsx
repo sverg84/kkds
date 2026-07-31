@@ -82,6 +82,12 @@ export type PreviewEntry = {
   name: string;
   description: string;
   Page: ComponentType;
+  /**
+   * When true, this component is NOT exported from the @sverg84/kkds public API.
+   * It is available in this preview for internal development only.
+   * Consumers cannot `import { X } from "@sverg84/kkds"` for internal components.
+   */
+  internal?: boolean;
 };
 
 export type NavGroup = {
@@ -196,6 +202,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Input OTP',
         description: 'Segmented one-time code entry.',
         Page: InputOtpDemo,
+        internal: true,
       },
       {
         id: 'textarea',
@@ -238,6 +245,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Calendar',
         description: 'A deterministic single-date calendar.',
         Page: CalendarDemo,
+        internal: true,
       },
       {
         id: 'field',
@@ -250,6 +258,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Form',
         description: 'Validated form composition with labels and messages.',
         Page: FormDemo,
+        internal: true,
       },
     ],
   },
@@ -279,6 +288,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Drawer',
         description: 'Touch-friendly bottom overlay content.',
         Page: DrawerDemo,
+        internal: true,
       },
       {
         id: 'popover',
@@ -291,6 +301,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Hover card',
         description: 'Rich context revealed on hover.',
         Page: HoverCardDemo,
+        internal: true,
       },
       {
         id: 'tooltip',
@@ -303,6 +314,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Command',
         description: 'Searchable keyboard-first command lists.',
         Page: CommandDemo,
+        internal: true,
       },
     ],
   },
@@ -320,30 +332,35 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Context menu',
         description: 'Right-click actions and nested choices.',
         Page: ContextMenuDemo,
+        internal: true,
       },
       {
         id: 'menubar',
         name: 'Menubar',
         description: 'Desktop-style application menus.',
         Page: MenubarDemo,
+        internal: true,
       },
       {
         id: 'navigation-menu',
         name: 'Navigation menu',
         description: 'Primary navigation with rich flyouts.',
         Page: NavigationMenuDemo,
+        internal: true,
       },
       {
         id: 'breadcrumb',
         name: 'Breadcrumb',
         description: 'Hierarchical location and parent links.',
         Page: BreadcrumbDemo,
+        internal: true,
       },
       {
         id: 'pagination',
         name: 'Pagination',
         description: 'Previous, next, page, and overflow controls.',
         Page: PaginationDemo,
+        internal: true,
       },
       {
         id: 'tabs',
@@ -356,6 +373,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Sidebar',
         description: 'Bounded application navigation and content layout.',
         Page: SidebarDemo,
+        internal: true,
       },
     ],
   },
@@ -397,12 +415,14 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Collapsible',
         description: 'A compact expandable content region.',
         Page: CollapsibleDemo,
+        internal: true,
       },
       {
         id: 'carousel',
         name: 'Carousel',
         description: 'Keyboard-accessible paged content.',
         Page: CarouselDemo,
+        internal: true,
       },
       {
         id: 'item',
@@ -491,6 +511,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Resizable panels',
         description: 'Bounded split panes with draggable handles.',
         Page: ResizableDemo,
+        internal: true,
       },
     ],
   },
@@ -582,6 +603,7 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Chart',
         description: 'Configured data visualization, tooltip, and legend.',
         Page: ChartDemo,
+        internal: true,
       },
     ],
   },
@@ -593,7 +615,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: 'pattern-recipe-discovery',
         name: 'Recipe discovery',
         description:
-          'RecipeSearchBar + category filters + responsive RecipeCard grid + Pagination. Interactive loading and empty state toggling.',
+          'RecipeSearchBar + category filters + responsive RecipeCard grid + app-level pagination. Interactive loading and empty state toggling.',
         Page: RecipeDiscoveryPattern,
       },
       {

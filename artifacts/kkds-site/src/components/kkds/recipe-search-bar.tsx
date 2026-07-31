@@ -35,8 +35,9 @@ export interface RecipeSearchBarProps {
  * **When to use:** Recipe discovery surfaces where users filter a list by
  * keyword. Wire `value` and `onChange` to your local state or URL search params.
  *
- * **When not to use:** Command palette or autocomplete interactions — use the
- * KKDS `Command` component instead.
+ * **When not to use:** Command palette or autocomplete interactions — use a
+ * command-palette library such as `cmdk` directly (`Command` is not part of
+ * the `@sverg84/kkds` public API).
  *
  * **Framework integration:** This component is intentionally framework-agnostic.
  * In a Next.js app, wrap it with a client component that syncs `value` with

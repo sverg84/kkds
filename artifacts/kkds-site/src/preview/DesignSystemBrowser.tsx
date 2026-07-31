@@ -74,9 +74,14 @@ function NavigationItems({
                 type="button"
                 onClick={() => select(entry.id)}
                 aria-current={entry.id === activeId}
-                className="block w-full rounded-md px-2 py-1.5 text-left text-sm transition-colors hover:bg-muted aria-[current=true]:bg-primary aria-[current=true]:text-primary-foreground"
+                className="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm transition-colors hover:bg-muted aria-[current=true]:bg-primary aria-[current=true]:text-primary-foreground"
               >
-                {entry.name}
+                <span>{entry.name}</span>
+                {entry.internal ? (
+                  <span className="ml-1 shrink-0 rounded bg-muted px-1 py-0.5 text-[10px] font-medium leading-none text-muted-foreground aria-[current=true]:bg-primary-foreground/20 aria-[current=true]:text-primary-foreground">
+                    internal
+                  </span>
+                ) : null}
               </button>
             ))}
           </div>
@@ -206,10 +211,24 @@ export function DesignSystemBrowser() {
                 <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   {activeGroup?.name}
                 </p>
-                <h1 className="mt-2 text-2xl font-semibold">{active.name}</h1>
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                  <h1 className="text-2xl font-semibold">{active.name}</h1>
+                  {active.internal ? (
+                    <span className="rounded-full border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-800 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-300">
+                      Internal — not exported from <code className="font-mono">@sverg84/kkds</code>
+                    </span>
+                  ) : null}
+                </div>
                 <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
                   {active.description}
                 </p>
+                {active.internal ? (
+                  <p className="mt-3 max-w-2xl rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-300">
+                    This component is available in this preview for internal development only. It is{' '}
+                    <strong>not part of the public API</strong> — consumers cannot{' '}
+                    <code className="font-mono">import {'{ ... }'} from "@sverg84/kkds"</code> for this component.
+                  </p>
+                ) : null}
               </>
             )}
           </header>

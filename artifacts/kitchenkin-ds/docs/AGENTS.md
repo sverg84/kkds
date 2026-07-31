@@ -52,7 +52,7 @@ its theme and components directly.
 - `src/preview/demos/kkds/` — KitchenKin semantic component stories. Each file
   includes a `DocBlock` with AI-oriented guidance.
 - `src/preview/demos/kkds/patterns/` — four applied-example pattern pages:
-  - `recipe-discovery.tsx` — RecipeSearchBar + filter row + RecipeCard grid + Pagination
+  - `recipe-discovery.tsx` — RecipeSearchBar + filter row + RecipeCard grid + app-level pagination
   - `recipe-detail.tsx` — two-column detail layout (image + author + metadata + badges + ingredients)
   - `profile-tabs.tsx` — RecipeAuthor header + Tabs with RecipeCard panels
   - `loading-empty.tsx` — loading, empty, no-results, and error state compositions
