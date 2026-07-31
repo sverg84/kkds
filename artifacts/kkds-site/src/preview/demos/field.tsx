@@ -1,4 +1,4 @@
-import { Checkbox } from '../../components/ui/checkbox';
+import { Checkbox } from '@sverg84/kkds';
 import {
   Field,
   FieldContent,
@@ -10,8 +10,8 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from '../../components/ui/field';
-import { Input } from '../../components/ui/input';
+} from '@sverg84/kkds';
+import { Input } from '@sverg84/kkds';
 
 export function FieldDemo() {
   return (

@@ -1,5 +1,5 @@
 import { Command } from 'lucide-react';
-import { Kbd, KbdGroup } from '../../components/ui/kbd';
+import { Kbd, KbdGroup } from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function KbdDemo() {

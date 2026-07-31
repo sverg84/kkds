@@ -1,4 +1,4 @@
-import { RecipeImage } from '../../../components/kkds/recipe-image';
+import { RecipeImage } from '@sverg84/kkds';
 import { DocBlock, Row, Stack } from '../../parts';
 
 export function RecipeImageDemo() {

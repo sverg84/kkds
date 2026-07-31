@@ -8,8 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '../../components/ui/alert-dialog';
-import { Button } from '../../components/ui/button';
+} from '@sverg84/kkds';
+import { Button } from '@sverg84/kkds';
 
 export function AlertDialogDemo() {
   return (

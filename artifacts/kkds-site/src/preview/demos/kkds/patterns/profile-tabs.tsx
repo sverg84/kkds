@@ -1,21 +1,21 @@
-import { RecipeAuthor } from '../../../../components/kkds/recipe-author';
-import { RecipeCard } from '../../../../components/kkds/recipe-card';
-import { RecipeCardSkeleton } from '../../../../components/kkds/recipe-card-skeleton';
+import { RecipeAuthor } from '@sverg84/kkds';
+import { RecipeCard } from '@sverg84/kkds';
+import { RecipeCardSkeleton } from '@sverg84/kkds';
 import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '../../../../components/ui/empty';
-import { Button } from '../../../../components/ui/button';
-import { Separator } from '../../../../components/ui/separator';
+} from '@sverg84/kkds';
+import { Button } from '@sverg84/kkds';
+import { Separator } from '@sverg84/kkds';
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '../../../../components/ui/tabs';
+} from '@sverg84/kkds';
 
 const MY_RECIPES = [
   {

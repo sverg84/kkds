@@ -1,5 +1,5 @@
-import { Label } from '../../components/ui/label';
-import { Switch } from '../../components/ui/switch';
+import { Label } from '@sverg84/kkds';
+import { Switch } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function SwitchDemo() {

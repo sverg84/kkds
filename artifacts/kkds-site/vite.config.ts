@@ -1,33 +1,8 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-import { buildTokens } from "./scripts/build-tokens.mjs";
-
-/**
- * Regenerates src/index.css and src/generated/tokens.tsx from tokens.json on
- * startup and whenever tokens.json changes.
- */
-function designTokensPlugin(): Plugin {
-  const tokensFile = path.resolve(import.meta.dirname, "tokens.json");
-  return {
-    name: "design-tokens",
-    buildStart() {
-      buildTokens();
-      this.addWatchFile(tokensFile);
-    },
-    configureServer(server) {
-      server.watcher.add(tokensFile);
-      server.watcher.on("change", (file) => {
-        if (path.resolve(file) === tokensFile) {
-          buildTokens();
-          server.ws.send({ type: "full-reload" });
-        }
-      });
-    },
-  };
-}
 
 // PORT is injected by the artifact system in dev; defaults to 5173 for
 // standalone / production-preview use.
@@ -37,7 +12,6 @@ export default defineConfig({
   // Always serve from the domain root — no path prefix.
   base: "/",
   plugins: [
-    designTokensPlugin(),
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),

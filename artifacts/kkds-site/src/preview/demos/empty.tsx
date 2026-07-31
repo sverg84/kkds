@@ -1,5 +1,5 @@
 import { FolderOpen } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from '@sverg84/kkds';
 import {
   Empty,
   EmptyContent,
@@ -7,7 +7,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '../../components/ui/empty';
+} from '@sverg84/kkds';
 
 export function EmptyDemo() {
   return (

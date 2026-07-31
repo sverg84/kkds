@@ -1,4 +1,4 @@
-import { CategoryBadge } from '../../../components/kkds/category-badge';
+import { CategoryBadge } from '@sverg84/kkds';
 import { DocBlock, Row, Stack } from '../../parts';
 
 const MEAL_TYPES = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Snack', 'Brunch'];

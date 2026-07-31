@@ -3,7 +3,7 @@ import {
   Alert,
   AlertDescription,
   AlertTitle,
-} from '../../components/ui/alert';
+} from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function AlertDemo() {

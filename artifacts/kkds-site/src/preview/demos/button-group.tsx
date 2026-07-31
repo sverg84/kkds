@@ -1,10 +1,10 @@
 import { Bold, Italic, Underline } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from '@sverg84/kkds';
 import {
   ButtonGroup,
   ButtonGroupSeparator,
   ButtonGroupText,
-} from '../../components/ui/button-group';
+} from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function ButtonGroupDemo() {

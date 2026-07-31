@@ -1,5 +1,5 @@
-import { AllergenBadge } from '../../../components/kkds/allergen-badge';
-import { CategoryBadge } from '../../../components/kkds/category-badge';
+import { AllergenBadge } from '@sverg84/kkds';
+import { CategoryBadge } from '@sverg84/kkds';
 import { DocBlock, Row, Stack } from '../../parts';
 
 const ALLERGENS = [

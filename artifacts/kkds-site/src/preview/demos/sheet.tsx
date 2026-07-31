@@ -1,4 +1,4 @@
-import { Button } from '../../components/ui/button';
+import { Button } from '@sverg84/kkds';
 import {
   Sheet,
   SheetClose,
@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '../../components/ui/sheet';
+} from '@sverg84/kkds';
 
 export function SheetDemo() {
   return (

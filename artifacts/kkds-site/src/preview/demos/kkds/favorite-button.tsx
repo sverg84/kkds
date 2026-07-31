@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from 'react';
-import { FavoriteButton } from '../../../components/kkds/favorite-button';
+import { FavoriteButton } from '@sverg84/kkds';
 import { DocBlock, Row, Stack } from '../../parts';
 
 function InteractiveDemo() {

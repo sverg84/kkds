@@ -1,11 +1,11 @@
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Label } from '../../components/ui/label';
+import { Button } from '@sverg84/kkds';
+import { Input } from '@sverg84/kkds';
+import { Label } from '@sverg84/kkds';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '../../components/ui/popover';
+} from '@sverg84/kkds';
 
 export function PopoverDemo() {
   return (

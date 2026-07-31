@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../../components/ui/table';
+} from '@sverg84/kkds';
 
 export function TableDemo() {
   return (

@@ -7,7 +7,7 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '../../components/ui/select';
+} from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function SelectDemo() {

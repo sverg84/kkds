@@ -1,25 +1,17 @@
 "use client";
 
 import * as React from 'react';
-import { RecipeCard } from '../../../../components/kkds/recipe-card';
-import { RecipeCardSkeleton } from '../../../../components/kkds/recipe-card-skeleton';
-import { RecipeSearchBar } from '../../../../components/kkds/recipe-search-bar';
-import { Button } from '../../../../components/ui/button';
 import {
+  RecipeCard,
+  RecipeCardSkeleton,
+  RecipeSearchBar,
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '../../../../components/ui/empty';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '../../../../components/ui/pagination';
+} from '@sverg84/kkds';
 
 const ALL_RECIPES = [
   {
@@ -107,7 +99,6 @@ export function RecipeDiscoveryPattern() {
           <code className="rounded bg-muted px-2 py-0.5 text-xs">RecipeCard</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">RecipeCardSkeleton</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">Empty</code>
-          <code className="rounded bg-muted px-2 py-0.5 text-xs">Pagination</code>
         </div>
         <div className="pt-1">
           <Button
@@ -185,31 +176,6 @@ export function RecipeDiscoveryPattern() {
               </Button>
             </EmptyContent>
           </Empty>
-        )}
-
-        {/* Pagination */}
-        {!showLoading && filteredRecipes.length > 0 && (
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#" isActive>
-                  1
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
         )}
       </div>
     </div>

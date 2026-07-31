@@ -1,6 +1,5 @@
 import { toast } from 'sonner';
-import { Button } from '../../components/ui/button';
-import { Toaster } from '../../components/ui/sonner';
+import { Button, SonnerToaster } from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function SonnerDemo() {
@@ -20,7 +19,7 @@ export function SonnerDemo() {
           With action
         </Button>
       </Row>
-      <Toaster />
+      <SonnerToaster />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Progress } from '../../components/ui/progress';
+import { Progress } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function ProgressDemo() {

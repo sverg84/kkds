@@ -1,4 +1,4 @@
-import { Slider } from '../../components/ui/slider';
+import { Slider } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function SliderDemo() {

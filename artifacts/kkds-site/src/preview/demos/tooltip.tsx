@@ -1,11 +1,11 @@
 import { Info } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from '@sverg84/kkds';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../../components/ui/tooltip';
+} from '@sverg84/kkds';
 
 export function TooltipDemo() {
   return (

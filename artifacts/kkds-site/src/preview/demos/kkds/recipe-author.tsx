@@ -1,4 +1,4 @@
-import { RecipeAuthor } from '../../../components/kkds/recipe-author';
+import { RecipeAuthor } from '@sverg84/kkds';
 import { DocBlock, Row, Stack } from '../../parts';
 
 export function RecipeAuthorDemo() {

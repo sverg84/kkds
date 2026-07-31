@@ -1,4 +1,4 @@
-import { Textarea } from '../../components/ui/textarea';
+import { Textarea } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function TextareaDemo() {

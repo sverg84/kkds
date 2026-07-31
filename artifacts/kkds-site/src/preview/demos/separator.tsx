@@ -1,4 +1,4 @@
-import { Separator } from '../../components/ui/separator';
+import { Separator } from '@sverg84/kkds';
 
 export function SeparatorDemo() {
   return (

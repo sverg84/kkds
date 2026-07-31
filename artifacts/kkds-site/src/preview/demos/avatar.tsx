@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function AvatarDemo() {

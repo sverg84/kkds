@@ -1,20 +1,20 @@
 "use client";
 
 import * as React from 'react';
-import { RecipeCardSkeleton } from '../../../../components/kkds/recipe-card-skeleton';
-import { Alert, AlertDescription, AlertTitle } from '../../../../components/ui/alert';
-import { Button } from '../../../../components/ui/button';
+import { RecipeCardSkeleton } from '@sverg84/kkds';
+import { Alert, AlertDescription, AlertTitle } from '@sverg84/kkds';
+import { Button } from '@sverg84/kkds';
 import {
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '../../../../components/ui/empty';
+} from '@sverg84/kkds';
 import { AlertCircle, ChefHat, Search } from 'lucide-react';
 import {
   EmptyMedia,
-} from '../../../../components/ui/empty';
+} from '@sverg84/kkds';
 
 type State = 'loading' | 'empty' | 'no-results' | 'error';
 

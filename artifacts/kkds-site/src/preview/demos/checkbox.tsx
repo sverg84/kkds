@@ -1,5 +1,5 @@
-import { Checkbox } from '../../components/ui/checkbox';
-import { Label } from '../../components/ui/label';
+import { Checkbox } from '@sverg84/kkds';
+import { Label } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function CheckboxDemo() {

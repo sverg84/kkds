@@ -1,5 +1,5 @@
-import { Button } from '../../components/ui/button';
-import { Spinner } from '../../components/ui/spinner';
+import { Button } from '@sverg84/kkds';
+import { Spinner } from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function SpinnerDemo() {

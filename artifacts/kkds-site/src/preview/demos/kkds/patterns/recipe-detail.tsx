@@ -1,19 +1,19 @@
 "use client";
 
 import * as React from 'react';
-import { AllergenBadge } from '../../../../components/kkds/allergen-badge';
-import { CategoryBadge } from '../../../../components/kkds/category-badge';
-import { FavoriteButton } from '../../../../components/kkds/favorite-button';
-import { RecipeAuthor } from '../../../../components/kkds/recipe-author';
-import { RecipeImage } from '../../../../components/kkds/recipe-image';
-import { RecipeMetadata } from '../../../../components/kkds/recipe-metadata';
-import { Button } from '../../../../components/ui/button';
+import { AllergenBadge } from '@sverg84/kkds';
+import { CategoryBadge } from '@sverg84/kkds';
+import { FavoriteButton } from '@sverg84/kkds';
+import { RecipeAuthor } from '@sverg84/kkds';
+import { RecipeImage } from '@sverg84/kkds';
+import { RecipeMetadata } from '@sverg84/kkds';
+import { Button } from '@sverg84/kkds';
 import {
   Item,
   ItemContent,
   ItemMedia,
-} from '../../../../components/ui/item';
-import { Separator } from '../../../../components/ui/separator';
+} from '@sverg84/kkds';
+import { Separator } from '@sverg84/kkds';
 
 const RECIPE = {
   title: 'Pasta Carbonara',

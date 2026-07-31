@@ -1,4 +1,4 @@
-import { RecipeCardSkeleton } from '../../../components/kkds/recipe-card-skeleton';
+import { RecipeCardSkeleton } from '@sverg84/kkds';
 import { DocBlock, Stack } from '../../parts';
 
 export function RecipeCardSkeletonDemo() {

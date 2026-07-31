@@ -6,8 +6,8 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from '../../components/ui/input-group';
-import { Kbd } from '../../components/ui/kbd';
+} from '@sverg84/kkds';
+import { Kbd } from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function InputGroupDemo() {

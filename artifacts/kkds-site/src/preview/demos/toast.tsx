@@ -1,7 +1,7 @@
-import { Button } from '../../components/ui/button';
-import { ToastAction } from '../../components/ui/toast';
-import { Toaster } from '../../components/ui/toaster';
-import { toast } from '../../hooks/use-toast';
+import { Button } from '@sverg84/kkds';
+import { ToastAction } from '@sverg84/kkds';
+import { Toaster } from '@sverg84/kkds';
+import { toast } from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function ToastDemo() {

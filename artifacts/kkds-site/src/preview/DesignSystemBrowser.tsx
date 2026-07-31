@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Input } from '../components/ui/input';
-import { ScrollArea } from '../components/ui/scroll-area';
+import { Input, ScrollArea } from '@sverg84/kkds';
 import {
   ALL_ENTRIES,
   DESIGN_SYSTEM,

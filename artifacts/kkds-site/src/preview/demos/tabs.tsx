@@ -3,7 +3,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '../../components/ui/tabs';
+} from '@sverg84/kkds';
 
 export function TabsDemo() {
   return (

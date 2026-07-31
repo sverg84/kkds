@@ -1,4 +1,4 @@
-import { ScrollArea, ScrollBar } from '../../components/ui/scroll-area';
+import { ScrollArea, ScrollBar } from '@sverg84/kkds';
 
 export function ScrollAreaDemo() {
   return (

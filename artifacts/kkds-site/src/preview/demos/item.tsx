@@ -1,5 +1,5 @@
 import { FileText, MoreHorizontal } from 'lucide-react';
-import { Button } from '../../components/ui/button';
+import { Button } from '@sverg84/kkds';
 import {
   Item,
   ItemActions,
@@ -11,7 +11,7 @@ import {
   ItemMedia,
   ItemSeparator,
   ItemTitle,
-} from '../../components/ui/item';
+} from '@sverg84/kkds';
 
 export function ItemDemo() {
   return (

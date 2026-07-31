@@ -1,4 +1,4 @@
-import { AspectRatio } from '../../components/ui/aspect-ratio';
+import { AspectRatio } from '@sverg84/kkds';
 
 export function AspectRatioDemo() {
   return (
