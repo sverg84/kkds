@@ -5,41 +5,25 @@ import { AlertDialogDemo } from './demos/alert-dialog';
 import { AspectRatioDemo } from './demos/aspect-ratio';
 import { AvatarDemo } from './demos/avatar';
 import { BadgeDemo } from './demos/badge';
-import { BreadcrumbDemo } from './demos/breadcrumb';
 import { ButtonDemo } from './demos/button';
 import { ButtonGroupDemo } from './demos/button-group';
-import { CalendarDemo } from './demos/calendar';
 import { CardDemo } from './demos/card';
-import { CarouselDemo } from './demos/carousel';
-import { ChartDemo } from './demos/chart';
 import { CheckboxDemo } from './demos/checkbox';
-import { CollapsibleDemo } from './demos/collapsible';
-import { CommandDemo } from './demos/command';
-import { ContextMenuDemo } from './demos/context-menu';
 import { DialogDemo } from './demos/dialog';
-import { DrawerDemo } from './demos/drawer';
 import { DropdownMenuDemo } from './demos/dropdown-menu';
 import { EmptyDemo } from './demos/empty';
 import { FieldDemo } from './demos/field';
-import { FormDemo } from './demos/form';
-import { HoverCardDemo } from './demos/hover-card';
 import { InputDemo } from './demos/input';
 import { InputGroupDemo } from './demos/input-group';
-import { InputOtpDemo } from './demos/input-otp';
 import { ItemDemo } from './demos/item';
 import { KbdDemo } from './demos/kbd';
-import { MenubarDemo } from './demos/menubar';
-import { NavigationMenuDemo } from './demos/navigation-menu';
-import { PaginationDemo } from './demos/pagination';
 import { PopoverDemo } from './demos/popover';
 import { ProgressDemo } from './demos/progress';
 import { RadioGroupDemo } from './demos/radio-group';
-import { ResizableDemo } from './demos/resizable';
 import { ScrollAreaDemo } from './demos/scroll-area';
 import { SelectDemo } from './demos/select';
 import { SeparatorDemo } from './demos/separator';
 import { SheetDemo } from './demos/sheet';
-import { SidebarDemo } from './demos/sidebar';
 import { SkeletonDemo } from './demos/skeleton';
 import { SliderDemo } from './demos/slider';
 import { SonnerDemo } from './demos/sonner';
@@ -82,12 +66,6 @@ export type PreviewEntry = {
   name: string;
   description: string;
   Page: ComponentType;
-  /**
-   * When true, this component is NOT exported from the @sverg84/kkds public API.
-   * It is available in this preview for internal development only.
-   * Consumers cannot `import { X } from "@sverg84/kkds"` for internal components.
-   */
-  internal?: boolean;
 };
 
 export type NavGroup = {
@@ -198,13 +176,6 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: InputGroupDemo,
       },
       {
-        id: 'input-otp',
-        name: 'Input OTP',
-        description: 'Segmented one-time code entry.',
-        Page: InputOtpDemo,
-        internal: true,
-      },
-      {
         id: 'textarea',
         name: 'Textarea',
         description: 'Multiline text entry and states.',
@@ -241,24 +212,10 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: SwitchDemo,
       },
       {
-        id: 'calendar',
-        name: 'Calendar',
-        description: 'A deterministic single-date calendar.',
-        Page: CalendarDemo,
-        internal: true,
-      },
-      {
         id: 'field',
         name: 'Field',
         description: 'Labels, descriptions, errors, and grouped fields.',
         Page: FieldDemo,
-      },
-      {
-        id: 'form',
-        name: 'Form',
-        description: 'Validated form composition with labels and messages.',
-        Page: FormDemo,
-        internal: true,
       },
     ],
   },
@@ -284,37 +241,16 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: SheetDemo,
       },
       {
-        id: 'drawer',
-        name: 'Drawer',
-        description: 'Touch-friendly bottom overlay content.',
-        Page: DrawerDemo,
-        internal: true,
-      },
-      {
         id: 'popover',
         name: 'Popover',
         description: 'Anchored interactive content.',
         Page: PopoverDemo,
       },
       {
-        id: 'hover-card',
-        name: 'Hover card',
-        description: 'Rich context revealed on hover.',
-        Page: HoverCardDemo,
-        internal: true,
-      },
-      {
         id: 'tooltip',
         name: 'Tooltip',
         description: 'Brief labels for focused or hovered controls.',
         Page: TooltipDemo,
-      },
-      {
-        id: 'command',
-        name: 'Command',
-        description: 'Searchable keyboard-first command lists.',
-        Page: CommandDemo,
-        internal: true,
       },
     ],
   },
@@ -328,52 +264,10 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: DropdownMenuDemo,
       },
       {
-        id: 'context-menu',
-        name: 'Context menu',
-        description: 'Right-click actions and nested choices.',
-        Page: ContextMenuDemo,
-        internal: true,
-      },
-      {
-        id: 'menubar',
-        name: 'Menubar',
-        description: 'Desktop-style application menus.',
-        Page: MenubarDemo,
-        internal: true,
-      },
-      {
-        id: 'navigation-menu',
-        name: 'Navigation menu',
-        description: 'Primary navigation with rich flyouts.',
-        Page: NavigationMenuDemo,
-        internal: true,
-      },
-      {
-        id: 'breadcrumb',
-        name: 'Breadcrumb',
-        description: 'Hierarchical location and parent links.',
-        Page: BreadcrumbDemo,
-        internal: true,
-      },
-      {
-        id: 'pagination',
-        name: 'Pagination',
-        description: 'Previous, next, page, and overflow controls.',
-        Page: PaginationDemo,
-        internal: true,
-      },
-      {
         id: 'tabs',
         name: 'Tabs',
         description: 'Switch between related content views.',
         Page: TabsDemo,
-      },
-      {
-        id: 'sidebar',
-        name: 'Sidebar',
-        description: 'Bounded application navigation and content layout.',
-        Page: SidebarDemo,
-        internal: true,
       },
     ],
   },
@@ -409,20 +303,6 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Accordion',
         description: 'Expandable sections for progressive disclosure.',
         Page: AccordionDemo,
-      },
-      {
-        id: 'collapsible',
-        name: 'Collapsible',
-        description: 'A compact expandable content region.',
-        Page: CollapsibleDemo,
-        internal: true,
-      },
-      {
-        id: 'carousel',
-        name: 'Carousel',
-        description: 'Keyboard-accessible paged content.',
-        Page: CarouselDemo,
-        internal: true,
       },
       {
         id: 'item',
@@ -506,13 +386,6 @@ export const NAV_GROUPS: NavGroup[] = [
         description: 'Bounded vertical and horizontal scrolling.',
         Page: ScrollAreaDemo,
       },
-      {
-        id: 'resizable',
-        name: 'Resizable panels',
-        description: 'Bounded split panes with draggable handles.',
-        Page: ResizableDemo,
-        internal: true,
-      },
     ],
   },
   {
@@ -592,18 +465,6 @@ export const NAV_GROUPS: NavGroup[] = [
         description:
           'KitchenKin editorial tone, button label rules, empty state copy, error messages, and placeholder text.',
         Page: CopyVoicePage,
-      },
-    ],
-  },
-  {
-    name: 'Charts',
-    entries: [
-      {
-        id: 'chart',
-        name: 'Chart',
-        description: 'Configured data visualization, tooltip, and legend.',
-        Page: ChartDemo,
-        internal: true,
       },
     ],
   },
