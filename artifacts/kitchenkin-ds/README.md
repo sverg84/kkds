@@ -1,8 +1,15 @@
 # @sverg84/kkds
 
-KitchenKin design system — components, tokens, and styles for the web.
+> **Pre-release — `0.1.0`** This package is published for internal use and early
+> feedback. The public API is not yet stable. Expect breaking changes before
+> `1.0.0`.
 
-Built on shadcn/ui and Tailwind v4 with a warm food-forward palette (Quicksand, coral-orange, cream, rich brown). Ships full light and dark mode out of the box.
+KitchenKin Design System — components, tokens, and styles for the web.
+
+Built on shadcn/ui and Tailwind v4 with a warm food-forward palette (Quicksand,
+coral-orange, cream, rich brown). Ships full light and dark mode out of the box.
+
+---
 
 ## Installation
 
@@ -14,54 +21,205 @@ pnpm add @sverg84/kkds
 
 ### Peer dependencies
 
-```json
-"peerDependencies": {
-  "react": ">=18",
-  "react-dom": ">=18"
-}
+React 18 or 19 is required and must be provided by the consuming application.
+
+```sh
+npm install react@^19 react-dom@^19
 ```
+
+---
 
 ## Setup
 
 ### 1. Import the stylesheet
 
-Add this once in your app's root CSS file:
+Add this **once** at your app entry (e.g. `app/layout.tsx`, `main.tsx`, or a
+root CSS file):
 
-```css
-@import "@sverg84/kkds/styles.css";
+```tsx
+import "@sverg84/kkds/styles.css";
 ```
 
-This imports Tailwind, all design tokens (light + dark), and registers component sources for utility generation. Do not add a separate `@import "tailwindcss"` — it's already included.
+`dist/styles.css` is pre-compiled, browser-ready CSS. It includes the
+KKDS design tokens, all component styles, and Tailwind utilities for every
+class used by the components. **You do not need Tailwind installed in your
+application** to use this package's styles — the stylesheet is self-contained.
 
 ### 2. Import components
 
 ```tsx
-import { Button, Card, Badge, Input, Spinner } from "@sverg84/kkds";
+import {
+  RecipeCard,
+  RecipeImage,
+  RecipeMetadata,
+  RecipeAuthor,
+  CategoryBadge,
+  AllergenBadge,
+  FavoriteButton,
+  RecipeSearchBar,
+  RecipeCardSkeleton,
+} from "@sverg84/kkds";
+
+// Generic UI primitives (shadcn-based)
+import { Button, Badge, Card, Input, Skeleton } from "@sverg84/kkds";
+
+// Utilities
 import { cn } from "@sverg84/kkds";
-
-// Toast (radix-based)
-import { Toaster, useToast } from "@sverg84/kkds";
-
-// Sonner toast (re-exported as SonnerToaster to avoid name conflict)
-import { SonnerToaster } from "@sverg84/kkds";
 ```
 
-### 3. Token object (optional)
-
-For non-CSS consumers (e.g. React Native, canvas, charting libraries):
+### 3. Token object (for non-CSS consumers)
 
 ```ts
 import { tokens } from "@sverg84/kkds/tokens";
 
-tokens.color.light.primary   // "#ff7b54"
-tokens.color.dark.background // "#1c1208"
-tokens.fontFamily.sans       // ["Quicksand", ...]
-tokens.radius                // "0.625rem"
+tokens.color.light.primary    // "#ff7b54"
+tokens.color.dark.background  // "#1c1208"
+tokens.fontFamily.sans        // ["Quicksand", ...]
+tokens.radius                 // "0.625rem"
 ```
+
+### 4. Raw token JSON
+
+```ts
+import tokensJson from "@sverg84/kkds/tokens.json" assert { type: "json" };
+```
+
+---
+
+## Package entry points
+
+| Import                             | Description                                   |
+|------------------------------------|-----------------------------------------------|
+| `@sverg84/kkds`                    | All components, hooks, and utilities (ESM/CJS) |
+| `@sverg84/kkds/tokens`             | Portable hex token object (ESM/CJS + types)   |
+| `@sverg84/kkds/tokens.json`        | Raw DTCG token JSON                           |
+| `@sverg84/kkds/styles.css`         | Pre-compiled browser-ready stylesheet          |
+| `@sverg84/kkds/package.json`       | Package manifest                              |
+
+---
+
+## Next.js App Router
+
+### Stylesheet
+
+Import `@sverg84/kkds/styles.css` in your root layout:
+
+```tsx
+// app/layout.tsx
+import "@sverg84/kkds/styles.css";
+```
+
+### Client boundary
+
+The entire `@sverg84/kkds` module is marked `"use client"`. This means you can
+import any KKDS component directly from a React Server Component — Next.js will
+treat it as a client component reference and render it on the client.
+
+```tsx
+// app/recipes/page.tsx  (Server Component — no "use client" needed here)
+import { RecipeCard } from "@sverg84/kkds";
+
+export default async function RecipesPage() {
+  const recipes = await fetchRecipes();
+  return (
+    <main>
+      {recipes.map((r) => (
+        <RecipeCard key={r.id} title={r.title} imageUrl={r.imageUrl} />
+      ))}
+    </main>
+  );
+}
+```
+
+Interactive components work through the same boundary:
+
+```tsx
+// app/recipes/page.tsx
+import { FavoriteButton } from "@sverg84/kkds";
+
+export default function Page() {
+  // FavoriteButton is a client component — you can import it from a Server
+  // Component; Next.js handles the boundary automatically.
+  return <FavoriteButton isFavorited={false} onToggle={() => {}} />;
+}
+```
+
+If you need to manage interactive state from the server-component tree, wrap
+the interactive part in your own `"use client"` component and pass data as
+props.
+
+---
 
 ## Dark mode
 
-The stylesheet uses the `.dark` class strategy. Toggle `class="dark"` on `<html>` or use `next-themes` / your preferred theme manager.
+`dist/styles.css` uses the `.dark` class strategy. Toggle `class="dark"` on
+`<html>`, or use `next-themes` / any preferred theme manager.
+
+```tsx
+// With next-themes
+import { ThemeProvider } from "next-themes";
+
+export default function RootLayout({ children }) {
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+---
+
+## KitchenKin semantic components
+
+These are the primary exports KKDS is designed around:
+
+| Component            | Client? | Description                            |
+|----------------------|---------|----------------------------------------|
+| `RecipeCard`         | No*     | Composite recipe card with image, metadata, badges |
+| `RecipeImage`        | No*     | Aspect-ratio image wrapper             |
+| `RecipeMetadata`     | No*     | Time, servings, difficulty row         |
+| `RecipeAuthor`       | No*     | Avatar + author name                   |
+| `CategoryBadge`      | No*     | Pill badge for a recipe category       |
+| `AllergenBadge`      | No*     | Pill badge for an allergen             |
+| `FavoriteButton`     | **Yes** | Heart toggle button (stateful)         |
+| `RecipeSearchBar`    | **Yes** | Search input with clear button         |
+| `RecipeCardSkeleton` | No*     | Loading skeleton matching `RecipeCard` |
+
+\* Stateless/presentational; imports Radix primitives that carry their own
+`"use client"`. Because the single bundle is marked `"use client"`, all
+components are treated as client modules. A future version may split the bundle
+to restore per-component RSC granularity.
+
+---
+
+## Accessibility
+
+All KKDS semantic components delegate accessibility semantics to their
+underlying shadcn/Radix primitives. Interactive components (`FavoriteButton`,
+`RecipeSearchBar`) expose `aria-label` and `aria-pressed` / `role` via the
+underlying Radix `Toggle` and input primitives. Ensure that:
+
+- `FavoriteButton` receives a meaningful `aria-label` (default: `"Favorite"`).
+- `RecipeSearchBar`'s `placeholder` is set to a locale-appropriate string.
+- Images in `RecipeImage` carry a descriptive `alt` attribute.
+
+---
+
+## Does my app need Tailwind?
+
+**No.** `dist/styles.css` is pre-compiled and self-contained. Import it once at
+your app root; no Tailwind configuration is required in the consuming
+application.
+
+If your own application also uses Tailwind v4, both stylesheets coexist without
+conflict. Do not add a separate `@import "tailwindcss"` that scans
+`node_modules/@sverg84/kkds` — the utilities are already embedded in
+`dist/styles.css`.
+
+---
 
 ## License
 

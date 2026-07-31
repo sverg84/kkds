@@ -18,22 +18,26 @@
       "import": "./dist/tokens.js",
       "require": "./dist/tokens.cjs"
     },
-    "./styles.css": "./dist/styles.css"
+    "./tokens.json": "./tokens.json",
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
     "tokens.json",
     "README.md"
   ],
-  "imports": {
-    "#components/*": "./src/components/*.tsx",
-    "#lib/*": "./src/lib/*.tsx",
-    "#hooks/*": "./src/hooks/*.tsx"
+  "sideEffects": [
+    "./dist/styles.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build:lib": "node scripts/build-tokens.mjs && tsup && cp src/index.css dist/styles.css && cp -r src/components dist/components",
+    "build:lib": "rm -rf dist && node scripts/build-tokens.mjs && tsup && node scripts/build-css.mjs",
     "build:preview": "vite build --config vite.config.ts",
     "build": "pnpm run build:lib",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
@@ -42,12 +46,11 @@
     "prepublishOnly": "pnpm run build:lib"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@tailwindcss/typography": "^0.5.15",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
@@ -80,7 +83,6 @@
     "cmdk": "^1.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.23.24",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.545.0",
     "next-themes": "^0.4.6",
@@ -90,7 +92,6 @@
     "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
-    "tw-animate-css": "^1.4.0",
     "vaul": "^1.1.2",
     "zod": "^3.25.76"
   },
@@ -98,15 +99,18 @@
     "@replit/vite-plugin-cartographer": "^0.5.1",
     "@replit/vite-plugin-dev-banner": "^0.1.1",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.6",
+    "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "framer-motion": "^12.23.24",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwindcss": "^4.1.14",
     "tsup": "^8.5.0",
+    "tw-animate-css": "^1.4.0",
     "vite": "^7.3.0"
   }
 }
