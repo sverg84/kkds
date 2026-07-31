@@ -52,6 +52,15 @@ import { ToastDemo } from './demos/toast';
 import { ToggleDemo } from './demos/toggle';
 import { ToggleGroupDemo } from './demos/toggle-group';
 import { TooltipDemo } from './demos/tooltip';
+import { AllergenBadgeDemo } from './demos/kkds/allergen-badge';
+import { CategoryBadgeDemo } from './demos/kkds/category-badge';
+import { FavoriteButtonDemo } from './demos/kkds/favorite-button';
+import { RecipeAuthorDemo } from './demos/kkds/recipe-author';
+import { RecipeCardDemo } from './demos/kkds/recipe-card';
+import { RecipeCardSkeletonDemo } from './demos/kkds/recipe-card-skeleton';
+import { RecipeImageDemo } from './demos/kkds/recipe-image';
+import { RecipeMetadataDemo } from './demos/kkds/recipe-metadata';
+import { RecipeSearchBarDemo } from './demos/kkds/recipe-search-bar';
 import {
   ColorsPage,
   FontsPage,
@@ -477,6 +486,74 @@ export const NAV_GROUPS: NavGroup[] = [
         name: 'Resizable panels',
         description: 'Bounded split panes with draggable handles.',
         Page: ResizableDemo,
+      },
+    ],
+  },
+  {
+    name: 'KitchenKin',
+    entries: [
+      {
+        id: 'kkds-recipe-image',
+        name: 'Recipe image',
+        description:
+          'Aspect-ratio-constrained food photograph with object-cover framing and a warm branded placeholder.',
+        Page: RecipeImageDemo,
+      },
+      {
+        id: 'kkds-recipe-metadata',
+        name: 'Recipe metadata',
+        description:
+          'Compact prep time, cook time, and servings row with Clock and Users icons.',
+        Page: RecipeMetadataDemo,
+      },
+      {
+        id: 'kkds-category-badge',
+        name: 'Category badge',
+        description:
+          'Warm secondary badge for recipe categories, cuisines, and dietary styles.',
+        Page: CategoryBadgeDemo,
+      },
+      {
+        id: 'kkds-allergen-badge',
+        name: 'Allergen badge',
+        description:
+          'Muted outline badge for dietary constraints and allergen warnings.',
+        Page: AllergenBadgeDemo,
+      },
+      {
+        id: 'kkds-recipe-author',
+        name: 'Recipe author',
+        description:
+          'Avatar + display name identity row in default and compact sizes.',
+        Page: RecipeAuthorDemo,
+      },
+      {
+        id: 'kkds-recipe-card',
+        name: 'Recipe card',
+        description:
+          'Primary recipe content unit — image, title, tags, description, and metadata.',
+        Page: RecipeCardDemo,
+      },
+      {
+        id: 'kkds-recipe-card-skeleton',
+        name: 'Recipe card skeleton',
+        description:
+          'Loading placeholder that matches the RecipeCard layout to prevent layout shift.',
+        Page: RecipeCardSkeletonDemo,
+      },
+      {
+        id: 'kkds-favorite-button',
+        name: 'Favorite button',
+        description:
+          'Heart toggle for saving recipes to a favorites collection.',
+        Page: FavoriteButtonDemo,
+      },
+      {
+        id: 'kkds-recipe-search-bar',
+        name: 'Recipe search bar',
+        description:
+          'Controlled search input with Search icon prefix and inline clear button.',
+        Page: RecipeSearchBarDemo,
       },
     ],
   },

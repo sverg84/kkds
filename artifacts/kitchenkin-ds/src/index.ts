@@ -57,6 +57,17 @@ export * from "./components/ui/toggle";
 export * from "./components/ui/toggle-group";
 export * from "./components/ui/tooltip";
 
+// KitchenKin product components (Layer 3)
+export * from "./components/kkds/allergen-badge";
+export * from "./components/kkds/category-badge";
+export * from "./components/kkds/favorite-button";
+export * from "./components/kkds/recipe-author";
+export * from "./components/kkds/recipe-card";
+export * from "./components/kkds/recipe-card-skeleton";
+export * from "./components/kkds/recipe-image";
+export * from "./components/kkds/recipe-metadata";
+export * from "./components/kkds/recipe-search-bar";
+
 // Hooks
 export * from "./hooks/use-mobile";
 export * from "./hooks/use-toast";
