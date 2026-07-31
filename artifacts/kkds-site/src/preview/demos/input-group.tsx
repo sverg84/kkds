@@ -1,4 +1,3 @@
-import { Search, Send } from 'lucide-react';
 import {
   InputGroup,
   InputGroupAddon,
@@ -6,8 +5,9 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
+  Kbd,
 } from '@sverg84/kkds';
-import { Kbd } from '@sverg84/kkds';
+import { Search, Send } from 'lucide-react';
 import { Stack } from '../parts';
 
 export function InputGroupDemo() {

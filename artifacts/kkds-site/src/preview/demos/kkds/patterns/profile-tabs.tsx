@@ -1,22 +1,19 @@
-import { RecipeAuthor } from '@sverg84/kkds';
-import { RecipeCard } from '@sverg84/kkds';
-import { RecipeCardSkeleton } from '@sverg84/kkds';
 import {
+  RecipeAuthor,
+  RecipeCard,
+  RecipeCardSkeleton,
   Empty,
   EmptyContent,
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '@sverg84/kkds';
-import { Button } from '@sverg84/kkds';
-import { Separator } from '@sverg84/kkds';
-import {
+  Button,
+  Separator,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from '@sverg84/kkds';
-
 const MY_RECIPES = [
   {
     title: 'Pasta Carbonara',

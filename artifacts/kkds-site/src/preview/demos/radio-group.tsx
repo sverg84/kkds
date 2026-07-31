@@ -1,5 +1,5 @@
-import { Label } from '@sverg84/kkds';
 import {
+  Label,
   RadioGroup,
   RadioGroupItem,
 } from '@sverg84/kkds';

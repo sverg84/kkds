@@ -8,9 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  Button,
 } from '@sverg84/kkds';
-import { Button } from '@sverg84/kkds';
-
 export function AlertDialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

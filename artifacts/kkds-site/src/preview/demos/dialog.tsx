@@ -1,5 +1,5 @@
-import { Button } from '@sverg84/kkds';
 import {
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@sverg84/kkds';
-
 export function DialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

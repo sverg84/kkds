@@ -1,7 +1,9 @@
-import { Button } from '@sverg84/kkds';
-import { ToastAction } from '@sverg84/kkds';
-import { Toaster } from '@sverg84/kkds';
-import { toast } from '@sverg84/kkds';
+import {
+  Button,
+  ToastAction,
+  Toaster,
+  toast,
+} from '@sverg84/kkds';
 import { Row } from '../parts';
 
 export function ToastDemo() {

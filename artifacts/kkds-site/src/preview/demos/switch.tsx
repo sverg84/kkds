@@ -1,5 +1,7 @@
-import { Label } from '@sverg84/kkds';
-import { Switch } from '@sverg84/kkds';
+import {
+  Label,
+  Switch,
+} from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function SwitchDemo() {

@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { Button } from '@sverg84/kkds';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
@@ -16,7 +15,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@sverg84/kkds';
-
+import { useState } from 'react';
 export function DropdownMenuDemo() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [theme, setTheme] = useState('system');

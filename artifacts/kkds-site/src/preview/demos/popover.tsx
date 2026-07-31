@@ -1,12 +1,11 @@
-import { Button } from '@sverg84/kkds';
-import { Input } from '@sverg84/kkds';
-import { Label } from '@sverg84/kkds';
 import {
+  Button,
+  Input,
+  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@sverg84/kkds';
-
 export function PopoverDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

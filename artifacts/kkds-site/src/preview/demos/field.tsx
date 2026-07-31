@@ -1,5 +1,5 @@
-import { Checkbox } from '@sverg84/kkds';
 import {
+  Checkbox,
   Field,
   FieldContent,
   FieldDescription,
@@ -10,9 +10,8 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
+  Input,
 } from '@sverg84/kkds';
-import { Input } from '@sverg84/kkds';
-
 export function FieldDemo() {
   return (
     <div className="max-w-lg rounded-xl border bg-card p-6">

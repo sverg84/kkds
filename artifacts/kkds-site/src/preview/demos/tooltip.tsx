@@ -1,12 +1,11 @@
-import { Info } from 'lucide-react';
-import { Button } from '@sverg84/kkds';
 import {
+  Button,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@sverg84/kkds';
-
+import { Info } from 'lucide-react';
 export function TooltipDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

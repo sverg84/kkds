@@ -1,5 +1,7 @@
-import { Checkbox } from '@sverg84/kkds';
-import { Label } from '@sverg84/kkds';
+import {
+  Checkbox,
+  Label,
+} from '@sverg84/kkds';
 import { Stack } from '../parts';
 
 export function CheckboxDemo() {

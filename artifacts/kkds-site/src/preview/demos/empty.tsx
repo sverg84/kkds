@@ -1,6 +1,5 @@
-import { FolderOpen } from 'lucide-react';
-import { Button } from '@sverg84/kkds';
 import {
+  Button,
   Empty,
   EmptyContent,
   EmptyDescription,
@@ -8,7 +7,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@sverg84/kkds';
-
+import { FolderOpen } from 'lucide-react';
 export function EmptyDemo() {
   return (
     <Empty className="max-w-xl border bg-card">
