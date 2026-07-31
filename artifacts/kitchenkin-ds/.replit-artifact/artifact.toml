@@ -16,3 +16,15 @@ run = "pnpm --filter @sverg84/kkds run dev"
 [services.env]
 PORT = "20227"
 BASE_PATH = "/kitchenkin-ds/"
+
+[services.production]
+serve = "static"
+publicDir = "artifacts/kitchenkin-ds/dist"
+
+[services.production.build]
+args = ["pnpm", "--filter", "@sverg84/kkds", "run", "build:preview"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+PORT = "20227"
+BASE_PATH = "/kitchenkin-ds/"
