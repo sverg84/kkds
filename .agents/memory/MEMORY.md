@@ -1,1 +1,2 @@
 - [KitchenKin design tokens](kitchenkin-tokens.md) — OKLCH→hex conversion results and warm dark-mode palette decisions for KitchenKin DS.
+- [kkds-site standalone config](kkds-site-standalone.md) — How the standalone kkds-site artifact differs from the monorepo kitchenkin-ds artifact.

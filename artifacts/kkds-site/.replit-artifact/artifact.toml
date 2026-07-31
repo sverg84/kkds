@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "KitchenKin Design System"
+version = "1.0.0"
+id = "artifacts/kkds-site"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19573
+
+[services.development]
+run = "pnpm --filter @workspace/kkds-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kkds-site", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/kkds-site/dist"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19573"
+BASE_PATH = "/"
