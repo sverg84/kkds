@@ -18,7 +18,8 @@
   ],
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
