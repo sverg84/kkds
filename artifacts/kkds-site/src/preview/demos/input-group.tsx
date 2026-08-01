@@ -5,10 +5,9 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-  Kbd,
-} from '@sverg84/kkds-react';
-import { Search, Send } from 'lucide-react';
-import { Stack } from '../parts';
+} from "@sverg84/kkds-react";
+import { Search, Send } from "lucide-react";
+import { Stack } from "../parts";
 
 export function InputGroupDemo() {
   return (
@@ -19,9 +18,6 @@ export function InputGroupDemo() {
             <Search />
           </InputGroupAddon>
           <InputGroupInput placeholder="Search projects" />
-          <InputGroupAddon align="inline-end">
-            <Kbd>/</Kbd>
-          </InputGroupAddon>
         </InputGroup>
       </Stack>
       <Stack label="Multiline action">

@@ -26,5 +26,6 @@ export default defineConfig({
   // Ensure node_modules conditions resolve to browser/module builds.
   esbuildOptions(options) {
     options.conditions = ["module"];
+    options.jsx = "automatic";
   },
 });

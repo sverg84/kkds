@@ -57,7 +57,6 @@ export * from "./components/ui/empty";
 export * from "./components/ui/field";
 export * from "./components/ui/input-group";
 export * from "./components/ui/item";
-export * from "./components/ui/kbd";
 export * from "./components/ui/spinner";
 
 // ── Layer 1: Curated shadcn/ui primitives ────────────────────────────────────
@@ -103,14 +102,19 @@ export * from "./hooks/use-toast";
 export * from "./lib/utils";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
-export { tokens, type Tokens } from '@sverg84/kkds-common';
+export { tokens, type Tokens } from "@sverg84/kkds-common";
 
 // ── Motion (semantic, platform-neutral) ───────────────────────────────────────
-export { motion } from '@sverg84/kkds-common';
-export type { Motion, MotionSpec } from '@sverg84/kkds-common';
+export { motion } from "@sverg84/kkds-common";
+export type { Motion, MotionSpec } from "@sverg84/kkds-common";
 
 // ── Domain types and constants (platform-neutral) ─────────────────────────────
-export { ALLERGEN_META, allergenLabel, RECIPE_CATEGORIES, categoryLabel } from '@sverg84/kkds-common';
+export {
+  ALLERGEN_META,
+  allergenLabel,
+  RECIPE_CATEGORIES,
+  categoryLabel,
+} from "@sverg84/kkds-common";
 export type {
   AllergenTag,
   AllergenTagMeta,
@@ -121,7 +125,7 @@ export type {
   RecipeAuthor as RecipeAuthorProfile,
   RecipeIngredient,
   RecipeStep,
-} from '@sverg84/kkds-common';
+} from "@sverg84/kkds-common";
 
 // ── Platform-neutral component contracts ──────────────────────────────────────
 export type {
@@ -135,4 +139,4 @@ export type {
   CategoryBadgeContract,
   EmptyContract,
   SpinnerContract,
-} from '@sverg84/kkds-common';
+} from "@sverg84/kkds-common";
