@@ -3,7 +3,7 @@ import {
   ToastAction,
   Toaster,
   toast,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function ToastDemo() {

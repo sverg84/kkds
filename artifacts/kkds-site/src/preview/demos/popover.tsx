@@ -5,7 +5,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 export function PopoverDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

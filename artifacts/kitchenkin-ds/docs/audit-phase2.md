@@ -159,7 +159,7 @@ The following concepts exist in the source but are too coupled to application in
 ### RecipeListShell (pattern)
 
 - **Why not a component:** Depends on TanStack Query's `useInfiniteQuery`, `IntersectionObserver`, and connection-style pagination (`edges`, `node`, `pageInfo`). These are application concerns, not design system concerns.
-- **Document as:** "Infinite scroll recipe grid" composition pattern using `RecipeCard`, `RecipeCardSkeleton`, and app-level pagination controls (`Pagination` is not part of the `@sverg84/kkds` public API — build with `Button` + `<nav>` or a pagination library).
+- **Document as:** "Infinite scroll recipe grid" composition pattern using `RecipeCard`, `RecipeCardSkeleton`, and app-level pagination controls (`Pagination` is not part of the `@sverg84/kkds-react` public API — build with `Button` + `<nav>` or a pagination library).
 
 ### UserProfile header (pattern)
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion as fm, type Variants } from 'framer-motion';
-import { tokens } from '@sverg84/kkds';
+import { tokens } from '@sverg84/kkds-react';
 
 const d = tokens.motion.duration;
 const e = tokens.motion.easing;
@@ -272,7 +272,7 @@ export function MotionTokensPage() {
         <div className="rounded-xl border bg-card p-6 space-y-4 text-sm">
           <div>
             <p className="font-medium mb-2">Web (Framer Motion)</p>
-            <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto"><code>{`import { motion } from '@sverg84/kkds';
+            <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto"><code>{`import { motion } from '@sverg84/kkds-react';
 
 <motion.div
   initial={{ opacity: 0, y: 4 }}

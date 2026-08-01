@@ -1,4 +1,4 @@
-import { ScrollArea, ScrollBar } from '@sverg84/kkds';
+import { ScrollArea, ScrollBar } from '@sverg84/kkds-react';
 
 export function ScrollAreaDemo() {
   return (

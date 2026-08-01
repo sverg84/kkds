@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 export function DialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

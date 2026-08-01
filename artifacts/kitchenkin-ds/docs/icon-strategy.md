@@ -2,7 +2,7 @@
 
 ## Current state (web)
 
-`@sverg84/kkds` uses **lucide-react** as its icon library.
+`@sverg84/kkds-react` uses **lucide-react** as its icon library.
 
 - **Source format:** SVG (Lucide's source is SVG; `lucide-react` ships pre-built React components that render inline SVG)
 - **Usage:** Icons are imported as named React components and rendered inline in JSX. No sprite sheet, no font icon fallback.
@@ -104,6 +104,6 @@ Metro bundler's platform extension resolution (`.native.tsx` files take priority
 
 ## Lucide version pinning
 
-`lucide-react` is in `@sverg84/kkds` **dependencies** (not peerDependencies). This means consumers get a consistent icon set without managing the dependency themselves. If a specific Lucide icon is removed in a future release, the dependency pin protects against accidental breakage.
+`lucide-react` is in `@sverg84/kkds-react` **dependencies** (not peerDependencies). This means consumers get a consistent icon set without managing the dependency themselves. If a specific Lucide icon is removed in a future release, the dependency pin protects against accidental breakage.
 
 The current version is `^0.545.0`. Avoid upgrading lucide-react unless the desired new icons aren't available in the pinned version — Lucide occasionally renames or removes icons between minor releases.

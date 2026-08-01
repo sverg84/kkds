@@ -6,7 +6,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { FolderOpen } from 'lucide-react';
 export function EmptyDemo() {
   return (

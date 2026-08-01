@@ -11,7 +11,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyTitle,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 
 const ALL_RECIPES = [
   {

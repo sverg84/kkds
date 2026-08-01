@@ -1,6 +1,6 @@
 # Component Classification — Platform-Neutral Concept vs Web Implementation
 
-Every exported component in `@sverg84/kkds` is documented below with:
+Every exported component in `@sverg84/kkds-react` is documented below with:
 - **Concept** — the platform-neutral intent (what it means, what data it needs, what it communicates to users)
 - **Web implementation** — browser-specific details (HTML elements, CSS, Radix, Framer Motion, DOM APIs)
 - **Mobile notes** — what a future React Native implementation would need to adapt

@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import { Button, SonnerToaster } from '@sverg84/kkds';
+import { Button, SonnerToaster } from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function SonnerDemo() {

@@ -1,19 +1,18 @@
 /**
- * Generates the consumable web theme (src/index.css) and the portable token
- * object (src/generated/tokens.tsx) from lib/kkds-common/tokens.json.
+ * Generates the consumable web theme (src/index.css) from lib/kkds-common/tokens.json.
  *
- * tokens.json lives in kkds-common because tokens are platform-neutral.
- * The CSS theme stays in kkds-web because it is browser-specific.
- * Both share the same input file so web + (future) mobile stay in sync.
+ * tokens.json lives in kkds-common — the single source of truth for all platforms.
+ * The CSS theme stays in kkds-react because it is browser-specific.
+ * kkds-react re-exports the `tokens` object directly from @sverg84/kkds-common,
+ * so no duplicate TS token file is generated here.
  *
  * This script also regenerates kkds-common's TS output (lib/kkds-common/src/generated/tokens.ts)
  * so the two packages remain in sync after a single `pnpm tokens` invocation.
  *
  * Outputs:
- *   src/index.css                          the design system's web theme
- *   src/generated/tokens.tsx               hex + motion token object (web barrel)
- *   ../../lib/kkds-common/src/generated/tokens.ts  platform-neutral TS object
- *   public/favicon.svg                     regenerated from public/logo.svg
+ *   src/index.css                                   the design system's web theme
+ *   ../../lib/kkds-common/src/generated/tokens.ts   platform-neutral TS object
+ *   public/favicon.svg                              regenerated from public/logo.svg
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -26,7 +25,6 @@ const commonRoot = join(root, "../../lib/kkds-common"); // lib/kkds-common/
 const tokensPath = join(commonRoot, "tokens.json");
 const templatePath = join(here, "theme-template.css");
 const cssOut = join(root, "src", "index.css");
-const tsOutDir = join(root, "src", "generated");
 const faviconOut = join(root, "public", "favicon.svg");
 const commonTsOutDir = join(commonRoot, "src", "generated");
 
@@ -162,17 +160,6 @@ function buildCss(tokens) {
   return css;
 }
 
-function buildWebTs(portable) {
-  return `/* GENERATED FROM lib/kkds-common/tokens.json -- DO NOT EDIT. Run scripts/build-tokens.mjs. */
-// Portable design tokens (colors as hex, motion as CSS strings). Web consumes the
-// color theme via src/index.css; all platforms share this object.
-export const tokens = ${JSON.stringify(portable, null, 2)} as const;
-
-export type Tokens = typeof tokens;
-export default tokens;
-`;
-}
-
 function buildCommonTs(portable) {
   return `/* GENERATED FROM tokens.json -- DO NOT EDIT. Run \`pnpm tokens\` in lib/kkds-common. */
 // Portable design tokens (colors as hex, motion as CSS strings).
@@ -192,15 +179,11 @@ export function buildTokens() {
   // 1. Write the web CSS theme
   writeFileSync(cssOut, buildCss(rawTokens));
 
-  // 2. Write the kkds-web portable token object (with motion)
-  mkdirSync(tsOutDir, { recursive: true });
-  writeFileSync(join(tsOutDir, "tokens.tsx"), buildWebTs(portable));
-
-  // 3. Keep kkds-common's generated/tokens.ts in sync
+  // 2. Keep kkds-common's generated/tokens.ts in sync (kkds-react re-exports from there)
   mkdirSync(commonTsOutDir, { recursive: true });
   writeFileSync(join(commonTsOutDir, "tokens.ts"), buildCommonTs(portable));
 
-  // 4. Regenerate favicon
+  // 3. Regenerate favicon
   mkdirSync(dirname(faviconOut), { recursive: true });
   writeFileSync(faviconOut, buildFavicon());
 }
@@ -212,6 +195,6 @@ function dirname2(path) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   buildTokens();
   process.stdout.write(
-    "Generated src/index.css, src/generated/tokens.tsx, lib/kkds-common/src/generated/tokens.ts, and public/favicon.svg\n",
+    "Generated src/index.css, lib/kkds-common/src/generated/tokens.ts, and public/favicon.svg\n",
   );
 }

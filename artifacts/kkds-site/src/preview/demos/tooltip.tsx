@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Info } from 'lucide-react';
 export function TooltipDemo() {
   return (

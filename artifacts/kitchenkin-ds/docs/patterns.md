@@ -17,7 +17,7 @@ Any surface that presents a filterable, searchable list of recipes — the publi
 | Content grid | `RecipeCard` × N in a responsive grid |
 | Loading state | `RecipeCardSkeleton count={n}` |
 | Empty / no-results state | KKDS `Empty` + food-forward copy |
-| Pagination | App-level — compose with `Button` + `<nav>` or a pagination library of your choice (`Pagination` is not part of the `@sverg84/kkds` public API) |
+| Pagination | App-level — compose with `Button` + `<nav>` or a pagination library of your choice (`Pagination` is not part of the `@sverg84/kkds-react` public API) |
 
 ### Layout conventions
 ```

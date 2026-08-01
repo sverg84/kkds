@@ -1,4 +1,4 @@
-import { Badge } from '@sverg84/kkds';
+import { Badge } from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function BadgeDemo() {

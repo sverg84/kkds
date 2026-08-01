@@ -1,4 +1,4 @@
-import { Separator } from '@sverg84/kkds';
+import { Separator } from '@sverg84/kkds-react';
 
 export function SeparatorDemo() {
   return (

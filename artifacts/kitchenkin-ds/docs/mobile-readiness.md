@@ -20,7 +20,7 @@
 `src/types/components.ts` uses no DOM types. `RecipeCardContract` has `onPress?: () => void` instead of `href`, no `MouseEvent`, no `HTMLElement`, no `className`. Platform implementations extend these with platform-specific props.
 
 ### 5. No Next.js coupling in the library
-`@sverg84/kkds` has no `next/` imports. It is a pure React library. The `"use client"` banner is added by tsup at build time and is only relevant in Next.js App Router contexts — it doesn't affect Expo.
+`@sverg84/kkds-react` has no `next/` imports. It is a pure React library. The `"use client"` banner is added by tsup at build time and is only relevant in Next.js App Router contexts — it doesn't affect Expo.
 
 ### 6. The three-layer model is already in place
 Layer 1 (shadcn/Radix primitives) → web only. Layer 2 (KKDS custom primitives) → web for now, concepts are portable. Layer 3 (KKDS semantic) → contracts live in kkds-common, implementations live in kkds-web.
@@ -30,7 +30,7 @@ Layer 1 (shadcn/Radix primitives) → web only. Layer 2 (KKDS custom primitives)
 ## What would make Expo difficult ⚠️
 
 ### 1. `useMobile` uses `window.matchMedia`
-`hooks/use-mobile.tsx` reads `window.innerWidth` and uses `window.matchMedia`. These don't exist in React Native. This hook is exported from `@sverg84/kkds` but its contract (`useIsMobile(): boolean`) is platform-neutral — only the implementation is browser-specific.
+`hooks/use-mobile.tsx` reads `window.innerWidth` and uses `window.matchMedia`. These don't exist in React Native. This hook is exported from `@sverg84/kkds-react` but its contract (`useIsMobile(): boolean`) is platform-neutral — only the implementation is browser-specific.
 
 **Recommendation:** Keep the hook in kkds-web. In kkds-mobile, implement the same `useIsMobile` contract using React Native's `useWindowDimensions`. The hook's name and return type stay the same.
 
@@ -98,7 +98,7 @@ Currently a web-only prop undocumented as such. Before 1.0, add a JSDoc note mar
 All web components accept `className?: string`. This is idiomatic React/web but meaningless on mobile. Before 1.0, document the intended customisation boundary — which props are part of the stable API and which are escape hatches.
 
 ### Exported hooks
-`useMobile` and `useToast` are exported from `@sverg84/kkds`. Before 1.0, decide whether to:
+`useMobile` and `useToast` are exported from `@sverg84/kkds-react`. Before 1.0, decide whether to:
 a) Keep them as web-only exports (document this)
 b) Move them behind a `/hooks` subpath so consumers opt in
 

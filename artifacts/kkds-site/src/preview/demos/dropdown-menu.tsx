@@ -14,7 +14,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { useState } from 'react';
 export function DropdownMenuDemo() {
   const [showSidebar, setShowSidebar] = useState(true);

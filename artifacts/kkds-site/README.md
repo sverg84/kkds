@@ -28,7 +28,7 @@ pnpm add @sverg84/kkds
 Add this once in your app's root CSS file:
 
 ```css
-@import "@sverg84/kkds/styles.css";
+@import "@sverg84/kkds-react/styles.css";
 ```
 
 This imports Tailwind, all design tokens (light + dark), and registers component sources for utility generation. Do not add a separate `@import "tailwindcss"` — it's already included.
@@ -36,14 +36,14 @@ This imports Tailwind, all design tokens (light + dark), and registers component
 ### 2. Import components
 
 ```tsx
-import { Button, Card, Badge, Input, Spinner } from "@sverg84/kkds";
-import { cn } from "@sverg84/kkds";
+import { Button, Card, Badge, Input, Spinner } from "@sverg84/kkds-react";
+import { cn } from "@sverg84/kkds-react";
 
 // Toast (radix-based)
-import { Toaster, useToast } from "@sverg84/kkds";
+import { Toaster, useToast } from "@sverg84/kkds-react";
 
 // Sonner toast (re-exported as SonnerToaster to avoid name conflict)
-import { SonnerToaster } from "@sverg84/kkds";
+import { SonnerToaster } from "@sverg84/kkds-react";
 ```
 
 ### 3. Token object (optional)
@@ -51,7 +51,7 @@ import { SonnerToaster } from "@sverg84/kkds";
 For non-CSS consumers (e.g. React Native, canvas, charting libraries):
 
 ```ts
-import { tokens } from "@sverg84/kkds/tokens";
+import { tokens } from "@sverg84/kkds-react/tokens";
 
 tokens.color.light.primary   // "#ff7b54"
 tokens.color.dark.background // "#1c1208"

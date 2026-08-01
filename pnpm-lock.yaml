@@ -406,7 +406,7 @@ importers:
 
   artifacts/kkds-site:
     dependencies:
-      '@sverg84/kkds':
+      '@sverg84/kkds-react':
         specifier: workspace:*
         version: link:../kitchenkin-ds
       '@tailwindcss/typography':

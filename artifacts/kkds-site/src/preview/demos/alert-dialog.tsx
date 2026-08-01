@@ -9,7 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 export function AlertDialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">

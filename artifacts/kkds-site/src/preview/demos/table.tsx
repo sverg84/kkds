@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 
 export function TableDemo() {
   return (

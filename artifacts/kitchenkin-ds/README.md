@@ -37,7 +37,7 @@ Add this **once** at your app entry (e.g. `app/layout.tsx`, `main.tsx`, or a
 root CSS file):
 
 ```tsx
-import "@sverg84/kkds/styles.css";
+import "@sverg84/kkds-react/styles.css";
 ```
 
 `dist/styles.css` is pre-compiled, browser-ready CSS. It includes the
@@ -58,19 +58,19 @@ import {
   FavoriteButton,
   RecipeSearchBar,
   RecipeCardSkeleton,
-} from "@sverg84/kkds";
+} from "@sverg84/kkds-react";
 
 // Generic UI primitives (shadcn-based)
-import { Button, Badge, Card, Input, Skeleton } from "@sverg84/kkds";
+import { Button, Badge, Card, Input, Skeleton } from "@sverg84/kkds-react";
 
 // Utilities
-import { cn } from "@sverg84/kkds";
+import { cn } from "@sverg84/kkds-react";
 ```
 
 ### 3. Token object (for non-CSS consumers)
 
 ```ts
-import { tokens } from "@sverg84/kkds/tokens";
+import { tokens } from "@sverg84/kkds-react/tokens";
 
 tokens.color.light.primary    // "#ff7b54"
 tokens.color.dark.background  // "#1c1208"
@@ -81,7 +81,7 @@ tokens.radius                 // "0.625rem"
 ### 4. Raw token JSON
 
 ```ts
-import tokensJson from "@sverg84/kkds/tokens.json" assert { type: "json" };
+import tokensJson from "@sverg84/kkds-react/tokens.json" assert { type: "json" };
 ```
 
 ---
@@ -90,11 +90,11 @@ import tokensJson from "@sverg84/kkds/tokens.json" assert { type: "json" };
 
 | Import                             | Description                                   |
 |------------------------------------|-----------------------------------------------|
-| `@sverg84/kkds`                    | All components, hooks, and utilities (ESM/CJS) |
-| `@sverg84/kkds/tokens`             | Portable hex token object (ESM/CJS + types)   |
-| `@sverg84/kkds/tokens.json`        | Raw DTCG token JSON                           |
-| `@sverg84/kkds/styles.css`         | Pre-compiled browser-ready stylesheet          |
-| `@sverg84/kkds/package.json`       | Package manifest                              |
+| `@sverg84/kkds-react`                    | All components, hooks, and utilities (ESM/CJS) |
+| `@sverg84/kkds-react/tokens`             | Portable hex token object (ESM/CJS + types)   |
+| `@sverg84/kkds-react/tokens.json`        | Raw DTCG token JSON                           |
+| `@sverg84/kkds-react/styles.css`         | Pre-compiled browser-ready stylesheet          |
+| `@sverg84/kkds-react/package.json`       | Package manifest                              |
 
 ---
 
@@ -102,22 +102,22 @@ import tokensJson from "@sverg84/kkds/tokens.json" assert { type: "json" };
 
 ### Stylesheet
 
-Import `@sverg84/kkds/styles.css` in your root layout:
+Import `@sverg84/kkds-react/styles.css` in your root layout:
 
 ```tsx
 // app/layout.tsx
-import "@sverg84/kkds/styles.css";
+import "@sverg84/kkds-react/styles.css";
 ```
 
 ### Client boundary
 
-The entire `@sverg84/kkds` module is marked `"use client"`. This means you can
+The entire `@sverg84/kkds-react` module is marked `"use client"`. This means you can
 import any KKDS component directly from a React Server Component — Next.js will
 treat it as a client component reference and render it on the client.
 
 ```tsx
 // app/recipes/page.tsx  (Server Component — no "use client" needed here)
-import { RecipeCard } from "@sverg84/kkds";
+import { RecipeCard } from "@sverg84/kkds-react";
 
 export default async function RecipesPage() {
   const recipes = await fetchRecipes();
@@ -135,7 +135,7 @@ Interactive components work through the same boundary:
 
 ```tsx
 // app/recipes/page.tsx
-import { FavoriteButton } from "@sverg84/kkds";
+import { FavoriteButton } from "@sverg84/kkds-react";
 
 export default function Page() {
   // FavoriteButton is a client component — you can import it from a Server

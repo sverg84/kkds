@@ -110,7 +110,7 @@ Mobile support is enabled, not forced. The quality of the web implementation is 
 
 ---
 
-### `@sverg84/kkds` (`artifacts/kitchenkin-ds/`)
+### `@sverg84/kkds-react` (`artifacts/kitchenkin-ds/`)
 
 | What | Where |
 |---|---|

@@ -2,7 +2,7 @@
 
 This package defines the visual language for the project. Use it whenever you
 build or restyle UI so every surface looks like the same product. It is a real
-workspace package (`@sverg84/kkds`): other artifacts depend on it and import
+workspace package (`@sverg84/kkds-react`): other artifacts depend on it and import
 its theme and components directly.
 
 ## What's here
@@ -92,7 +92,7 @@ import {
   AllergenBadge,
   FavoriteButton,
   RecipeSearchBar,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 ```
 
 Components import each other with relative paths internally. Never use a `@/`
@@ -126,12 +126,12 @@ chart, motion rule, or applied example.
 ## Prototyping on the canvas
 
 Use the mockup-sandbox skill's "Design systems" flow. It creates a sandbox entry
-for `@sverg84/kkds` and renders mockups using this package's theme and components.
+for `@sverg84/kkds-react` and renders mockups using this package's theme and components.
 
 ## Consuming this package
 
 Never copy token values, component source, hooks, or these docs into a consuming
-artifact. Add `@sverg84/kkds` as a `workspace:*` dependency, run `pnpm install`,
+artifact. Add `@sverg84/kkds-react` as a `workspace:*` dependency, run `pnpm install`,
 and import directly from this package.
 
 Read only the guides required by the current task:

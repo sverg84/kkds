@@ -12,7 +12,7 @@ import {
   EmptyHeader,
   EmptyTitle,
   EmptyMedia,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import * as React from 'react';
 import { AlertCircle, ChefHat, Search } from 'lucide-react';
 type State = 'loading' | 'empty' | 'no-results' | 'error';

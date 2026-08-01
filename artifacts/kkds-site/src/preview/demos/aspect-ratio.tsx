@@ -1,4 +1,4 @@
-import { AspectRatio } from '@sverg84/kkds';
+import { AspectRatio } from '@sverg84/kkds-react';
 
 export function AspectRatioDemo() {
   return (

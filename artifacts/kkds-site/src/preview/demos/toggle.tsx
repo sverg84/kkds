@@ -1,5 +1,5 @@
 import { Bold, Italic, Underline } from 'lucide-react';
-import { Toggle } from '@sverg84/kkds';
+import { Toggle } from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function ToggleDemo() {

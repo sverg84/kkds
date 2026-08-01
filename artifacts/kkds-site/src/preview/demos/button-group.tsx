@@ -3,7 +3,7 @@ import {
   ButtonGroup,
   ButtonGroupSeparator,
   ButtonGroupText,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Bold, Italic, Underline } from 'lucide-react';
 import { Row } from '../parts';
 

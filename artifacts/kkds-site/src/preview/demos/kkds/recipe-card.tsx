@@ -1,4 +1,4 @@
-import { RecipeCard } from '@sverg84/kkds';
+import { RecipeCard } from '@sverg84/kkds-react';
 import { DocBlock, Stack } from '../../parts';
 
 const SAMPLE_RECIPES = [

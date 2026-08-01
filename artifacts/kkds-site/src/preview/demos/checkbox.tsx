@@ -1,7 +1,7 @@
 import {
   Checkbox,
   Label,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Stack } from '../parts';
 
 export function CheckboxDemo() {

@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@sverg84/kkds';
+import { Avatar, AvatarFallback, AvatarImage } from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function AvatarDemo() {

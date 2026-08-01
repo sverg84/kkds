@@ -10,7 +10,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@sverg84/kkds": "workspace:*",
+    "@sverg84/kkds-react": "workspace:*",
     "@tailwindcss/typography": "^0.5.15",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.545.0",

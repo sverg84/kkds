@@ -1,4 +1,4 @@
-import { Input } from '@sverg84/kkds';
+import { Input } from '@sverg84/kkds-react';
 import { Stack } from '../parts';
 
 export function InputDemo() {

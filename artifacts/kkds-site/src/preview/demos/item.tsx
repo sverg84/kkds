@@ -10,7 +10,7 @@ import {
   ItemMedia,
   ItemSeparator,
   ItemTitle,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { FileText, MoreHorizontal } from 'lucide-react';
 export function ItemDemo() {
   return (

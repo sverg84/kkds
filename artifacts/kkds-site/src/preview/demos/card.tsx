@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 export function CardDemo() {
   return (
     <Card className="max-w-md">

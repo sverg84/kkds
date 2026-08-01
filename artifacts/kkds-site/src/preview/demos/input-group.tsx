@@ -6,7 +6,7 @@ import {
   InputGroupText,
   InputGroupTextarea,
   Kbd,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Search, Send } from 'lucide-react';
 import { Stack } from '../parts';
 

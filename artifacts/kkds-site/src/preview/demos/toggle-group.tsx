@@ -2,7 +2,7 @@ import { AlignCenter, AlignLeft, AlignRight } from 'lucide-react';
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Stack } from '../parts';
 
 export function ToggleGroupDemo() {

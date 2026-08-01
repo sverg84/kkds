@@ -17,7 +17,7 @@ Within this pnpm workspace, declare the workspace dependency instead:
 
 ```json
 "dependencies": {
-  "@sverg84/kkds": "workspace:*"
+  "@sverg84/kkds-react": "workspace:*"
 }
 ```
 
@@ -30,7 +30,7 @@ install).
 Import this package's theme once from the app's main CSS:
 
 ```css
-@import "@sverg84/kkds/styles.css";
+@import "@sverg84/kkds-react/styles.css";
 ```
 
 `styles.css` already imports Tailwind, its plugins, and this package's token
@@ -41,7 +41,7 @@ separate Tailwind import or a `node_modules` source path in a Tailwind v4
 consumer.
 
 **Tailwind v3 consumers:** keep your existing `@tailwind` directives and add
-`node_modules/@sverg84/kkds/dist/components` to your `content` array.
+`node_modules/@sverg84/kkds-react/dist/components` to your `content` array.
 
 ## Components and helpers
 
@@ -49,15 +49,15 @@ Import every provided primitive, `cn`, and toast API directly from the package
 root:
 
 ```tsx
-import { Button, Card, Badge, Input } from "@sverg84/kkds";
-import { cn } from "@sverg84/kkds";
-import { useToast, Toaster } from "@sverg84/kkds";
+import { Button, Card, Badge, Input } from "@sverg84/kkds-react";
+import { cn } from "@sverg84/kkds-react";
+import { useToast, Toaster } from "@sverg84/kkds-react";
 
 // Sonner-based toast (re-exported as SonnerToaster to avoid name conflict)
-import { SonnerToaster } from "@sverg84/kkds";
+import { SonnerToaster } from "@sverg84/kkds-react";
 
 // Token object (hex values, for non-CSS consumers)
-import { tokens } from "@sverg84/kkds/tokens";
+import { tokens } from "@sverg84/kkds-react/tokens";
 ```
 
 Use the package component whenever it provides the required family. Keep
@@ -69,14 +69,14 @@ local toast hook while rendering the packaged `Toaster`.
 
 ## Verify
 
-After installing, import and render `Button` from `@sverg84/kkds`. Run the
+After installing, import and render `Button` from `@sverg84/kkds-react`. Run the
 app's typecheck and dev server. The import must resolve and the Button must use
 this package's theme before broader UI work begins.
 
 ## Ongoing rules
 
 - Keep one source of theme variables.
-- Import package-provided primitives and helpers from `@sverg84/kkds`.
+- Import package-provided primitives and helpers from `@sverg84/kkds-react`.
 - Add reusable product-agnostic components to this package first.
 - For a non-shadcn app, use the tokens as the source of truth and adapt
   existing components to the token CSS variables without copying token values.

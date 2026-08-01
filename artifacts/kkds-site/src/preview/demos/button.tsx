@@ -1,5 +1,5 @@
 import { ArrowRight, Loader2, Mail } from 'lucide-react';
-import { Button } from '@sverg84/kkds';
+import { Button } from '@sverg84/kkds-react';
 import { Row } from '../parts';
 
 export function ButtonDemo() {

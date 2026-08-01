@@ -12,7 +12,7 @@ import {
   Input,
   Label,
   Switch,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 
 const CORE_SWATCHES = [
   { name: 'Primary', className: 'bg-primary' },

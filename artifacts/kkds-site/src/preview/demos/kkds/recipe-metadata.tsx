@@ -1,4 +1,4 @@
-import { RecipeMetadata } from '@sverg84/kkds';
+import { RecipeMetadata } from '@sverg84/kkds-react';
 import { DocBlock, Stack } from '../../parts';
 
 export function RecipeMetadataDemo() {

@@ -1,4 +1,4 @@
-import { Textarea } from '@sverg84/kkds';
+import { Textarea } from '@sverg84/kkds-react';
 import { Stack } from '../parts';
 
 export function TextareaDemo() {

@@ -13,7 +13,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 const MY_RECIPES = [
   {
     title: 'Pasta Carbonara',

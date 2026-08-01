@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from 'react';
-import { RecipeSearchBar } from '@sverg84/kkds';
+import { RecipeSearchBar } from '@sverg84/kkds-react';
 import { DocBlock, Stack } from '../../parts';
 
 function ControlledDemo() {

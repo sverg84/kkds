@@ -1,5 +1,5 @@
 /**
- * @sverg84/kkds — Public API surface
+ * @sverg84/kkds-react — Public API surface
  *
  * ─── KKDS Semantic Components (Layer 3) ──────────────────────────────────────
  * Domain-specific building blocks for KitchenKin UIs. These are the primary
@@ -37,7 +37,7 @@
  *   cn
  *
  * ─── Tokens ──────────────────────────────────────────────────────────────────
- *   tokens  (also available as @sverg84/kkds/tokens and @sverg84/kkds/tokens.json)
+ *   tokens  (also available as @sverg84/kkds-react/tokens and @sverg84/kkds-react/tokens.json)
  */
 
 // ── Layer 3: KKDS semantic components ────────────────────────────────────────
@@ -103,7 +103,7 @@ export * from "./hooks/use-toast";
 export * from "./lib/utils";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
-export * from "./generated/tokens";
+export { tokens, type Tokens } from '@sverg84/kkds-common';
 
 // ── Motion (semantic, platform-neutral) ───────────────────────────────────────
 export { motion } from '@sverg84/kkds-common';

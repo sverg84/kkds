@@ -1,7 +1,7 @@
 import {
   AllergenBadge,
   CategoryBadge,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { DocBlock, Row, Stack } from '../../parts';
 
 const ALLERGENS = [

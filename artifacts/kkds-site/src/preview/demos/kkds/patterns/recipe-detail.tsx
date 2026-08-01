@@ -12,7 +12,7 @@ import {
   ItemContent,
   ItemMedia,
   Separator,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import * as React from 'react';
 const RECIPE = {
   title: 'Pasta Carbonara',

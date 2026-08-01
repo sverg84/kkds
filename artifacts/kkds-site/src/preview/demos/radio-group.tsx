@@ -2,7 +2,7 @@ import {
   Label,
   RadioGroup,
   RadioGroupItem,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 import { Stack } from '../parts';
 
 export function RadioGroupDemo() {

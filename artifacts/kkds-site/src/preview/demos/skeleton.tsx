@@ -1,4 +1,4 @@
-import { Skeleton } from '@sverg84/kkds';
+import { Skeleton } from '@sverg84/kkds-react';
 
 export function SkeletonDemo() {
   return (

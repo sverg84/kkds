@@ -3,7 +3,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 
 export function TabsDemo() {
   return (

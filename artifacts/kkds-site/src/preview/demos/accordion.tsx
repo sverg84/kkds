@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 
 export function AccordionDemo() {
   return (

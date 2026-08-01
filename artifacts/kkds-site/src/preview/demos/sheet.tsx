@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@sverg84/kkds';
+} from '@sverg84/kkds-react';
 export function SheetDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">
