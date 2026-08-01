@@ -22,6 +22,11 @@
     "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
+  "imports": {
+    "#components/*": "./src/components/*.tsx",
+    "#lib/*": "./src/lib/*.tsx",
+    "#hooks/*": "./src/hooks/*.tsx"
+  },
   "files": [
     "dist",
     "tokens.json",
