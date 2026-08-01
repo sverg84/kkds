@@ -104,3 +104,35 @@ export * from "./lib/utils";
 
 // ── Tokens ────────────────────────────────────────────────────────────────────
 export * from "./generated/tokens";
+
+// ── Motion (semantic, platform-neutral) ───────────────────────────────────────
+export { motion } from '@sverg84/kkds-common';
+export type { Motion, MotionSpec } from '@sverg84/kkds-common';
+
+// ── Domain types and constants (platform-neutral) ─────────────────────────────
+export { ALLERGEN_META, allergenLabel, RECIPE_CATEGORIES, categoryLabel } from '@sverg84/kkds-common';
+export type {
+  AllergenTag,
+  AllergenTagMeta,
+  RecipeCategory,
+  RecipeSummary,
+  RecipeDetail,
+  /** The recipe author data shape — aliased to avoid clash with the RecipeAuthor component. */
+  RecipeAuthor as RecipeAuthorProfile,
+  RecipeIngredient,
+  RecipeStep,
+} from '@sverg84/kkds-common';
+
+// ── Platform-neutral component contracts ──────────────────────────────────────
+export type {
+  RecipeCardContract,
+  RecipeImageContract,
+  RecipeMetadataContract,
+  RecipeAuthorContract,
+  RecipeSearchBarContract,
+  FavoriteButtonContract,
+  AllergenBadgeContract,
+  CategoryBadgeContract,
+  EmptyContract,
+  SpinnerContract,
+} from '@sverg84/kkds-common';

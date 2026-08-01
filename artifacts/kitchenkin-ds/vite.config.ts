@@ -11,7 +11,7 @@ import { buildTokens } from "./scripts/build-tokens.mjs";
  * hot-reloads the running app.
  */
 function designTokensPlugin(): Plugin {
-  const tokensFile = path.resolve(import.meta.dirname, "tokens.json");
+  const tokensFile = path.resolve(import.meta.dirname, "../../lib/kkds-common/tokens.json");
   return {
     name: "design-tokens",
     buildStart() {

@@ -1,0 +1,26 @@
+{
+  "name": "@sverg84/kkds-common",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "KitchenKin Design System — platform-neutral tokens, types, motion, and domain contracts",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./tokens.json": "./tokens.json"
+  },
+  "files": [
+    "src",
+    "tokens.json",
+    "README.md"
+  ],
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

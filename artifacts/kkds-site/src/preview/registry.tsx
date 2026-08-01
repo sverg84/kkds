@@ -57,6 +57,7 @@ import {
   LogoPage,
   OverviewPage,
 } from './foundations';
+import { MotionTokensPage } from './demos/kkds/motion-tokens';
 
 export type PreviewEntry = {
   // Globally unique across every group — it is the deep-link slug (`#page=<id>`)
@@ -468,7 +469,18 @@ export const NAV_GROUPS: NavGroup[] = [
       },
     ],
   },
-  { name: 'Motion', entries: [] },
+  {
+    name: 'Motion',
+    entries: [
+      {
+        id: 'motion-tokens',
+        name: 'Motion tokens',
+        description:
+          'Duration scale, easing curves, and semantic motion intents — platform-neutral, mapped to Framer Motion on web.',
+        Page: MotionTokensPage,
+      },
+    ],
+  },
   {
     name: 'Applied examples',
     entries: [

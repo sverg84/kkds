@@ -37,7 +37,7 @@
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build:lib": "rm -rf dist && node scripts/build-tokens.mjs && tsup && node scripts/build-css.mjs",
+    "build:lib": "rm -rf dist && node scripts/build-tokens.mjs && tsup && node scripts/build-css.mjs && cp ../../lib/kkds-common/tokens.json tokens.json",
     "build:preview": "vite build --config vite.config.ts",
     "build": "pnpm run build:lib",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
@@ -50,6 +50,7 @@
     "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
+    "@sverg84/kkds-common": "workspace:*",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",

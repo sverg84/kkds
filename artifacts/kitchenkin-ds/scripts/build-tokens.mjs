@@ -1,27 +1,34 @@
 /**
  * Generates the consumable web theme (src/index.css) and the portable token
- * object (src/generated/tokens.tsx) from tokens.json.
+ * object (src/generated/tokens.tsx) from lib/kkds-common/tokens.json.
  *
- * tokens.json (DTCG) is the single source of truth. This runs on dev start and
- * on every tokens.json change (see vite.config.ts) and before build/typecheck
- * (see package.json). Do not edit the generated files by hand.
+ * tokens.json lives in kkds-common because tokens are platform-neutral.
+ * The CSS theme stays in kkds-web because it is browser-specific.
+ * Both share the same input file so web + (future) mobile stay in sync.
  *
- * - src/index.css        the design system's theme. The preview app imports it,
- *                        and consuming apps import this same file (web).
- * - src/generated/tokens.tsx  hex token object for mobile (Expo) and any other
- *                             platform, so web + mobile share one source.
+ * This script also regenerates kkds-common's TS output (lib/kkds-common/src/generated/tokens.ts)
+ * so the two packages remain in sync after a single `pnpm tokens` invocation.
+ *
+ * Outputs:
+ *   src/index.css                          the design system's web theme
+ *   src/generated/tokens.tsx               hex + motion token object (web barrel)
+ *   ../../lib/kkds-common/src/generated/tokens.ts  platform-neutral TS object
+ *   public/favicon.svg                     regenerated from public/logo.svg
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const root = join(here, "..");
-const tokensPath = join(root, "tokens.json");
+const root = join(here, ".."); // artifacts/kitchenkin-ds/
+const commonRoot = join(root, "../../lib/kkds-common"); // lib/kkds-common/
+
+const tokensPath = join(commonRoot, "tokens.json");
 const templatePath = join(here, "theme-template.css");
 const cssOut = join(root, "src", "index.css");
 const tsOutDir = join(root, "src", "generated");
 const faviconOut = join(root, "public", "favicon.svg");
+const commonTsOutDir = join(commonRoot, "src", "generated");
 
 /** Resolve a DTCG node's $value, following {alias} references. */
 function resolveValue(node, tokens) {
@@ -90,6 +97,35 @@ function colorEntries(scope, tokens) {
   return out;
 }
 
+function motionEntries(group, tokens) {
+  const out = {};
+  for (const [name, node] of Object.entries(tokens.motion[group])) {
+    if (name.startsWith("$")) continue;
+    out[name] = resolveValue(node, tokens);
+  }
+  return out;
+}
+
+function buildPortable(tokens) {
+  return {
+    color: {
+      light: colorEntries("light", tokens),
+      dark: colorEntries("dark", tokens),
+    },
+    fontFamily: {
+      sans: resolveValue(tokens.typography.fontFamily.sans, tokens),
+      serif: resolveValue(tokens.typography.fontFamily.serif, tokens),
+      mono: resolveValue(tokens.typography.fontFamily.mono, tokens),
+    },
+    radius: resolveValue(tokens.radius.base, tokens),
+    spacing: resolveValue(tokens.spacing.base, tokens),
+    motion: {
+      duration: motionEntries("duration", tokens),
+      easing: motionEntries("easing", tokens),
+    },
+  };
+}
+
 function buildCss(tokens) {
   let css = readFileSync(templatePath, "utf8");
   const replacements = {};
@@ -126,24 +162,22 @@ function buildCss(tokens) {
   return css;
 }
 
-function buildTs(tokens) {
-  const portable = {
-    color: {
-      light: colorEntries("light", tokens),
-      dark: colorEntries("dark", tokens),
-    },
-    fontFamily: {
-      sans: resolveValue(tokens.typography.fontFamily.sans, tokens),
-      serif: resolveValue(tokens.typography.fontFamily.serif, tokens),
-      mono: resolveValue(tokens.typography.fontFamily.mono, tokens),
-    },
-    radius: resolveValue(tokens.radius.base, tokens),
-    spacing: resolveValue(tokens.spacing.base, tokens),
-  };
-  return `/* GENERATED FROM tokens.json -- DO NOT EDIT. Run scripts/build-tokens.mjs. */
-// Portable design tokens (colors as hex). Web consumes the theme via
-// src/index.css; mobile (Expo) and any other platform import this object so the
-// whole product shares one source of truth.
+function buildWebTs(portable) {
+  return `/* GENERATED FROM lib/kkds-common/tokens.json -- DO NOT EDIT. Run scripts/build-tokens.mjs. */
+// Portable design tokens (colors as hex, motion as CSS strings). Web consumes the
+// color theme via src/index.css; all platforms share this object.
+export const tokens = ${JSON.stringify(portable, null, 2)} as const;
+
+export type Tokens = typeof tokens;
+export default tokens;
+`;
+}
+
+function buildCommonTs(portable) {
+  return `/* GENERATED FROM tokens.json -- DO NOT EDIT. Run \`pnpm tokens\` in lib/kkds-common. */
+// Portable design tokens (colors as hex, motion as CSS strings).
+// Web consumes the color theme via kkds-web's src/index.css.
+// All platforms import this object so the whole product shares one source of truth.
 export const tokens = ${JSON.stringify(portable, null, 2)} as const;
 
 export type Tokens = typeof tokens;
@@ -152,17 +186,32 @@ export default tokens;
 }
 
 export function buildTokens() {
-  const tokens = JSON.parse(readFileSync(tokensPath, "utf8"));
-  writeFileSync(cssOut, buildCss(tokens));
+  const rawTokens = JSON.parse(readFileSync(tokensPath, "utf8"));
+  const portable = buildPortable(rawTokens);
+
+  // 1. Write the web CSS theme
+  writeFileSync(cssOut, buildCss(rawTokens));
+
+  // 2. Write the kkds-web portable token object (with motion)
   mkdirSync(tsOutDir, { recursive: true });
-  writeFileSync(join(tsOutDir, "tokens.tsx"), buildTs(tokens));
+  writeFileSync(join(tsOutDir, "tokens.tsx"), buildWebTs(portable));
+
+  // 3. Keep kkds-common's generated/tokens.ts in sync
+  mkdirSync(commonTsOutDir, { recursive: true });
+  writeFileSync(join(commonTsOutDir, "tokens.ts"), buildCommonTs(portable));
+
+  // 4. Regenerate favicon
   mkdirSync(dirname(faviconOut), { recursive: true });
   writeFileSync(faviconOut, buildFavicon());
+}
+
+function dirname2(path) {
+  return path.split("/").slice(0, -1).join("/");
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   buildTokens();
   process.stdout.write(
-    "Generated src/index.css, src/generated/tokens.tsx, and public/favicon.svg\n",
+    "Generated src/index.css, src/generated/tokens.tsx, lib/kkds-common/src/generated/tokens.ts, and public/favicon.svg\n",
   );
 }

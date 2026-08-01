@@ -285,6 +285,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.8
         version: 1.2.16(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@sverg84/kkds-common':
+        specifier: workspace:*
+        version: link:../../lib/kkds-common
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -684,6 +687,12 @@ importers:
       drizzle-kit:
         specifier: ^0.31.10
         version: 0.31.10
+
+  lib/kkds-common:
+    devDependencies:
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
 
   scripts:
     devDependencies:
