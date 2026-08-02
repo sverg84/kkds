@@ -1,21 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Input, ScrollArea } from '@sverg84/kkds-react';
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Input, ScrollArea } from "@sverg84/kkds-react";
 import {
   ALL_ENTRIES,
   DESIGN_SYSTEM,
   NAV_GROUPS,
   OVERVIEW_ENTRY,
   type NavGroup,
-} from './registry';
+} from "./registry";
 
 function readHashId(): string {
-  const id = new URLSearchParams(window.location.hash.slice(1)).get('page');
+  const id = new URLSearchParams(window.location.hash.slice(1)).get("page");
   if (!id) {
     return OVERVIEW_ENTRY.id;
   }
-  return ALL_ENTRIES.some((entry) => entry.id === id)
-    ? id
-    : OVERVIEW_ENTRY.id;
+  return ALL_ENTRIES.some((entry) => entry.id === id) ? id : OVERVIEW_ENTRY.id;
 }
 
 function useSelectedId(): [string, (id: string) => void] {
@@ -23,8 +21,8 @@ function useSelectedId(): [string, (id: string) => void] {
 
   useEffect(() => {
     const onHashChange = () => setSelected(readHashId());
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   const select = (id: string) => {
@@ -93,7 +91,7 @@ function NavigationItems({
 
 export function DesignSystemBrowser() {
   const [selectedId, select] = useSelectedId();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const mobileNav = useRef<HTMLDetailsElement>(null);
   const mobileNavSummary = useRef<HTMLElement>(null);
   const normalizedQuery = query.trim().toLowerCase();
@@ -130,7 +128,7 @@ export function DesignSystemBrowser() {
   const selectPage = (id: string) => {
     select(id);
     if (mobileNav.current?.open) {
-      mobileNav.current.removeAttribute('open');
+      mobileNav.current.removeAttribute("open");
       mobileNavSummary.current?.focus();
     }
   };
@@ -146,7 +144,9 @@ export function DesignSystemBrowser() {
               className="h-8 w-8 rounded-lg"
             />
             <div>
-              <p className="text-sm font-semibold leading-tight">{DESIGN_SYSTEM.title}</p>
+              <p className="text-sm font-semibold leading-tight">
+                {DESIGN_SYSTEM.title}
+              </p>
               <p className="text-xs text-muted-foreground">Browse the system</p>
             </div>
           </div>
@@ -173,7 +173,7 @@ export function DesignSystemBrowser() {
             ref={mobileNavSummary}
             className="cursor-pointer text-sm font-medium"
           >
-            Browse sections:{' '}
+            Browse sections:{" "}
             <span className="text-muted-foreground">{active.name}</span>
           </summary>
           <ScrollArea className="mt-3 h-64 pb-2">

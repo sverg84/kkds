@@ -5,12 +5,12 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@sverg84/kkds-react';
+} from "@sverg84/kkds-react";
 export function PopoverDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger>
           <Button variant="outline">Set dimensions</Button>
         </PopoverTrigger>
         <PopoverContent className="space-y-3">
@@ -22,7 +22,11 @@ export function PopoverDemo() {
           </div>
           <div className="grid grid-cols-3 items-center gap-3">
             <Label htmlFor="popover-width">Width</Label>
-            <Input id="popover-width" defaultValue="320" className="col-span-2" />
+            <Input
+              id="popover-width"
+              defaultValue="320"
+              className="col-span-2"
+            />
           </div>
         </PopoverContent>
       </Popover>

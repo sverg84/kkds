@@ -14,16 +14,16 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@sverg84/kkds-react';
-import { useState } from 'react';
+} from "@sverg84/kkds-react";
+import { useState } from "react";
 export function DropdownMenuDemo() {
   const [showSidebar, setShowSidebar] = useState(true);
-  const [theme, setTheme] = useState('system');
+  const [theme, setTheme] = useState("system");
 
   return (
     <div className="rounded-xl border bg-card p-6">
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button variant="outline">Open menu</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
@@ -45,9 +45,13 @@ export function DropdownMenuDemo() {
             <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
             <DropdownMenuSubContent>
               <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-                <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="light">
+                  Light
+                </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="system">
+                  System
+                </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuSubContent>
           </DropdownMenuSub>

@@ -1,5 +1,4 @@
 import {
-  Checkbox,
   Field,
   FieldContent,
   FieldDescription,
@@ -11,7 +10,8 @@ import {
   FieldSet,
   FieldTitle,
   Input,
-} from '@sverg84/kkds-react';
+  Switch,
+} from "@sverg84/kkds-react";
 export function FieldDemo() {
   return (
     <div className="max-w-lg rounded-xl border bg-card p-6">
@@ -30,14 +30,18 @@ export function FieldDemo() {
           </Field>
           <FieldSeparator>Preferences</FieldSeparator>
           <Field orientation="horizontal">
-            <Checkbox
+            <Switch
               id="field-marketing"
               aria-labelledby="field-marketing-title"
               defaultChecked
             />
             <FieldContent>
-              <FieldTitle id="field-marketing-title">Product updates</FieldTitle>
-              <FieldDescription>Monthly product and release notes.</FieldDescription>
+              <FieldTitle id="field-marketing-title">
+                Product updates
+              </FieldTitle>
+              <FieldDescription>
+                Monthly product and release notes.
+              </FieldDescription>
             </FieldContent>
           </Field>
         </FieldGroup>

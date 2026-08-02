@@ -9,12 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from '@sverg84/kkds-react';
+} from "@sverg84/kkds-react";
 export function AlertDialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">
       <AlertDialog>
-        <AlertDialogTrigger asChild>
+        <AlertDialogTrigger>
           <Button variant="destructive">Delete project</Button>
         </AlertDialogTrigger>
         <AlertDialogContent>

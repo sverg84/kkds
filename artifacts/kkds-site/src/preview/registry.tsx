@@ -1,40 +1,24 @@
 import type { ComponentType } from "react";
-import { AccordionDemo } from "./demos/accordion";
-import { AlertDemo } from "./demos/alert";
 import { AlertDialogDemo } from "./demos/alert-dialog";
 import { AspectRatioDemo } from "./demos/aspect-ratio";
 import { AvatarDemo } from "./demos/avatar";
 import { BadgeDemo } from "./demos/badge";
 import { ButtonDemo } from "./demos/button";
-import { ButtonGroupDemo } from "./demos/button-group";
 import { CardDemo } from "./demos/card";
-import { CheckboxDemo } from "./demos/checkbox";
 import { DialogDemo } from "./demos/dialog";
 import { DropdownMenuDemo } from "./demos/dropdown-menu";
 import { EmptyDemo } from "./demos/empty";
 import { FieldDemo } from "./demos/field";
 import { InputDemo } from "./demos/input";
 import { InputGroupDemo } from "./demos/input-group";
-import { ItemDemo } from "./demos/item";
 import { PopoverDemo } from "./demos/popover";
-import { ProgressDemo } from "./demos/progress";
-import { RadioGroupDemo } from "./demos/radio-group";
-import { ScrollAreaDemo } from "./demos/scroll-area";
 import { SelectDemo } from "./demos/select";
 import { SeparatorDemo } from "./demos/separator";
-import { SheetDemo } from "./demos/sheet";
 import { SkeletonDemo } from "./demos/skeleton";
-import { SliderDemo } from "./demos/slider";
-import { SonnerDemo } from "./demos/sonner";
 import { SpinnerDemo } from "./demos/spinner";
 import { SwitchDemo } from "./demos/switch";
-import { TableDemo } from "./demos/table";
 import { TabsDemo } from "./demos/tabs";
 import { TextareaDemo } from "./demos/textarea";
-import { ToastDemo } from "./demos/toast";
-import { ToggleDemo } from "./demos/toggle";
-import { ToggleGroupDemo } from "./demos/toggle-group";
-import { TooltipDemo } from "./demos/tooltip";
 import { AllergenBadgeDemo } from "./demos/kkds/allergen-badge";
 import { CategoryBadgeDemo } from "./demos/kkds/category-badge";
 import { FavoriteButtonDemo } from "./demos/kkds/favorite-button";
@@ -143,24 +127,6 @@ export const NAV_GROUPS: NavGroup[] = [
         description: "Button variants, sizes, icon treatments, and states.",
         Page: ButtonDemo,
       },
-      {
-        id: "button-group",
-        name: "Button group",
-        description: "Attached actions, labels, and separators.",
-        Page: ButtonGroupDemo,
-      },
-      {
-        id: "toggle",
-        name: "Toggle",
-        description: "Pressed controls in multiple variants and sizes.",
-        Page: ToggleDemo,
-      },
-      {
-        id: "toggle-group",
-        name: "Toggle group",
-        description: "Single and multiple selection toggle sets.",
-        Page: ToggleGroupDemo,
-      },
     ],
   },
   {
@@ -185,29 +151,11 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: TextareaDemo,
       },
       {
-        id: "checkbox",
-        name: "Checkbox",
-        description: "Checked, unchecked, and disabled options.",
-        Page: CheckboxDemo,
-      },
-      {
-        id: "radio-group",
-        name: "Radio group",
-        description: "Exclusive choices with labels and disabled states.",
-        Page: RadioGroupDemo,
-      },
-      {
         id: "select",
         name: "Select",
         description:
           "Selection controls, grouped options, and disabled states.",
         Page: SelectDemo,
-      },
-      {
-        id: "slider",
-        name: "Slider",
-        description: "Single values, ranges, and disabled states.",
-        Page: SliderDemo,
       },
       {
         id: "switch",
@@ -239,22 +187,10 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: AlertDialogDemo,
       },
       {
-        id: "sheet",
-        name: "Sheet",
-        description: "Edge-aligned overlay panels.",
-        Page: SheetDemo,
-      },
-      {
         id: "popover",
         name: "Popover",
         description: "Anchored interactive content.",
         Page: PopoverDemo,
-      },
-      {
-        id: "tooltip",
-        name: "Tooltip",
-        description: "Brief labels for focused or hovered controls.",
-        Page: TooltipDemo,
       },
     ],
   },
@@ -297,24 +233,6 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: CardDemo,
       },
       {
-        id: "table",
-        name: "Table",
-        description: "Structured tabular data and summaries.",
-        Page: TableDemo,
-      },
-      {
-        id: "accordion",
-        name: "Accordion",
-        description: "Expandable sections for progressive disclosure.",
-        Page: AccordionDemo,
-      },
-      {
-        id: "item",
-        name: "Item",
-        description: "Flexible rows with media, metadata, and actions.",
-        Page: ItemDemo,
-      },
-      {
         id: "empty",
         name: "Empty state",
         description: "Guidance and actions when content is absent.",
@@ -332,18 +250,6 @@ export const NAV_GROUPS: NavGroup[] = [
     name: "Feedback",
     entries: [
       {
-        id: "alert",
-        name: "Alert",
-        description: "Informational and destructive messages.",
-        Page: AlertDemo,
-      },
-      {
-        id: "progress",
-        name: "Progress",
-        description: "Completion indicators for ongoing work.",
-        Page: ProgressDemo,
-      },
-      {
         id: "skeleton",
         name: "Skeleton",
         description: "Placeholder shapes for loading content.",
@@ -355,18 +261,6 @@ export const NAV_GROUPS: NavGroup[] = [
         description: "Indeterminate loading indicators.",
         Page: SpinnerDemo,
       },
-      {
-        id: "toast",
-        name: "Toast",
-        description: "Provider-backed transient notifications and actions.",
-        Page: ToastDemo,
-      },
-      {
-        id: "sonner",
-        name: "Sonner",
-        description: "Stacked notifications with status and actions.",
-        Page: SonnerDemo,
-      },
     ],
   },
   {
@@ -377,12 +271,6 @@ export const NAV_GROUPS: NavGroup[] = [
         name: "Separator",
         description: "Horizontal and vertical visual dividers.",
         Page: SeparatorDemo,
-      },
-      {
-        id: "scroll-area",
-        name: "Scroll area",
-        description: "Bounded vertical and horizontal scrolling.",
-        Page: ScrollAreaDemo,
       },
     ],
   },

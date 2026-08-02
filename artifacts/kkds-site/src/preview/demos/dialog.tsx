@@ -8,12 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@sverg84/kkds-react';
+} from "@sverg84/kkds-react";
 export function DialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger>
           <Button>Edit profile</Button>
         </DialogTrigger>
         <DialogContent>
@@ -27,10 +27,10 @@ export function DialogDemo() {
             Profile settings appear here.
           </div>
           <DialogFooter>
-            <DialogClose asChild>
+            <DialogClose>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <DialogClose asChild>
+            <DialogClose>
               <Button>Save changes</Button>
             </DialogClose>
           </DialogFooter>
