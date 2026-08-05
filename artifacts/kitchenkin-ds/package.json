@@ -40,13 +40,14 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "tokens": "node scripts/build-tokens.mjs",
+    "theme": "node scripts/build-theme.mjs",
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build:lib": "rm -rf dist && node scripts/build-tokens.mjs && tsup && node scripts/build-css.mjs && cp ../../lib/kkds-common/tokens.json tokens.json",
+    "build:css": "node scripts/build-css.mjs",
+    "build:lib": "rm -rf dist && pnpm theme && tsup && pnpm build:css",
     "build:preview": "vite build --config vite.config.ts",
     "build": "pnpm run build:lib",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
-    "pretypecheck": "node scripts/build-tokens.mjs",
+    "pretypecheck": "pnpm theme",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "prepublishOnly": "pnpm run build:lib"
   },

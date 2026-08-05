@@ -1,7 +1,4 @@
-/* GENERATED FROM tokens.json -- DO NOT EDIT. Run `pnpm tokens` in lib/kkds-common. */
-// Portable design tokens (colors as hex, motion as CSS strings).
-// Web consumes the color theme via kkds-web's src/index.css.
-// All platforms import this object so the whole product shares one source of truth.
+/* GENERATED FROM tokens.json — DO NOT EDIT. */
 export const tokens = {
   "color": {
     "light": {
@@ -117,4 +114,5 @@ export const tokens = {
 } as const;
 
 export type Tokens = typeof tokens;
+
 export default tokens;

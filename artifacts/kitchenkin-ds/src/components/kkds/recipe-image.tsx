@@ -1,5 +1,6 @@
-import { cn } from '../../lib/utils';
-import { AspectRatio } from '../ui/aspect-ratio';
+import type { ReactNode } from "react";
+import { cn } from "../../lib/utils";
+import { AspectRatio } from "../ui/aspect-ratio";
 
 export interface RecipeImageProps {
   /** URL of the food photograph. When omitted a warm branded placeholder is shown. */
@@ -14,6 +15,27 @@ export interface RecipeImageProps {
    */
   priority?: boolean;
   className?: string;
+}
+
+export interface RecipeImageRenderProps {
+  src: string;
+  alt: string;
+  priority: boolean;
+  className: string;
+}
+
+export interface RecipeImageProps {
+  src?: string | null;
+  alt?: string | null;
+  aspectRatio?: number;
+  priority?: boolean;
+  className?: string;
+
+  /**
+   * Overrides only the underlying image renderer.
+   * KKDS continues to own the aspect ratio, clipping, background, and sizing.
+   */
+  renderImage?: (props: RecipeImageRenderProps) => ReactNode;
 }
 
 /**
@@ -40,23 +62,37 @@ export function RecipeImage({
   aspectRatio = 16 / 9,
   priority = false,
   className,
+  renderImage,
 }: RecipeImageProps) {
-  const displayAlt = alt ?? 'Recipe image';
+  const displayAlt = alt ?? "Recipe image";
   const imgSrc =
     src ??
-    `https://placeholder.pics/svg/640x480/FCEFD5/C07E4A-f4ead5/${encodeURIComponent(displayAlt)}`;
+    `https://placeholder.pics/svg/640x480/FCEFD5/C07E4A-f4ead5/${encodeURIComponent(
+      displayAlt,
+    )}`;
+
+  const imageProps: RecipeImageRenderProps = {
+    src: imgSrc,
+    alt: displayAlt,
+    priority,
+    className: "h-full w-full object-cover",
+  };
 
   return (
     <AspectRatio
       ratio={aspectRatio}
-      className={cn('overflow-hidden bg-muted', className)}
+      className={cn("relative overflow-hidden bg-muted", className)}
     >
-      <img
-        src={imgSrc}
-        alt={displayAlt}
-        loading={priority ? 'eager' : 'lazy'}
-        className="h-full w-full object-cover"
-      />
+      {renderImage ? (
+        renderImage(imageProps)
+      ) : (
+        <img
+          src={imageProps.src}
+          alt={imageProps.alt}
+          loading={priority ? "eager" : "lazy"}
+          className={imageProps.className}
+        />
+      )}
     </AspectRatio>
   );
 }

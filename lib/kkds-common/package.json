@@ -4,24 +4,30 @@
   "type": "module",
   "description": "KitchenKin Design System — platform-neutral tokens, types, motion, and domain contracts",
   "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./tokens.json": "./tokens.json"
   },
   "files": [
-    "src",
+    "dist",
     "tokens.json",
     "README.md"
   ],
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
+    "build": "rm -rf dist && pnpm tokens && tsup",
     "typecheck": "tsc --noEmit",
     "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs"
   },
   "devDependencies": {
+    "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   }
 }

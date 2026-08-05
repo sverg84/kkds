@@ -1,13 +1,14 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '../ui/card';
-import { cn } from '../../lib/utils';
-import { RecipeImage } from './recipe-image';
-import { RecipeMetadata } from './recipe-metadata';
-import { CategoryBadge } from './category-badge';
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { cn } from "../../lib/utils";
+import { RecipeImage, type RecipeImageProps } from "./recipe-image";
+import { RecipeMetadata } from "./recipe-metadata";
+import { CategoryBadge } from "./category-badge";
+
+export interface RecipeCardLinkRenderProps {
+  href: string;
+  className: string;
+  children: React.ReactNode;
+}
 
 export interface RecipeCardProps {
   /** Recipe title. Displayed as the card heading. */
@@ -28,7 +29,24 @@ export interface RecipeCardProps {
    */
   href?: string;
   className?: string;
+  /**
+   * Optional card-level action rendered above the primary navigation surface.
+   * Intended for controls such as FavoriteButton.
+   */
+  action?: React.ReactNode;
+  /**
+   * Overrides the navigation element while preserving the canonical
+   * RecipeCard link surface and focus treatment.
+   */
+  renderLink?: (props: RecipeCardLinkRenderProps) => React.ReactNode;
+  /**
+   * Passed through to RecipeImage for framework-specific rendering.
+   */
+  renderImage?: RecipeImageProps["renderImage"];
 }
+
+const LINK_CLASSNAME =
+  "block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 /**
  * RecipeCard
@@ -58,22 +76,20 @@ export function RecipeCard({
   prepTime,
   cookTime,
   href,
+  action,
   className,
+  renderLink,
+  renderImage,
 }: RecipeCardProps) {
-  const card = (
-    <Card
-      className={cn(
-        'h-full overflow-hidden hover:shadow-lg transition-shadow',
-        href && 'cursor-pointer',
-        className,
-      )}
-    >
-      <RecipeImage src={imageUrl} alt={title} />
+  const content = (
+    <>
+      <RecipeImage src={imageUrl} alt={title} renderImage={renderImage} />
 
       <CardHeader>
         <h3 className="text-lg font-semibold">{title}</h3>
+
         {tags.length > 0 && (
-          <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Categories">
+          <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tags">
             {tags.map((tag) => (
               <li key={tag}>
                 <CategoryBadge label={tag} />
@@ -94,19 +110,32 @@ export function RecipeCard({
       <CardFooter>
         <RecipeMetadata prepTime={prepTime} cookTime={cookTime} />
       </CardFooter>
-    </Card>
+    </>
   );
 
-  if (href) {
-    return (
-      <a
-        href={href}
-        className="block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-      >
-        {card}
-      </a>
-    );
-  }
-
-  return card;
+  return (
+    <Card
+      className={cn(
+        "relative h-full overflow-hidden transition-shadow hover:shadow-lg",
+        className,
+      )}
+    >
+      {action && <div className="absolute right-2 top-2 z-10">{action}</div>}
+      {href ? (
+        renderLink ? (
+          renderLink({
+            href,
+            className: LINK_CLASSNAME,
+            children: content,
+          })
+        ) : (
+          <a href={href} className={LINK_CLASSNAME}>
+            {content}
+          </a>
+        )
+      ) : (
+        content
+      )}
+    </Card>
+  );
 }
