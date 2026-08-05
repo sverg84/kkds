@@ -13,9 +13,7 @@ export function DialogDemo() {
   return (
     <div className="rounded-xl border bg-card p-6">
       <Dialog>
-        <DialogTrigger>
-          <Button>Edit profile</Button>
-        </DialogTrigger>
+        <DialogTrigger render={<Button>Edit profile</Button>} />
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
@@ -27,12 +25,8 @@ export function DialogDemo() {
             Profile settings appear here.
           </div>
           <DialogFooter>
-            <DialogClose>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <DialogClose>
-              <Button>Save changes</Button>
-            </DialogClose>
+            <DialogClose render={<Button variant="outline">Cancel</Button>} />
+            <DialogClose render={<Button>Save changes</Button>} />
           </DialogFooter>
         </DialogContent>
       </Dialog>
