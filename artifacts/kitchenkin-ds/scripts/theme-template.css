@@ -1,5 +1,11 @@
-/* GENERATED FROM tokens.json BY scripts/build-tokens.mjs -- DO NOT EDIT.
- * Edit tokens.json instead; the dev server regenerates this file on change. */
+/*
+ * Hand-authored theme template consumed by scripts/build-tokens.mjs.
+ *
+ * Edit this file to change shared CSS structure, Tailwind configuration,
+ * base styles, or interaction utilities.
+ *
+ * Edit tokens.json to change generated design-token values.
+ */
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -245,28 +251,30 @@
 }
 
 @layer utilities {
-  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  /* Hide the native search cancel button until KKDS provides a styled one. */
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
   }
 
-  /* Placeholder styling for contentEditable div */
+  /* Placeholder styling for contentEditable elements. */
   [contenteditable][data-placeholder]:empty::before {
     content: attr(data-placeholder);
     color: hsl(var(--muted-foreground));
     pointer-events: none;
   }
 
-  .no-default-hover-elevate {}
-
-  .no-default-active-elevate {}
-
+  /*
+   * Toggle elevation overlays.
+   *
+   * Components using these utilities must establish a local containing and
+   * stacking context, typically with `relative isolate`.
+   */
   .toggle-elevate::before,
   .toggle-elevate-2::before {
     content: "";
     pointer-events: none;
     position: absolute;
-    inset: 0px;
+    inset: 0;
     border-radius: inherit;
     z-index: -1;
   }
@@ -275,28 +283,29 @@
     background-color: var(--elevate-2);
   }
 
-  .border.toggle-elevate::before {
+  .border.toggle-elevate::before,
+  .border.toggle-elevate-2::before {
     inset: -1px;
   }
 
-  .hover-elevate:not(.no-default-hover-elevate),
-  .active-elevate:not(.no-default-active-elevate),
-  .hover-elevate-2:not(.no-default-hover-elevate),
-  .active-elevate-2:not(.no-default-active-elevate) {
-    position: relative;
-    z-index: 0;
-  }
-
+  /*
+   * Hover and active overlays.
+   *
+   * These utilities intentionally do not set the host element's `position`
+   * or `z-index`. Components using them must establish their own positioning
+   * context, normally with Tailwind's `relative z-0`. This allows consumers
+   * to replace `relative` with `absolute`, `fixed`, or `sticky`.
+   */
   .hover-elevate:not(.no-default-hover-elevate)::after,
-  .active-elevate:not(.no-default-active-elevate)::after,
   .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
   .active-elevate-2:not(.no-default-active-elevate)::after {
     content: "";
     pointer-events: none;
     position: absolute;
-    inset: 0px;
+    inset: 0;
     border-radius: inherit;
-    z-index: 999;
+    z-index: 1;
   }
 
   .hover-elevate:hover:not(.no-default-hover-elevate)::after,
@@ -309,11 +318,10 @@
     background-color: var(--elevate-2);
   }
 
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+  .border.hover-elevate:not(.no-default-hover-elevate)::after,
+  .border.hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .border.active-elevate:not(.no-default-active-elevate)::after,
+  .border.active-elevate-2:not(.no-default-active-elevate)::after {
     inset: -1px;
   }
 }
