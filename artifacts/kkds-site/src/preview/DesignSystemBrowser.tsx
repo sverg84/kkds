@@ -135,7 +135,7 @@ export function DesignSystemBrowser() {
 
   return (
     <div className="min-h-screen bg-background text-foreground md:grid md:grid-cols-[260px_minmax(0,1fr)]">
-      <aside className="border-b bg-muted/20 md:sticky md:top-0 md:flex md:h-screen md:flex-col md:border-b-0 md:border-r">
+      <aside className="border-b bg-muted/20 md:sticky md:top-0 md:flex md:h-screen md:min-h-0 md:flex-col md:border-b-0 md:border-r">
         <div className="border-b px-5 py-4">
           <div className="flex items-center gap-3">
             <img
@@ -159,15 +159,17 @@ export function DesignSystemBrowser() {
             placeholder="Search design system…"
           />
         </div>
-        <ScrollArea className="hidden min-h-0 flex-1 px-4 pb-4 md:block">
-          <NavigationItems
-            showOverview={showOverview}
-            groups={filteredGroups}
-            activeId={active.id}
-            query={query}
-            select={selectPage}
-          />
-        </ScrollArea>
+        <div className="min-h-0 flex-1 max-md:hidden">
+          <ScrollArea className="h-full px-4 pb-4">
+            <NavigationItems
+              showOverview={showOverview}
+              groups={filteredGroups}
+              activeId={active.id}
+              query={query}
+              select={selectPage}
+            />
+          </ScrollArea>
+        </div>
         <details ref={mobileNav} className="border-t px-4 py-3 md:hidden">
           <summary
             ref={mobileNavSummary}

@@ -250,6 +250,13 @@
   }
 }
 
+@layer components {
+  [data-slot="recipe-card-link"]:focus
+    + [data-slot="recipe-card-focus-indicator"] {
+    box-shadow: inset 0 0 0 2px hsl(var(--ring));
+  }
+}
+
 @layer utilities {
   /* Hide the native search cancel button until KKDS provides a styled one. */
   input[type="search"]::-webkit-search-cancel-button {

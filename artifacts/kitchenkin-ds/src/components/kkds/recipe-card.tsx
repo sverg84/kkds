@@ -8,9 +8,13 @@ export interface RecipeCardLinkRenderProps {
   href: string;
   className: string;
   children: React.ReactNode;
+  "aria-labelledby"?: string;
+  "aria-label"?: string;
+  "data-slot": "recipe-card-link";
 }
 
 export interface RecipeCardProps {
+  id?: string;
   /** Recipe title. Displayed as the card heading. */
   title: string;
   /** Short recipe description. Clamped to 2 lines. */
@@ -45,8 +49,7 @@ export interface RecipeCardProps {
   renderImage?: RecipeImageProps["renderImage"];
 }
 
-const LINK_CLASSNAME =
-  "block h-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+const LINK_CLASSNAME = "absolute inset-0 z-[2] rounded-[inherit] outline-none";
 
 /**
  * RecipeCard
@@ -69,6 +72,7 @@ const LINK_CLASSNAME =
  * **RSC compatible:** Yes — all composed components are RSC-compatible.
  */
 export function RecipeCard({
+  id,
   title,
   description,
   imageUrl,
@@ -81,60 +85,87 @@ export function RecipeCard({
   renderLink,
   renderImage,
 }: RecipeCardProps) {
-  const content = (
-    <>
-      <RecipeImage src={imageUrl} alt={title} renderImage={renderImage} />
+  const titleId = id ? `recipe-card-${id}-title` : undefined;
+  const linkLabel = `View recipe: ${title}`;
 
-      <CardHeader>
-        <h3 className="text-lg font-semibold">{title}</h3>
+  const linkAccessibilityProps = titleId
+    ? { "aria-labelledby": titleId }
+    : { "aria-label": linkLabel };
 
-        {tags.length > 0 && (
-          <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tags">
-            {tags.map((tag) => (
-              <li key={tag}>
-                <CategoryBadge label={tag} />
-              </li>
-            ))}
-          </ul>
-        )}
-      </CardHeader>
-
-      {description && (
-        <CardContent>
-          <p className="line-clamp-2 text-sm text-muted-foreground">
-            {description}
-          </p>
-        </CardContent>
-      )}
-
-      <CardFooter>
-        <RecipeMetadata prepTime={prepTime} cookTime={cookTime} />
-      </CardFooter>
-    </>
-  );
+  const linkChildren = <span className="sr-only">{linkLabel}</span>;
 
   return (
     <Card
       className={cn(
-        "relative h-full overflow-hidden transition-shadow hover:shadow-lg",
+        "relative h-full overflow-hidden transition-shadow",
+        "hover:shadow-lg focus-within:shadow-lg",
         className,
       )}
     >
-      {action && <div className="absolute right-2 top-2 z-10">{action}</div>}
-      {href ? (
-        renderLink ? (
+      {href &&
+        (renderLink ? (
           renderLink({
             href,
             className: LINK_CLASSNAME,
-            children: content,
+            children: linkChildren,
+            "data-slot": "recipe-card-link",
+            ...linkAccessibilityProps,
           })
         ) : (
-          <a href={href} className={LINK_CLASSNAME}>
-            {content}
+          <a
+            data-slot="recipe-card-link"
+            href={href}
+            className={LINK_CLASSNAME}
+            {...linkAccessibilityProps}
+          >
+            {linkChildren}
           </a>
-        )
-      ) : (
-        content
+        ))}
+
+      {href && (
+        <span
+          data-slot="recipe-card-focus-indicator"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-[3] rounded-[inherit]"
+        />
+      )}
+
+      <div className="pointer-events-none relative z-[1] flex h-full min-w-0 flex-col gap-6">
+        <RecipeImage src={imageUrl} alt={title} renderImage={renderImage} />
+
+        <CardHeader>
+          <h3 id={titleId} className="text-lg font-semibold">
+            {title}
+          </h3>
+
+          {tags.length > 0 && (
+            <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tags">
+              {tags.map((tag) => (
+                <li key={tag}>
+                  <CategoryBadge label={tag} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </CardHeader>
+
+        {description && (
+          <CardContent>
+            <p className="line-clamp-2 text-sm text-muted-foreground">
+              {description}
+            </p>
+          </CardContent>
+        )}
+
+        <CardFooter>
+          <RecipeMetadata prepTime={prepTime} cookTime={cookTime} />
+        </CardFooter>
+      </div>
+
+      {action && (
+        <div className="pointer-events-auto absolute right-2 top-2 z-10">
+          {action}
+        </div>
       )}
     </Card>
   );

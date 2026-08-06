@@ -15,6 +15,7 @@ const SAMPLE_RECIPES = [
     action: <FavoriteButton />,
   },
   {
+    id: "recipe-mango-avocado-salad",
     title: "Mango Avocado Salad",
     description:
       "Bright, fresh, and full of tropical flavour. A weeknight salad that comes together in minutes.",
