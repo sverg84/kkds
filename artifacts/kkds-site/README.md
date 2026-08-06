@@ -1,4 +1,4 @@
-# @sverg84/kkds
+# @sverg84/kkds-react
 
 KitchenKin design system — components, tokens, and styles for the web.
 
@@ -7,9 +7,9 @@ Built on shadcn/ui and Tailwind v4 with a warm food-forward palette (Quicksand, 
 ## Installation
 
 ```sh
-npm install @sverg84/kkds
+npm install @sverg84/kkds-react
 # or
-pnpm add @sverg84/kkds
+pnpm add @sverg84/kkds-react
 ```
 
 ### Peer dependencies

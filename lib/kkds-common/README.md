@@ -17,8 +17,8 @@ This package has **zero framework dependencies** — no React, no React Native, 
 
 ## What does NOT live here
 
-- React components → `@sverg84/kkds` (kkds-web)
-- CSS / Tailwind styles → `@sverg84/kkds/styles.css`
+- React components → `@sverg84/kkds-react` (kkds-web)
+- CSS / Tailwind styles → `@sverg84/kkds-react/styles.css`
 - Future React Native components → `@sverg84/kkds-mobile` (not yet built)
 
 ---

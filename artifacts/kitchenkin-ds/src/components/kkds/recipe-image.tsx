@@ -2,6 +2,13 @@ import type { ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import { AspectRatio } from "../ui/aspect-ratio";
 
+export interface RecipeImageRenderProps {
+  src: string;
+  alt: string;
+  priority: boolean;
+  className: string;
+}
+
 export interface RecipeImageProps {
   /** URL of the food photograph. When omitted a warm branded placeholder is shown. */
   src?: string | null;
@@ -13,21 +20,6 @@ export interface RecipeImageProps {
    * Hint that this image is above the fold and should load eagerly.
    * Maps to the HTML `loading` attribute; has no effect on the placeholder.
    */
-  priority?: boolean;
-  className?: string;
-}
-
-export interface RecipeImageRenderProps {
-  src: string;
-  alt: string;
-  priority: boolean;
-  className: string;
-}
-
-export interface RecipeImageProps {
-  src?: string | null;
-  alt?: string | null;
-  aspectRatio?: number;
   priority?: boolean;
   className?: string;
 

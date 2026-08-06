@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
@@ -11,7 +12,10 @@ import { buildTokens } from "./scripts/build-tokens.mjs";
  * hot-reloads the running app.
  */
 function designTokensPlugin(): Plugin {
-  const tokensFile = path.resolve(import.meta.dirname, "../../lib/kkds-common/tokens.json");
+  const tokensFile = path.resolve(
+    import.meta.dirname,
+    "../../lib/kkds-common/tokens.json",
+  );
   return {
     name: "design-tokens",
     buildStart() {
@@ -57,6 +61,7 @@ export default defineConfig({
   plugins: [
     designTokensPlugin(),
     react(),
+    tsconfigPaths(),
     tailwindcss(),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&

@@ -2,7 +2,7 @@
  * Builds a browser-ready dist/styles.css from src/index.css.
  *
  * Uses Vite + @tailwindcss/vite to process the Tailwind v4 source so that
- * consumers can `import "@sverg84/kkds/styles.css"` without running Tailwind
+ * consumers can `import "@sverg84/kkds-react/styles.css"` without running Tailwind
  * themselves.  The @source directive in src/index.css instructs Tailwind to
  * scan the component files, so all utility classes used by KKDS components
  * are included in the output.

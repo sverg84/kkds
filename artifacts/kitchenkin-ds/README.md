@@ -1,4 +1,4 @@
-# @sverg84/kkds
+# @sverg84/kkds-react
 
 > **Pre-release — `0.1.0`** This package is published for internal use and early
 > feedback. The public API is not yet stable. Expect breaking changes before
@@ -14,9 +14,9 @@ coral-orange, cream, rich brown). Ships full light and dark mode out of the box.
 ## Installation
 
 ```sh
-npm install @sverg84/kkds
+npm install @sverg84/kkds-react
 # or
-pnpm add @sverg84/kkds
+pnpm add @sverg84/kkds-react
 ```
 
 ### Peer dependencies

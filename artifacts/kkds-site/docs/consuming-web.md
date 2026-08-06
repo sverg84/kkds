@@ -8,9 +8,9 @@ a local theme or component library, also read
 ## Installation
 
 ```sh
-npm install @sverg84/kkds
+npm install @sverg84/kkds-react
 # or
-pnpm add @sverg84/kkds
+pnpm add @sverg84/kkds-react
 ```
 
 Within this pnpm workspace, declare the workspace dependency instead:

@@ -9,8 +9,7 @@
  *
  * ─── KKDS Custom Primitives (Layer 2) ────────────────────────────────────────
  * Custom components built for KKDS, not part of upstream shadcn/ui:
- *   ButtonGroup, Empty, Field, InputGroup, Item / ItemGroup / ItemSeparator,
- *   Kbd / KbdGroup, Spinner
+ *   Empty, Field, InputGroup, Spinner
  *
  * ─── Curated shadcn/ui Primitives (Layer 1) ──────────────────────────────────
  * A deliberately small subset of shadcn/ui — only components that are either
@@ -19,25 +18,39 @@
  * omitted from the public surface to keep the install footprint small and
  * the API stable:
  *
- *   Included: Accordion, Alert, AlertDialog, AspectRatio, Avatar, Badge,
- *     Button, Card, Checkbox, Dialog, DropdownMenu, Input, Label, Popover,
- *     Progress, RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton,
- *     Slider, Sonner, Switch, Table, Tabs, Textarea, Toast / Toaster,
- *     Toggle, ToggleGroup, Tooltip
+ *   Included: AlertDialog, AspectRatio, Avatar, Badge, Button, Card,
+ *     Dialog, DropdownMenu, Input, Label, Popover, ScrollArea, Select,
+ *     Separator, Skeleton, Switch, Tabs, Textarea
  *
  *   Excluded (too heavy, undocumented, or app-specific):
- *     Breadcrumb, Calendar, Carousel, Chart, Collapsible, Command,
- *     ContextMenu, Drawer, Form, HoverCard, InputOtp, Menubar,
- *     NavigationMenu, Pagination, Resizable, Sidebar
+ *     Accordion, Alert, Breadcrumb, Calendar, Carousel, Chart, Checkbox,
+ *     Collapsible, Command, ContextMenu, Drawer, Form, HoverCard, InputOtp,
+ *     Menubar, NavigationMenu, Pagination, Progress, RadioGroup, Resizable,
+ *     Sheet, Sidebar, Slider, Sonner, Table, Toast / Toaster, Toggle,
+ *     ToggleGroup, Tooltip
  *
  * ─── Hooks ───────────────────────────────────────────────────────────────────
- *   useMobile, useToast
+ *   useMobile
  *
  * ─── Utilities ───────────────────────────────────────────────────────────────
  *   cn
  *
  * ─── Tokens ──────────────────────────────────────────────────────────────────
- *   tokens  (also available as @sverg84/kkds-react/tokens and @sverg84/kkds-react/tokens.json)
+ *   tokens, Tokens  (re-exported from @sverg84/kkds-common)
+ *   also available as @sverg84/kkds-react/tokens and @sverg84/kkds-react/tokens.json
+ *
+ * ─── Motion (platform-neutral, from @sverg84/kkds-common) ────────────────────
+ *   motion, Motion, MotionSpec
+ *
+ * ─── Domain types and constants (from @sverg84/kkds-common) ──────────────────
+ *   AllergenTag, AllergenTagMeta, ALLERGEN_META, allergenLabel
+ *   RecipeCategory, RECIPE_CATEGORIES, categoryLabel
+ *   RecipeSummary, RecipeDetail, RecipeAuthorProfile, RecipeIngredient, RecipeStep
+ *
+ * ─── Platform-neutral component contracts (from @sverg84/kkds-common) ────────
+ *   RecipeCardContract, RecipeImageContract, RecipeMetadataContract,
+ *   RecipeAuthorContract, RecipeSearchBarContract, FavoriteButtonContract,
+ *   AllergenBadgeContract, CategoryBadgeContract, EmptyContract, SpinnerContract
  */
 
 // ── Layer 3: KKDS semantic components ────────────────────────────────────────

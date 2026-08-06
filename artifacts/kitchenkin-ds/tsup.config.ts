@@ -14,6 +14,7 @@ export default defineConfig({
   sourcemap: false,
   external: ["react", "react-dom", "react/jsx-runtime"],
   outDir: "dist",
+  tsconfig: "tsconfig.json",
   // Mark the entire bundle as a client module.  The bundle mixes stateless
   // presentational components with stateful Radix primitives and KKDS
   // interactive components, so the safest accurate declaration for a single
