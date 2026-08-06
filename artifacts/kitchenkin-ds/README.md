@@ -55,7 +55,6 @@ import {
   RecipeAuthor,
   CategoryBadge,
   AllergenBadge,
-  FavoriteButton,
   RecipeSearchBar,
   RecipeCardSkeleton,
 } from "@sverg84/kkds-react";
@@ -135,12 +134,12 @@ Interactive components work through the same boundary:
 
 ```tsx
 // app/recipes/page.tsx
-import { FavoriteButton } from "@sverg84/kkds-react";
+import { RecipeSearchBar } from "@sverg84/kkds-react";
 
 export default function Page() {
-  // FavoriteButton is a client component — you can import it from a Server
+  // RecipeSearchBar is a client component — you can import it from a Server
   // Component; Next.js handles the boundary automatically.
-  return <FavoriteButton isFavorited={false} onToggle={() => {}} />;
+  return <RecipeSearchBar value="" onChange={() => {}} />;
 }
 ```
 
@@ -184,7 +183,6 @@ These are the primary exports KKDS is designed around:
 | `RecipeAuthor`       | No*     | Avatar + author name                   |
 | `CategoryBadge`      | No*     | Pill badge for a recipe category       |
 | `AllergenBadge`      | No*     | Pill badge for an allergen             |
-| `FavoriteButton`     | **Yes** | Heart toggle button (stateful)         |
 | `RecipeSearchBar`    | **Yes** | Search input with clear button         |
 | `RecipeCardSkeleton` | No*     | Loading skeleton matching `RecipeCard` |
 
@@ -198,11 +196,9 @@ to restore per-component RSC granularity.
 ## Accessibility
 
 All KKDS semantic components delegate accessibility semantics to their
-underlying shadcn/Radix primitives. Interactive components (`FavoriteButton`,
-`RecipeSearchBar`) expose `aria-label` and `aria-pressed` / `role` via the
-underlying Radix `Toggle` and input primitives. Ensure that:
+underlying shadcn/Base UI primitives. Interactive components (`RecipeSearchBar`) expose `aria-label` and `aria-pressed` / `role` via the
+underlying Base UI `Toggle` and input primitives. Ensure that:
 
-- `FavoriteButton` receives a meaningful `aria-label` (default: `"Favorite"`).
 - `RecipeSearchBar`'s `placeholder` is set to a locale-appropriate string.
 - Images in `RecipeImage` carry a descriptive `alt` attribute.
 

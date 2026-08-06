@@ -3,13 +3,13 @@
 import {
   AllergenBadge,
   CategoryBadge,
-  FavoriteButton,
   RecipeAuthor,
   RecipeImage,
   RecipeMetadata,
   Button,
   Separator,
 } from "@sverg84/kkds-react";
+import { FavoriteButton } from "../favorite-button";
 import * as React from "react";
 const RECIPE = {
   title: "Pasta Carbonara",
@@ -43,8 +43,6 @@ const RECIPE = {
 };
 
 export function RecipeDetailPattern() {
-  const [favorited, setFavorited] = React.useState(false);
-
   return (
     <div className="space-y-10">
       {/* Pattern notes */}
@@ -68,9 +66,6 @@ export function RecipeDetailPattern() {
             RecipeImage
           </code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">
-            FavoriteButton
-          </code>
-          <code className="rounded bg-muted px-2 py-0.5 text-xs">
             RecipeAuthor
           </code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">
@@ -82,7 +77,6 @@ export function RecipeDetailPattern() {
           <code className="rounded bg-muted px-2 py-0.5 text-xs">
             AllergenBadge
           </code>
-          <code className="rounded bg-muted px-2 py-0.5 text-xs">Item</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">
             Separator
           </code>
@@ -99,7 +93,7 @@ export function RecipeDetailPattern() {
             aspectRatio={4 / 3}
           />
           <div className="flex items-center gap-2">
-            <FavoriteButton isFavorited={favorited} onToggle={setFavorited} />
+            <FavoriteButton />
             <Button variant="outline" size="sm">
               Share
             </Button>

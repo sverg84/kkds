@@ -21,7 +21,6 @@ import { TabsDemo } from "./demos/tabs";
 import { TextareaDemo } from "./demos/textarea";
 import { AllergenBadgeDemo } from "./demos/kkds/allergen-badge";
 import { CategoryBadgeDemo } from "./demos/kkds/category-badge";
-import { FavoriteButtonDemo } from "./demos/kkds/favorite-button";
 import { RecipeAuthorDemo } from "./demos/kkds/recipe-author";
 import { RecipeCardDemo } from "./demos/kkds/recipe-card";
 import { RecipeCardSkeletonDemo } from "./demos/kkds/recipe-card-skeleton";
@@ -327,13 +326,6 @@ export const NAV_GROUPS: NavGroup[] = [
         Page: RecipeCardSkeletonDemo,
       },
       {
-        id: "kkds-favorite-button",
-        name: "Favorite button",
-        description:
-          "Heart toggle for saving recipes to a favorites collection.",
-        Page: FavoriteButtonDemo,
-      },
-      {
         id: "kkds-recipe-search-bar",
         name: "Recipe search bar",
         description:
@@ -380,14 +372,14 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "pattern-recipe-detail",
         name: "Recipe detail",
         description:
-          "Two-column layout with RecipeImage, FavoriteButton, RecipeAuthor, RecipeMetadata, badges, ingredients, and instructions.",
+          "Two-column layout with RecipeImage, RecipeAuthor, RecipeMetadata, badges, ingredients, and instructions.",
         Page: RecipeDetailPattern,
       },
       {
         id: "pattern-profile-tabs",
         name: "Profile tabs",
         description:
-          "RecipeAuthor header with tabbed My Recipes and Favourites panels, each showing a RecipeCard grid.",
+          "RecipeAuthor header with tabbed My Recipes and favorites panels, each showing a RecipeCard grid.",
         Page: ProfileTabsPattern,
       },
       {

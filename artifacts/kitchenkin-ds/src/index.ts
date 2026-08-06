@@ -4,7 +4,7 @@
  * ─── KKDS Semantic Components (Layer 3) ──────────────────────────────────────
  * Domain-specific building blocks for KitchenKin UIs. These are the primary
  * reason to install this package.
- *   AllergenBadge, CategoryBadge, FavoriteButton, RecipeAuthor, RecipeCard,
+ *   AllergenBadge, CategoryBadge, RecipeAuthor, RecipeCard,
  *   RecipeCardSkeleton, RecipeImage, RecipeMetadata, RecipeSearchBar
  *
  * ─── KKDS Custom Primitives (Layer 2) ────────────────────────────────────────
@@ -49,14 +49,13 @@
  *
  * ─── Platform-neutral component contracts (from @sverg84/kkds-common) ────────
  *   RecipeCardContract, RecipeImageContract, RecipeMetadataContract,
- *   RecipeAuthorContract, RecipeSearchBarContract, FavoriteButtonContract,
+ *   RecipeAuthorContract, RecipeSearchBarContract,
  *   AllergenBadgeContract, CategoryBadgeContract, EmptyContract, SpinnerContract
  */
 
 // ── Layer 3: KKDS semantic components ────────────────────────────────────────
 export * from "./components/kkds/allergen-badge";
 export * from "./components/kkds/category-badge";
-export * from "./components/kkds/favorite-button";
 export * from "./components/kkds/recipe-author";
 export * from "./components/kkds/recipe-card";
 export * from "./components/kkds/recipe-card-skeleton";
@@ -89,6 +88,7 @@ export * from "./components/ui/skeleton";
 export * from "./components/ui/switch";
 export * from "./components/ui/tabs";
 export * from "./components/ui/textarea";
+export * from "./components/ui/toggle";
 
 // ── Hooks ─────────────────────────────────────────────────────────────────────
 export * from "./hooks/use-mobile";
@@ -129,7 +129,6 @@ export type {
   RecipeMetadataContract,
   RecipeAuthorContract,
   RecipeSearchBarContract,
-  FavoriteButtonContract,
   AllergenBadgeContract,
   CategoryBadgeContract,
   EmptyContract,

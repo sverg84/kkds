@@ -31,7 +31,7 @@ export interface RecipeCardProps {
   className?: string;
   /**
    * Optional card-level action rendered above the primary navigation surface.
-   * Intended for controls such as FavoriteButton.
+   * Intended for controls.
    */
   action?: React.ReactNode;
   /**

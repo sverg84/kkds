@@ -45,7 +45,7 @@ Layer 1 (shadcn/Radix primitives) → web only. Layer 2 (KKDS custom primitives)
 **Recommendation:** Keep `cn` in kkds-web. In kkds-mobile, use `StyleSheet.create` or NativeWind. The concept (combining conditional styles) maps naturally; the API doesn't need to be shared.
 
 ### 4. `href` on RecipeCard is implicit navigation coupling
-`RecipeCard` accepts an `href` prop and wraps in `<a>` when present. This is idiomatic web but meaningless on mobile. The `RecipeCardContract` in kkds-common deliberately omits `href` in favour of `onPress`.
+`RecipeCard` accepts an `href` prop and wraps in `<a>` when present. This is idiomatic web but meaningless on mobile. The `RecipeCardContract` in kkds-common deliberately omits `href` in favor of `onPress`.
 
 **Status:** Already addressed in the contract. The web component uses `href`; mobile will use `onPress` + navigator. No action needed before adding mobile.
 

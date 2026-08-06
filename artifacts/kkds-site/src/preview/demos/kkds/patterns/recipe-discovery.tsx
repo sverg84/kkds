@@ -48,7 +48,7 @@ const ALL_RECIPES = [
   },
   {
     title: 'Chicken Tikka Masala',
-    description: 'Tender chicken in a rich, spiced tomato-cream sauce. A Friday night favourite.',
+    description: 'Tender chicken in a rich, spiced tomato-cream sauce. A Friday night favorite.',
     imageUrl: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=640&h=360&fit=crop',
     tags: ['Indian', 'Dinner'],
     prepTime: '20 min',

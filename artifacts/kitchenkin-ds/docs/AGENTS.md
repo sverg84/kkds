@@ -17,8 +17,7 @@ its theme and components directly.
 - `src/components/ui/` — the shadcn component library, themed by the tokens,
   exported as `./components/*`.
 - `src/components/kkds/` — KitchenKin semantic components (Layer 3) that compose
-  KKDS primitives into food-domain UI. All are RSC-compatible except
-  `FavoriteButton` and `RecipeSearchBar` (both declare `"use client"`).
+  KKDS primitives into food-domain UI. All are RSC-compatible except `RecipeSearchBar` (declares `"use client"`).
   Exported components:
   - `RecipeImage` — aspect-ratio-constrained recipe photograph with warm placeholder
   - `RecipeMetadata` — prep time, cook time, and servings row with icons
@@ -27,7 +26,6 @@ its theme and components directly.
   - `RecipeAuthor` — Avatar + name identity row in default and compact sizes
   - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
   - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
-  - `FavoriteButton` *(client)* — heart toggle for favorites
   - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button
 - `src/lib/` (`cn`) and `src/hooks/` — exported as `./lib/*` and `./hooks/*`.
 - `src/App.tsx` — the entry point for the living style guide.
@@ -90,7 +88,6 @@ import {
   RecipeAuthor,
   CategoryBadge,
   AllergenBadge,
-  FavoriteButton,
   RecipeSearchBar,
 } from '@sverg84/kkds-react';
 ```

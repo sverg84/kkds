@@ -4,7 +4,7 @@ const VOICE_TRAITS = [
   {
     trait: 'Warm',
     description:
-      'Speak to cooks as fellow food lovers. Avoid clinical or transactional language. "Your favourite flavours" beats "Selected items".',
+      'Speak to cooks as fellow food lovers. Avoid clinical or transactional language. "Your favorite flavours" beats "Selected items".',
   },
   {
     trait: 'Encouraging',
@@ -25,7 +25,7 @@ const VOICE_TRAITS = [
 
 const BUTTON_LABELS = [
   { kind: 'do' as const, text: 'Save recipe — specific to the object being saved' },
-  { kind: 'do' as const, text: 'Add to favourites — action + target, no ambiguity' },
+  { kind: 'do' as const, text: 'Add to favorites — action + target, no ambiguity' },
   { kind: 'do' as const, text: 'Start cooking — present tense, forward motion' },
   { kind: 'dont' as const, text: 'Submit — generic, cold' },
   { kind: 'dont' as const, text: 'OK — communicates nothing about the outcome' },
@@ -45,8 +45,8 @@ const EMPTY_STATES = [
       'Start building your collection by creating your first recipe.',
   },
   {
-    context: 'Favourites — nothing saved',
-    heading: 'No favourites yet',
+    context: 'favorites — nothing saved',
+    heading: 'No favorites yet',
     description: 'Tap the heart on any recipe to save it here.',
   },
   {

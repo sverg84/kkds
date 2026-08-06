@@ -21,17 +21,17 @@
  *
  * ─── Component contracts ─────────────────────────────────────────────────────
  *   RecipeCardContract, RecipeImageContract, RecipeMetadataContract,
- *   RecipeAuthorContract, RecipeSearchBarContract, FavoriteButtonContract,
+ *   RecipeAuthorContract, RecipeSearchBarContract,
  *   AllergenBadgeContract, CategoryBadgeContract,
  *   EmptyContract, SpinnerContract
  */
 
 // ── Tokens ─────────────────────────────────────────────────────────────────────
-export { tokens, type Tokens } from './generated/tokens';
-export { default as defaultTokens } from './generated/tokens';
+export { tokens, type Tokens } from "./generated/tokens";
+export { default as defaultTokens } from "./generated/tokens";
 
 // ── Motion ─────────────────────────────────────────────────────────────────────
-export { motion, type Motion, type MotionSpec } from './motion';
+export { motion, type Motion, type MotionSpec } from "./motion";
 
 // ── Allergen domain ────────────────────────────────────────────────────────────
 export {
@@ -39,7 +39,7 @@ export {
   allergenLabel,
   type AllergenTag,
   type AllergenTagMeta,
-} from './types/allergens';
+} from "./types/allergens";
 
 // ── Recipe domain ──────────────────────────────────────────────────────────────
 export {
@@ -51,7 +51,7 @@ export {
   type RecipeAuthor,
   type RecipeIngredient,
   type RecipeStep,
-} from './types/recipe';
+} from "./types/recipe";
 
 // ── Component contracts ────────────────────────────────────────────────────────
 export type {
@@ -60,9 +60,8 @@ export type {
   RecipeMetadataContract,
   RecipeAuthorContract,
   RecipeSearchBarContract,
-  FavoriteButtonContract,
   AllergenBadgeContract,
   CategoryBadgeContract,
   EmptyContract,
   SpinnerContract,
-} from './types/components';
+} from "./types/components";

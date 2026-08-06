@@ -7,7 +7,7 @@ Patterns are recommended compositions of KKDS primitives and KitchenKin componen
 ## 1. Recipe Discovery
 
 ### When to use
-Any surface that presents a filterable, searchable list of recipes — the public discovery feed, the "My Recipes" tab, or the "Favourites" collection.
+Any surface that presents a filterable, searchable list of recipes — the public discovery feed, the "My Recipes" tab, or the "Favorites" collection.
 
 ### Components
 | Role | Component |
@@ -64,7 +64,6 @@ The full recipe view — shows a single recipe's image, author, metadata, ingred
 | Role | Component |
 |---|---|
 | Hero image | `RecipeImage aspectRatio={4/3}` (left column) |
-| Favorite action | `FavoriteButton` (below image) |
 | Attribution | `RecipeAuthor` (right column, below title) |
 | Time & servings | `RecipeMetadata` (right column) |
 | Category tags | `CategoryBadge` × N (right column) |
@@ -78,7 +77,7 @@ The full recipe view — shows a single recipe's image, author, metadata, ingred
 │                          │  Recipe title (h1)          │
 │   RecipeImage (4:3)      │  RecipeAuthor               │
 │                          │  RecipeMetadata             │
-│   [♡ Favourite]         │  [Italian] [Dinner] [Quick] │
+│   [♡ Favorite]         │  [Italian] [Dinner] [Quick] │
 │                          │                             │
 │                          │  Contains: [Eggs] [Dairy]   │
 │                          │                             │
@@ -125,7 +124,7 @@ Always in its own section with a visible heading ("Contains allergens" or "Dieta
 ## 3. Profile Tabs
 
 ### When to use
-A user's profile page — shows the user's identity header above a tabbed view of their authored recipes and saved favourites.
+A user's profile page — shows the user's identity header above a tabbed view of their authored recipes and saved favorites.
 
 ### Components
 | Role | Component |
@@ -142,7 +141,7 @@ A user's profile page — shows the user's identity header above a tabbed view o
 │  ◉ [Avatar]  Sarah Chen             │
 │              12 recipes             │  ← RecipeAuthor size="default"
 ├──────────────────────────────────────┤
-│  [ My Recipes ]  [ Favourites ]     │  ← TabsList
+│  [ My Recipes ]  [ Favorites ]     │  ← TabsList
 ├──────────────────────────────────────┤
 │  ┌───────┐ ┌───────┐ ┌───────┐     │
 │  │ Card  │ │ Card  │ │ Card  │     │  ← RecipeCard grid (same as Discovery)
@@ -197,9 +196,9 @@ Use the KKDS `Alert` component in `destructive` variant. Include:
 
 ## Component index by pattern
 
-| Pattern | RecipeCard | RecipeCardSkeleton | RecipeSearchBar | RecipeImage | RecipeAuthor | RecipeMetadata | CategoryBadge | AllergenBadge | FavoriteButton |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Recipe Discovery | ✓ | ✓ | ✓ | — | — | — | ✓ | — | — |
-| Recipe Detail | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Profile Tabs | ✓ | ✓ | — | — | ✓ | — | — | — | — |
-| Loading & Empty | — | ✓ | — | — | — | — | — | — | — |
+| Pattern | RecipeCard | RecipeCardSkeleton | RecipeSearchBar | RecipeImage | RecipeAuthor | RecipeMetadata | CategoryBadge | AllergenBadge |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Recipe Discovery | ✓ | ✓ | ✓ | — | — | — | ✓ | — |
+| Recipe Detail | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Profile Tabs | ✓ | ✓ | — | — | ✓ | — | — | — |
+| Loading & Empty | — | ✓ | — | — | — | — | — | — |

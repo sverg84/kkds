@@ -13,7 +13,7 @@ export function RecipeAuthorDemo() {
         ]}
         whenNotToUse={[
           'Generic user lists where an avatar alone suffices',
-          'Comment threads favouring compact avatar-only treatments',
+          'Comment threads favoring compact avatar-only treatments',
           'System-generated or anonymous content with no author identity',
         ]}
         composition="Use size='default' (40px avatar) for standalone attribution blocks and size='compact' (32px) when embedded in tight layouts such as card footers. The subtitle prop typically carries a date, recipe count ('12 recipes'), or role label."

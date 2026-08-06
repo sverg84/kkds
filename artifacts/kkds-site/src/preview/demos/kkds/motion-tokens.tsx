@@ -12,7 +12,7 @@ const SEMANTIC = [
     duration: parseInt(d.instant),
     ease: e.standard,
     description: "Micro-state changes — icon swaps, badge count updates.",
-    use: "FavoriteButton fill, count badge",
+    use: "Count badge",
   },
   {
     name: "feedback.fast",
@@ -54,7 +54,7 @@ const SEMANTIC = [
     duration: parseInt(d.normal),
     ease: e.spring,
     description: "Playful overshoot — delight moments.",
-    use: "FavoriteButton heart scale, hover card",
+    use: "Hover card",
   },
   {
     name: "skeleton.pulse",

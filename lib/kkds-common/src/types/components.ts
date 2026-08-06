@@ -16,8 +16,8 @@
  * RecipeCardContract and adds href, className, etc.).
  */
 
-import type { AllergenTag } from './allergens';
-import type { RecipeCategory } from './recipe';
+import type { AllergenTag } from "./allergens";
+import type { RecipeCategory } from "./recipe";
 
 // ─── Layer 3: KitchenKin Semantic Components ──────────────────────────────────
 
@@ -76,7 +76,7 @@ export interface RecipeAuthorContract {
   avatarUrl?: string | null;
   /** Short subtitle, e.g. "Home baker · 42 recipes". */
   subtitle?: string | null;
-  size?: 'default' | 'sm';
+  size?: "default" | "sm";
 }
 
 /** RecipeSearchBar — controlled search input with clear action. */
@@ -85,14 +85,6 @@ export interface RecipeSearchBarContract {
   onChange: (value: string) => void;
   placeholder?: string;
   onClear?: () => void;
-}
-
-/** FavoriteButton — heart toggle for saving recipes. */
-export interface FavoriteButtonContract {
-  isFavorited?: boolean;
-  onToggle?: (next: boolean) => void;
-  disabled?: boolean;
-  size?: 'default' | 'sm' | 'lg';
 }
 
 /** AllergenBadge — dietary constraint and allergen warning label. */
@@ -121,7 +113,7 @@ export interface EmptyContract {
 
 /** Spinner — indeterminate loading indicator. */
 export interface SpinnerContract {
-  size?: 'sm' | 'default' | 'lg';
+  size?: "sm" | "default" | "lg";
   /** Accessible label for screen readers. */
   label?: string;
 }

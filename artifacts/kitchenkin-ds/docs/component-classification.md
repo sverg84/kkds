@@ -88,21 +88,6 @@ This classification guides which parts belong in `kkds-common` vs `kkds-web`.
 
 ---
 
-### FavoriteButton
-
-**Concept:** Heart toggle for saving recipes to a user's favorites collection. Must clearly communicate the current state and the action that will occur.
-
-**Web implementation:**
-- Radix `Toggle` primitive
-- `lucide-react` `Heart` icon (fill + stroke states)
-- `onClick` via Toggle
-
-**Mobile notes:**
-- React Native `Pressable` with `Animated.Value` for heart fill animation
-- `onPress` instead of `onClick`
-
----
-
 ### AllergenBadge
 
 **Concept:** Compact label that communicates a dietary constraint or allergen warning. Should visually recede compared to category badges — it is a warning, not a highlight.
