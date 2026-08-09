@@ -15,9 +15,8 @@ its theme and components directly.
   `./tokens` entry. Mobile (Expo) and other platforms import this.
 - `public/favicon.svg` — GENERATED app icon from `tokens.json` + the title.
 - `src/components/ui/` — the shadcn / Base UI component library, themed by the
-  tokens, re-exported from the package barrel (`@sverg84/kkds-react`).
-  `Combobox` is implemented here and **must** be added to the barrel in the
-  next API consistency migration phase (see `docs/api-consistency-audit.md`).
+  tokens, re-exported from the package barrel (`@sverg84/kkds-react`), including
+  `Combobox` (searchable/filterable option selection).
 - `src/components/kkds/` — KitchenKin semantic components (Layer 3) that compose
   KKDS primitives into food-domain UI. All are RSC-compatible except `RecipeSearchBar` (declares `"use client"`).
   Exported components:
@@ -63,7 +62,8 @@ its theme and components directly.
   includes RSC compatibility notes and why each concept was exported vs. kept as a pattern.
 - `docs/api-consistency-audit.md` — public API consistency audit (prop naming,
   className, refs, render props, controlled APIs, events, docs gaps) with a
-  phased migration plan. Combobox barrel export is required in Phase 1.
+  phased migration plan. Phase 1 (Combobox export + non-breaking fixes) is the
+  current stabilization track; Phase 2 aliased renames await review.
 - `docs/patterns.md` — markdown documentation for the four applied-example patterns
   (Recipe Discovery, Recipe Detail, Profile Tabs, Loading & Empty). The authoritative
   reference for AI agents building KitchenKin interfaces.

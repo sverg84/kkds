@@ -453,18 +453,19 @@ flowchart LR
 
 ### Phase 0 — Audit artifact + surface honesty (this document)
 
-- Write `docs/api-consistency-audit.md` (this file).
-- Correct `index.ts` / AGENTS export claims.
-- Document Combobox as a **required** missing public export.
+- Write `docs/api-consistency-audit.md` (this file). **Done.**
+- Correct `index.ts` / AGENTS export claims. **Done.**
+- Document Combobox as a **required** missing public export. **Done** (Phase 0);
+  Phase 1 exported it.
 
-### Phase 1 — Non-breaking fixes + required Combobox export
+### Phase 1 — Non-breaking fixes + required Combobox export — **completed**
 
-- Re-export Combobox compound API from `src/index.ts`.
-- Add kkds-site Combobox demo + registry.
-- Skeleton `className` for `count === 1`.
-- EmptyDescription element/type fix.
-- Contract sync; Spinner size/label.
-- Docs for Field/InputGroup/Empty; JSDoc pass on Layer 1 roots including Combobox.
+- Re-export Combobox compound API from `src/index.ts`. **Done.**
+- Add kkds-site Combobox demo + registry. **Done.**
+- Skeleton `className` for `count === 1`. **Done.**
+- EmptyDescription element/type fix. **Done.**
+- Contract sync; Spinner size/label. **Done.**
+- Docs for Field/InputGroup/Empty; JSDoc pass on Layer 1 roots including Combobox. **Done.**
 
 ### Phase 2 — Aliased renames
 
@@ -488,5 +489,4 @@ prop renames.
 |---|---|
 | 3 | `AllergenBadge`, `CategoryBadge`, `RecipeAuthor`, `RecipeCard`, `RecipeCardSkeleton`, `RecipeImage`, `RecipeMetadata`, `RecipeSearchBar` |
 | 2 | `Empty` (+ parts), `Field` (+ parts), `InputGroup` (+ parts), `Spinner` |
-| 1 | `AlertDialog`, `AspectRatio`, `Avatar`, `Badge`, `Button`, `Card`, `Dialog`, `DropdownMenu`, `Input`, `Label`, `Popover`, `ScrollArea`, `Select`, `Separator`, `Skeleton`, `Switch`, `Tabs`, `Textarea`, `Toggle` |
-| 1 gap | `Combobox` (+ parts) — implemented, **must export** in Phase 1 |
+| 1 | `AlertDialog`, `AspectRatio`, `Avatar`, `Badge`, `Button`, `Card`, `Combobox`, `Dialog`, `DropdownMenu`, `Input`, `Label`, `Popover`, `ScrollArea`, `Select`, `Separator`, `Skeleton`, `Switch`, `Tabs`, `Textarea`, `Toggle` |

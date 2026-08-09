@@ -12,6 +12,7 @@ import { FieldDemo } from "./demos/field";
 import { InputDemo } from "./demos/input";
 import { InputGroupDemo } from "./demos/input-group";
 import { PopoverDemo } from "./demos/popover";
+import { ComboboxDemo } from "./demos/combobox";
 import { SelectDemo } from "./demos/select";
 import { SeparatorDemo } from "./demos/separator";
 import { SkeletonDemo } from "./demos/skeleton";
@@ -155,6 +156,13 @@ export const NAV_GROUPS: NavGroup[] = [
         description:
           "Selection controls, grouped options, and disabled states.",
         Page: SelectDemo,
+      },
+      {
+        id: "combobox",
+        name: "Combobox",
+        description:
+          "Searchable option selection, clearable values, empty results, and chips.",
+        Page: ComboboxDemo,
       },
       {
         id: "switch",

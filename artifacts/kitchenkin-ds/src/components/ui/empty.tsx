@@ -2,6 +2,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "#lib/utils";
 
+/**
+ * Empty — compound empty-state layout.
+ *
+ * Compose with EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription, and
+ * EmptyContent. Prefer this over inventing one-off “no results” cards.
+ */
 function Empty({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -15,6 +21,7 @@ function Empty({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/** Groups media, title, and description above the action area. */
 function EmptyHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -40,6 +47,7 @@ const emptyMediaVariants = cva(
   },
 );
 
+/** Optional illustration or icon above the title (`variant="icon"` for muted tile). */
 function EmptyMedia({
   className,
   variant = "default",
@@ -55,6 +63,7 @@ function EmptyMedia({
   );
 }
 
+/** Primary empty-state heading. */
 function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -65,9 +74,10 @@ function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/** Supporting copy; renders a semantic paragraph. */
 function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
-    <div
+    <p
       data-slot="empty-description"
       className={cn(
         "text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
@@ -78,6 +88,7 @@ function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
   );
 }
 
+/** Action area (buttons, links) below the header. */
 function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

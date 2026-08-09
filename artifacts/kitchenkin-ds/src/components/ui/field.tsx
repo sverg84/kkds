@@ -1,5 +1,13 @@
 "use client"
 
+/**
+ * Field — form-field composition primitives.
+ *
+ * Use FieldLabel for native label association (`htmlFor`). Use FieldTitle for
+ * non-label headings inside horizontal fields (e.g. beside Switch). FieldError
+ * accepts either `children` or an `errors` array of `{ message?: string }`.
+ */
+
 import { useMemo } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 

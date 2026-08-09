@@ -19,12 +19,8 @@
  * the API stable:
  *
  *   Included: AlertDialog, AspectRatio, Avatar, Badge, Button, Card,
- *     Dialog, DropdownMenu, Input, Label, Popover, ScrollArea, Select,
- *     Separator, Skeleton, Switch, Tabs, Textarea, Toggle
- *
- *   Required export gap (implemented under src/components/ui/, barrel export
- *   pending — see docs/api-consistency-audit.md Phase 1):
- *     Combobox
+ *     Combobox, Dialog, DropdownMenu, Input, Label, Popover, ScrollArea,
+ *     Select, Separator, Skeleton, Switch, Tabs, Textarea, Toggle
  *
  *   Excluded (too heavy, undocumented, or app-specific):
  *     Accordion, Alert, Breadcrumb, Calendar, Carousel, Chart, Checkbox,
@@ -80,6 +76,7 @@ export * from "./components/ui/avatar";
 export * from "./components/ui/badge";
 export * from "./components/ui/button";
 export * from "./components/ui/card";
+export * from "./components/ui/combobox";
 export * from "./components/ui/dialog";
 export * from "./components/ui/dropdown-menu";
 export * from "./components/ui/input";

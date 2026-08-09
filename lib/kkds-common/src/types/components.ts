@@ -9,7 +9,8 @@
  *   - NO React types (ReactNode, RefObject, etc.)
  *   - NO CSS class strings
  *   - Prefer callbacks named onX that carry platform-neutral payloads
- *   - Props that are web-only (href, ref) remain in the web implementation only
+ *   - Props that are web-only (href, ref, renderLink) remain in the web
+ *     implementation only
  *
  * Each contract is intentionally minimal. Platform implementations may extend
  * them with platform-specific props (e.g. RecipeCardWebProps extends
@@ -29,12 +30,12 @@ import type { RecipeCategory } from "./recipe";
  *   category/dietary tags, a short description, and timing metadata in a
  *   consistent hierarchy that works across discovery, favorites, and profile grids.
  *
- * Web implementation: <article> element with image, CardHeader, CardFooter, and
- *   optional <a> wrapper for keyboard-navigable linking.
- * Mobile implementation (future): <Pressable> with Image, Text, and Badge rows.
+ * Navigation is platform-specific and intentionally omitted here:
+ *   - Web: `href` and/or `renderLink` on `@sverg84/kkds-react` RecipeCard
+ *   - Mobile (future): press/navigation handlers on the native implementation
  *
  * Intentionally NOT in this contract:
- *   - href / url — web navigation prop; mobile uses onPress instead
+ *   - href / url / onPress — platform navigation
  *   - className / style — platform styling
  */
 export interface RecipeCardContract {
@@ -44,19 +45,16 @@ export interface RecipeCardContract {
   tags?: (RecipeCategory | AllergenTag)[];
   prepTime?: string | null;
   cookTime?: string | null;
-  /**
-   * Platform-neutral navigation callback.
-   * Web maps this to an <a href>; mobile maps it to a navigation action.
-   * Either onPress OR a platform href prop should be used — not both.
-   */
-  onPress?: () => void;
 }
 
 /** RecipeImage — aspect-ratio constrained food photograph. */
 export interface RecipeImageContract {
   src?: string | null;
-  /** Accessible alt text. Falls back to a generic description if omitted. */
-  alt: string;
+  /**
+   * Accessible alt text. When omitted, web falls back to a generic description
+   * (and placeholder label). Prefer providing a meaningful value.
+   */
+  alt?: string | null;
   /**
    * Aspect ratio expressed as a decimal (width / height).
    * Default: 16/9. Common values: 1 (square), 4/3, 3/2.
@@ -64,10 +62,12 @@ export interface RecipeImageContract {
   aspectRatio?: number;
 }
 
-/** RecipeMetadata — compact prep/cook time row. */
+/** RecipeMetadata — compact prep/cook time (and optional servings) row. */
 export interface RecipeMetadataContract {
   prepTime?: string | null;
   cookTime?: string | null;
+  /** Servings count or label, e.g. 4 or "4 servings". */
+  servings?: string | number | null;
 }
 
 /** RecipeAuthor — avatar and display name identity row. */
@@ -76,7 +76,11 @@ export interface RecipeAuthorContract {
   avatarUrl?: string | null;
   /** Short subtitle, e.g. "Home baker · 42 recipes". */
   subtitle?: string | null;
-  size?: "default" | "sm";
+  /**
+   * Visual size. Web currently uses `"default" | "compact"`.
+   * A later migration may align `"compact"` with the primitive `"sm"` token.
+   */
+  size?: "default" | "compact";
 }
 
 /** RecipeSearchBar — controlled search input with clear action. */
@@ -101,12 +105,19 @@ export interface CategoryBadgeContract {
 
 // ─── Layer 2: KKDS Custom Primitives ─────────────────────────────────────────
 
-/** Empty state — guidance when content is absent. */
+/**
+ * Empty state — platform-neutral *content model* for absent content.
+ *
+ * Web implements this as a compound component (`Empty`, `EmptyHeader`,
+ * `EmptyMedia`, `EmptyTitle`, `EmptyDescription`, `EmptyContent`), not a single
+ * prop bag. These fields describe the semantic content those parts compose.
+ */
 export interface EmptyContract {
+  /** Icon or media hint (platform maps to an icon name or node). */
   icon?: string;
-  title: string;
+  title?: string;
   description?: string;
-  /** Label for the primary call-to-action button, if present. */
+  /** Label for the primary call-to-action, if present. */
   actionLabel?: string;
   onAction?: () => void;
 }

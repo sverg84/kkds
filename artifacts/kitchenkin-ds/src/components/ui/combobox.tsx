@@ -1,5 +1,18 @@
 "use client";
 
+/**
+ * Combobox — searchable/filterable option selection (Base UI).
+ *
+ * Use for picking from a known option list with type-ahead filtering.
+ * Prefer Select for closed lists without search, and RecipeSearchBar for
+ * free-text recipe filtering (not option picking).
+ *
+ * Controlled via Root `value` / `defaultValue` / `onValueChange`. Clear via
+ * `ComboboxInput showClear`. Multi-select via Root `multiple` with chips parts.
+ *
+ * Polymorphism uses Base UI `render` (not Radix `asChild`).
+ */
+
 import * as React from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 
@@ -13,6 +26,7 @@ import {
 } from "#components/ui/input-group";
 import { ChevronDownIcon, XIcon, CheckIcon } from "lucide-react";
 
+/** Combobox root. Supports single or `multiple` selection. */
 const Combobox = ComboboxPrimitive.Root;
 
 function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
