@@ -20,6 +20,8 @@ publishes to npm via GitHub Actions. Feature merges alone never publish.
 
 ## One-time repo setup
 
-- Add an npm Automation token as the `NPM_TOKEN` GitHub Actions secret (must be able to publish under `@sverg84`).
+- On npmjs.com, configure a **Trusted publisher** for each of `@sverg84/kkds-common`
+  and `@sverg84/kkds-react`: GitHub → `sverg84` / `kkds` / workflow `release.yml`.
 - Allow Actions read/write permission so the Version Packages PR can be created.
-- Do not commit project-level `.npmrc` auth tokens; CI uses the secret via Changesets / `NODE_AUTH_TOKEN`.
+- Do not set `NPM_TOKEN` / `NODE_AUTH_TOKEN` on the Release workflow — publishing
+  uses OIDC via `id-token: write`. Delete any leftover `NPM_TOKEN` secret if unused.
