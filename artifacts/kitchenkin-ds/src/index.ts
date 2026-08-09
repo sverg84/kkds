@@ -20,14 +20,18 @@
  *
  *   Included: AlertDialog, AspectRatio, Avatar, Badge, Button, Card,
  *     Dialog, DropdownMenu, Input, Label, Popover, ScrollArea, Select,
- *     Separator, Skeleton, Switch, Tabs, Textarea
+ *     Separator, Skeleton, Switch, Tabs, Textarea, Toggle
+ *
+ *   Required export gap (implemented under src/components/ui/, barrel export
+ *   pending — see docs/api-consistency-audit.md Phase 1):
+ *     Combobox
  *
  *   Excluded (too heavy, undocumented, or app-specific):
  *     Accordion, Alert, Breadcrumb, Calendar, Carousel, Chart, Checkbox,
  *     Collapsible, Command, ContextMenu, Drawer, Form, HoverCard, InputOtp,
  *     Menubar, NavigationMenu, Pagination, Progress, RadioGroup, Resizable,
- *     Sheet, Sidebar, Slider, Sonner, Table, Toast / Toaster, Toggle,
- *     ToggleGroup, Tooltip
+ *     Sheet, Sidebar, Slider, Sonner, Table, Toast / Toaster, ToggleGroup,
+ *     Tooltip
  *
  * ─── Hooks ───────────────────────────────────────────────────────────────────
  *   useMobile
