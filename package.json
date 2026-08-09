@@ -7,13 +7,16 @@
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
-    "tokens": "pnpm --filter @sverg84/kkds-common tokens && pnpm --filter @sverg84/kkds-react tokens"
+    "tokens": "pnpm --filter @sverg84/kkds-common tokens && pnpm --filter @sverg84/kkds-react tokens",
+    "changeset": "changeset",
+    "ci:publish": "pnpm --filter @sverg84/kkds-common run build && pnpm --filter @sverg84/kkds-react run build:lib && changeset publish"
   },
   "private": true,
   "dependencies": {
     "@replit/connectors-sdk": "^0.4.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "prettier": "^3.9.6",
     "typescript": "~5.9.3"
   }

@@ -20,11 +20,16 @@
     "tokens.json",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
     "build": "rm -rf dist && pnpm tokens && tsup",
     "typecheck": "tsc --noEmit",
-    "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs"
+    "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs",
+    "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
     "tsup": "^8.0.0",
