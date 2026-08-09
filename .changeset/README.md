@@ -1,8 +1,8 @@
 # Changesets
 
-Versioning and publishing for `@sverg84/kkds-common` and `@sverg84/kkds-react`.
-Private `@workspace/*` packages are listed in `config.json` `ignore` so they are
-never versioned or published.
+Versioning and publishing for `@sverg84/kkds-*` packages (fixed group — shared
+version line). Private `@workspace/*` packages are listed in `config.json`
+`ignore` so they are never versioned or published.
 
 ## Contributor flow
 
