@@ -33,7 +33,11 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org/
+          # Do not set registry-url / NODE_AUTH_TOKEN — that forces token auth
+          # and blocks npm trusted publishing (OIDC).
+
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -45,8 +49,8 @@ jobs:
           commit: "chore: version packages"
           # Builds once in ci:publish; packages intentionally omit prepublishOnly
           # so parallel publish cannot wipe kkds-common/dist mid-flight.
+          # Auth: npm trusted publisher OIDC (no NPM_TOKEN). Configure on each
+          # package at npmjs.com → Trusted publishing → release.yml.
           publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
