@@ -20,5 +20,6 @@ publishes to npm via GitHub Actions. Feature merges alone never publish.
 
 ## One-time repo setup
 
-- Add an npm Automation token as the `NPM_TOKEN` GitHub Actions secret.
+- Add an npm Automation token as the `NPM_TOKEN` GitHub Actions secret (must be able to publish under `@sverg84`).
 - Allow Actions read/write permission so the Version Packages PR can be created.
+- Do not commit project-level `.npmrc` auth tokens; CI uses the secret via Changesets / `NODE_AUTH_TOKEN`.

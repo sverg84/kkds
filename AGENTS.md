@@ -51,6 +51,6 @@ Also: `kitchenkin-ds` **requires** both `PORT` and `BASE_PATH` env vars (hard th
 
 - **pnpm only** — root `preinstall` rejects npm/yarn.
 - Do not disable `minimumReleaseAge` in `pnpm-workspace.yaml`.
-- `artifacts/kitchenkin-ds/.npmrc` references `${NPM_TOKEN}`; missing token only produces a benign warning during local builds.
 - Package filter for the DS is `@sverg84/kkds-react` (not the older `@sverg84/kkds` name still present in `artifact.toml`'s `run` line).
+- npm publishing uses Changesets (`.github/workflows/release.yml`). Auth is via the `NPM_TOKEN` Actions secret / user-level npmrc — do not commit project-level `_authToken` `.npmrc` files (pnpm ignores expanded tokens there).
 - Design-system usage notes: `artifacts/kitchenkin-ds/docs/AGENTS.md` and `artifacts/kkds-site/docs/AGENTS.md`.

@@ -28,8 +28,7 @@
     "tokens": "node scripts/build-tokens.mjs",
     "build": "rm -rf dist && pnpm tokens && tsup",
     "typecheck": "tsc --noEmit",
-    "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs",
-    "prepublishOnly": "pnpm run build"
+    "check": "tsc -p tsconfig.strict.json --noEmit && node scripts/check-purity.mjs && node scripts/test-purity.mjs"
   },
   "devDependencies": {
     "tsup": "^8.0.0",
