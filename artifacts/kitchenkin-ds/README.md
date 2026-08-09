@@ -217,6 +217,18 @@ conflict. Do not add a separate `@import "tailwindcss"` that scans
 
 ---
 
+## Releasing
+
+This package is published to npm via [Changesets](https://github.com/changesets/changesets).
+
+1. In a feature branch, run `pnpm changeset`, select `@sverg84/kkds-react` (and `@sverg84/kkds-common` when needed), choose a bump type, and commit the generated file under `.changeset/`.
+2. Merge the feature PR to `main`. CI opens or updates a **Version Packages** PR.
+3. Merge the Version Packages PR to publish. Feature merges alone do not publish.
+
+See [`.changeset/README.md`](../../.changeset/README.md) for setup notes (`NPM_TOKEN`, Actions permissions).
+
+---
+
 ## License
 
 MIT

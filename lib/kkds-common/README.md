@@ -78,3 +78,15 @@ cd ../../artifacts/kitchenkin-ds && pnpm tokens
 ```
 
 See `artifacts/kitchenkin-ds/docs/architecture.md` for the full architecture guide.
+
+---
+
+## Releasing
+
+This package is published to npm via [Changesets](https://github.com/changesets/changesets).
+
+1. In a feature branch, run `pnpm changeset`, select `@sverg84/kkds-common`, choose a bump type, and commit the generated file under `.changeset/`.
+2. Merge the feature PR to `main`. CI opens or updates a **Version Packages** PR.
+3. Merge the Version Packages PR to publish. Feature merges alone do not publish.
+
+See [`.changeset/README.md`](../../.changeset/README.md) for setup notes (`NPM_TOKEN`, Actions permissions).
