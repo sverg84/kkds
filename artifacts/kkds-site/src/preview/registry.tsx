@@ -316,7 +316,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "kkds-recipe-author",
         name: "Recipe author",
         description:
-          "Avatar + display name identity row in default and compact sizes.",
+          "Avatar + display name identity row in default and sm sizes.",
         Page: RecipeAuthorDemo,
       },
       {

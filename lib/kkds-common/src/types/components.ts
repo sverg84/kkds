@@ -51,10 +51,10 @@ export interface RecipeCardContract {
 export interface RecipeImageContract {
   src?: string | null;
   /**
-   * Accessible alt text. When omitted, web falls back to a generic description
-   * (and placeholder label). Prefer providing a meaningful value.
+   * Accessible alt text. Required.
+   * Pass an empty string for intentionally decorative images.
    */
-  alt?: string | null;
+  alt: string;
   /**
    * Aspect ratio expressed as a decimal (width / height).
    * Default: 16/9. Common values: 1 (square), 4/3, 3/2.
@@ -76,17 +76,14 @@ export interface RecipeAuthorContract {
   avatarUrl?: string | null;
   /** Short subtitle, e.g. "Home baker · 42 recipes". */
   subtitle?: string | null;
-  /**
-   * Visual size. Web currently uses `"default" | "compact"`.
-   * A later migration may align `"compact"` with the primitive `"sm"` token.
-   */
-  size?: "default" | "compact";
+  /** Visual size. `"sm"` for inline layouts; `"default"` for profile headers. */
+  size?: "default" | "sm";
 }
 
 /** RecipeSearchBar — controlled search input with clear action. */
 export interface RecipeSearchBarContract {
   value: string;
-  onChange: (value: string) => void;
+  onValueChange: (value: string) => void;
   placeholder?: string;
   onClear?: () => void;
 }

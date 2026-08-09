@@ -116,7 +116,7 @@ export function RecipeDiscoveryPattern() {
         {/* Search bar */}
         <RecipeSearchBar
           value={query}
-          onChange={setQuery}
+          onValueChange={setQuery}
           onClear={() => {
             setQuery('');
             setActiveCategory('All');

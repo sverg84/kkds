@@ -23,7 +23,7 @@ its theme and components directly.
   - `RecipeMetadata` — prep time, cook time, and servings row with icons
   - `CategoryBadge` — warm secondary badge for recipe categories and cuisines
   - `AllergenBadge` — muted outline badge for dietary constraints and allergen warnings
-  - `RecipeAuthor` — Avatar + name identity row in default and compact sizes
+  - `RecipeAuthor` — Avatar + name identity row in default and sm sizes
   - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
   - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
   - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button

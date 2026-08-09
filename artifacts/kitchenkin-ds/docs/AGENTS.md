@@ -24,7 +24,7 @@ its theme and components directly.
   - `RecipeMetadata` — prep time, cook time, and servings row with icons
   - `CategoryBadge` — warm secondary badge for recipe categories and cuisines
   - `AllergenBadge` — muted outline badge for dietary constraints and allergen warnings
-  - `RecipeAuthor` — Avatar + name identity row in default and compact sizes
+  - `RecipeAuthor` — Avatar + name identity row in default and sm sizes
   - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
   - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
   - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button
@@ -62,8 +62,9 @@ its theme and components directly.
   includes RSC compatibility notes and why each concept was exported vs. kept as a pattern.
 - `docs/api-consistency-audit.md` — public API consistency audit (prop naming,
   className, refs, render props, controlled APIs, events, docs gaps) with a
-  phased migration plan. Phase 1 (Combobox export + non-breaking fixes) is the
-  current stabilization track; Phase 2 aliased renames await review.
+  phased migration plan. Phase 1 (Combobox + correctness) and Phase 2 (direct
+  pre-adoption renames: `sm`, `onValueChange`, `formatTagLabel`, required `alt`)
+  are complete.
 - `docs/patterns.md` — markdown documentation for the four applied-example patterns
   (Recipe Discovery, Recipe Detail, Profile Tabs, Loading & Empty). The authoritative
   reference for AI agents building KitchenKin interfaces.

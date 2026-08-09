@@ -13,12 +13,12 @@ export interface RecipeSearchBarProps {
   /** The current search query value (controlled). */
   value: string;
   /** Called on every keystroke with the new value. */
-  onChange: (value: string) => void;
+  onValueChange: (value: string) => void;
   /** Placeholder text shown when the input is empty. */
   placeholder?: string;
   /**
    * Called when the user clicks the clear button.
-   * If omitted, clearing still calls `onChange('')`.
+   * If omitted, clearing still calls `onValueChange('')`.
    */
   onClear?: () => void;
   className?: string;
@@ -33,11 +33,11 @@ export interface RecipeSearchBarProps {
  * React app.
  *
  * **When to use:** Recipe discovery surfaces where users filter a list by
- * keyword. Wire `value` and `onChange` to your local state or URL search params.
+ * keyword. Wire `value` and `onValueChange` to your local state or URL search params.
  *
  * **When not to use:** Command palette or autocomplete interactions — use a
  * command-palette library such as `cmdk` directly (`Command` is not part of
- * the `@sverg84/kkds` public API).
+ * the `@sverg84/kkds` public API). Prefer Combobox for searchable option picking.
  *
  * **Framework integration:** This component is intentionally framework-agnostic.
  * In a Next.js app, wrap it with a client component that syncs `value` with
@@ -53,13 +53,13 @@ export interface RecipeSearchBarProps {
  */
 export function RecipeSearchBar({
   value,
-  onChange,
+  onValueChange,
   placeholder = 'Search recipes…',
   onClear,
   className,
 }: RecipeSearchBarProps) {
   const handleClear = () => {
-    onChange('');
+    onValueChange('');
     onClear?.();
   };
 
@@ -72,7 +72,7 @@ export function RecipeSearchBar({
       <InputGroupInput
         type="text"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onValueChange(e.target.value)}
         placeholder={placeholder}
         aria-label="Search recipes"
       />

@@ -19,7 +19,7 @@ export function AllergenBadgeDemo() {
   return (
     <div className="space-y-6">
       <DocBlock
-        purpose="Muted outline badge for dietary constraints and allergen warnings. Visually distinct from CategoryBadge — the border-only treatment signals safety significance without alarm. Uses the same formatCategoryLabel normaliser as CategoryBadge."
+        purpose="Muted outline badge for dietary constraints and allergen warnings. Visually distinct from CategoryBadge — the border-only treatment signals safety significance without alarm. Uses the same formatTagLabel normaliser as CategoryBadge."
         whenToUse={[
           'Allergen section of recipe detail pages',
           'Any surface where dietary safety information must be visible',

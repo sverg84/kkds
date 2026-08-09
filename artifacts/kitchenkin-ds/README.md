@@ -139,7 +139,7 @@ import { RecipeSearchBar } from "@sverg84/kkds-react";
 export default function Page() {
   // RecipeSearchBar is a client component — you can import it from a Server
   // Component; Next.js handles the boundary automatically.
-  return <RecipeSearchBar value="" onChange={() => {}} />;
+  return <RecipeSearchBar value="" onValueChange={() => {}} />;
 }
 ```
 

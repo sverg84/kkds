@@ -211,7 +211,7 @@ flowchart TB
 | className | Yes |
 | ref | No (does not forward Badge/`render`) |
 | Docs | Strong JSDoc |
-| Helper | Exports `formatCategoryLabel` |
+| Helper | Exports `formatTagLabel` |
 
 **Suggestions** — see shared badge section below.
 
@@ -225,22 +225,21 @@ flowchart TB
 | className | Yes |
 | ref | No |
 | Docs | Strong JSDoc |
-| Composition | `Badge variant="outline"` + muted foreground; reuses `formatCategoryLabel` |
+| Composition | `Badge variant="outline"` + muted foreground; reuses `formatTagLabel` |
 
 ---
 
 ### CategoryBadge / AllergenBadge (shared)
 
 Nearly identical wrappers around `Badge` (`secondary` vs `outline` + muted).
-Share `formatCategoryLabel` from the category module (name misleading for
-allergens).
+Share `formatTagLabel` from the category module (generalized tag humanizer).
 
 **Suggestions**
 
 | Suggestion | Breaking? | Confidence |
 |---|---|---|
 | Keep two components (semantic distinction is intentional per `audit-phase2.md`) | — | **High** |
-| Rename shared helper to `formatTagLabel` (or move to `kkds-common` next to `categoryLabel`/`allergenLabel`) | Soft | **High** |
+| Rename shared helper to `formatTagLabel` (or move to `kkds-common` next to `categoryLabel`/`allergenLabel`) | Soft — **done as `formatTagLabel`** | **High** |
 | Prefer typed `AllergenTag` / `RecipeCategory` props with `label: string` overload for freeform | Soft | **Medium** |
 | Avoid merging into one `variant` prop — would erase domain API | — | **High** |
 
@@ -405,38 +404,39 @@ Already implemented compound parts: `Combobox`, `ComboboxInput`,
 5. Sync contracts: `servings`, `alt`, RecipeAuthor size, Empty/Spinner,
    drop/adjust `onPress`.
 
-**P1 — naming consistency (breaking with migration path)**
+**P1 — naming consistency (direct pre-adoption renames; no aliases) — done**
 
-6. `RecipeAuthor` `compact` → `sm` (alias period).
-7. `RecipeSearchBar` `onChange` → `onValueChange` (alias period).
-8. Rename `formatCategoryLabel` → `formatTagLabel`.
+6. `RecipeAuthor` `compact` → `sm`.
+7. `RecipeSearchBar` `onChange` → `onValueChange`.
+8. `formatCategoryLabel` → `formatTagLabel`.
+9. `RecipeImage` `alt: string` required.
 
 **P2 — API completeness (additive)**
 
-9. Spinner `size` + `label`.
-10. RecipeSearchBar a11y/form passthroughs.
-11. RecipeCard optional `servings`.
-12. Layer 1/2 JSDoc + DocBlocks (including Combobox).
+10. Spinner `size` + `label` — done in Phase 1.
+11. RecipeSearchBar a11y/form passthroughs — deferred.
+12. RecipeCard optional `servings` — deferred.
+13. Layer 1/2 JSDoc + DocBlocks (including Combobox) — done in Phase 1.
 
-**P3 — structural (optional)**
+**P3 — structural (optional; deferred)**
 
-13. Split skeleton single vs grid.
-14. Layer 3 `ref` policy decision documented; implement only if consumers need it.
+14. Split skeleton single vs grid.
+15. Layer 3 `ref` policy — defer until consumer need.
 
 ---
 
 ## Breaking changes register
 
-| Change | Who breaks | Mitigation |
-|---|---|---|
-| `RecipeAuthor size="compact"` → `"sm"` | Any `compact` callers (kkds-site demos) | Accept both for one minor; warn in JSDoc |
-| `RecipeSearchBar onChange` → `onValueChange` | All search bar callers | Dual props one minor; then remove `onChange` |
-| `RecipeImage alt` required | Callers omitting `alt` | Type error; runtime already defaults display string |
-| Contract field removals/renames (`onPress`, Empty flat shape) | Type-only importers of contracts | Semver minor if pre-1.0 (`0.1.0`); document in `migrating-web.md` |
-| Combobox newly exported (required) | None | Additive; add demo/registry in same change |
+| Change | Status |
+|---|---|
+| `RecipeAuthor size="compact"` → `"sm"` | **Done** (direct; no alias) |
+| `RecipeSearchBar onChange` → `onValueChange` | **Done** (direct; no alias) |
+| `formatCategoryLabel` → `formatTagLabel` | **Done** (direct; no alias) |
+| `RecipeImage alt` required | **Done** (`alt=""` allowed for decorative) |
+| Contract field removals/renames (`onPress`, Empty content model) | **Done** in Phase 1 |
+| Combobox newly exported | **Done** in Phase 1 |
 
-Package is `0.1.0` — breaking renames are acceptable with a short dual-support
-window and `docs/migrating-web.md` updates.
+Package is `0.1.0` with zero external consumers — breaking renames applied directly.
 
 ---
 
@@ -446,9 +446,8 @@ window and `docs/migrating-web.md` updates.
 flowchart LR
   phase0[Phase0 DocsAndContracts]
   phase1[Phase1 NonBreakingFixes]
-  phase2[Phase2 AliasedRenames]
-  phase3[Phase3 RemoveAliases]
-  phase0 --> phase1 --> phase2 --> phase3
+  phase2[Phase2 DirectRenames]
+  phase0 --> phase1 --> phase2
 ```
 
 ### Phase 0 — Audit artifact + surface honesty (this document)
@@ -467,15 +466,18 @@ flowchart LR
 - Contract sync; Spinner size/label. **Done.**
 - Docs for Field/InputGroup/Empty; JSDoc pass on Layer 1 roots including Combobox. **Done.**
 
-### Phase 2 — Aliased renames
+### Phase 2 — Direct renames (pre-adoption; no aliases) — **completed**
 
-- `compact`/`sm`, `onChange`/`onValueChange`, `formatTagLabel`.
-- Update kkds-site demos; note in `migrating-web.md`.
+- `RecipeAuthor` `compact` → `sm` (no alias).
+- `RecipeSearchBar` `onChange` → `onValueChange` (no alias).
+- `formatCategoryLabel` → `formatTagLabel` (no alias).
+- `RecipeImage` `alt: string` required (`alt=""` for decorative).
+- All in-repo callers, contracts, and living docs updated.
 
-### Phase 3 — Remove aliases
+### Phase 3 — Deferred / out of scope
 
-- Drop deprecated props.
-- Optional skeleton split / RecipeCard `servings`.
+- Optional skeleton split / RecipeCard `servings` / broad Layer 3 refs —
+  not implemented (no current product demand).
 
 Each phase: typecheck `@sverg84/kkds-react` + `@workspace/kkds-site`; update
 demos/registry in the same PR; no visual/behavior changes except intentional

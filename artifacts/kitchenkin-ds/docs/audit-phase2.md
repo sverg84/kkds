@@ -24,7 +24,7 @@ Concepts that are too tightly coupled to the app's data layer (Prisma, TanStack 
 | **Why it exists** | Food photography is the primary visual driver of KitchenKin. Recipes without images need a warm, branded placeholder rather than a broken image. The 16:9 aspect ratio and `object-cover` cropping are non-negotiable for consistent card grids. |
 | **Source files** | `components/recipe/recipe-image.tsx` (primary), used in `recipe-card.tsx` AND `recipe/[id]/page.tsx` |
 | **Design language** | Constrained aspect ratio, object-cover framing, warm-toned SVG placeholder derived from the recipe title |
-| **Suggested API** | `src?: string \| null`, `alt?: string \| null`, `aspectRatio?: number` (default 16/9), `priority?: boolean`, `className?: string` |
+| **Suggested API** | `src?: string \| null`, `alt: string` (required; `""` for decorative), `aspectRatio?: number` (default 16/9), `priority?: boolean`, `className?: string` |
 | **Layer verdict** | ✅ Exported KKDS component |
 | **RSC compatible** | ✅ Yes — no hooks, just an `<img>` |
 | **`"use client"`** | ❌ Not required |
@@ -84,7 +84,7 @@ Concepts that are too tightly coupled to the app's data layer (Prisma, TanStack 
 | **Why it exists** | The Avatar + display name pattern appears in the profile header (`user-profile.tsx`) and on the recipe detail page author attribution. Both share the same size variants and initials-fallback logic. |
 | **Source files** | `components/profile/user-profile.tsx`, `app/recipe/[id]/page.tsx` |
 | **Design language** | `size-10` Avatar, initials fallback, `font-medium` name, optional `text-xs text-muted-foreground` subtitle |
-| **Suggested API** | `name: string`, `avatarUrl?: string \| null`, `subtitle?: string \| null`, `size?: 'default' \| 'compact'`, `className?: string` |
+| **Suggested API** | `name: string`, `avatarUrl?: string \| null`, `subtitle?: string \| null`, `size?: 'default' \| 'sm'`, `className?: string` |
 | **Layer verdict** | ✅ Exported KKDS component |
 | **RSC compatible** | ✅ Yes (Avatar owns its own `"use client"` boundary) |
 | **`"use client"`** | ❌ Not required at this level |
@@ -144,7 +144,7 @@ Concepts that are too tightly coupled to the app's data layer (Prisma, TanStack 
 | **Why it exists** | The search input on the home page is the entry point to recipe discovery. It uses a Search icon prefix, a clear button, and controlled input — a pattern that any KitchenKin surface implementing search would replicate. |
 | **Source files** | `components/search-bar.tsx`, used in `app/page.tsx` |
 | **Design language** | `InputGroup` with inline Search icon, full-width controlled input, ghost clear button with X icon when value is present |
-| **Suggested API** | `value: string`, `onChange: (value: string) => void`, `placeholder?: string`, `onClear?: () => void`, `className?: string` |
+| **Suggested API** | `value: string`, `onValueChange: (value: string) => void`, `placeholder?: string`, `onClear?: () => void`, `className?: string` |
 | **Layer verdict** | ✅ Exported KKDS component (navigation logic stripped — KKDS version is framework-agnostic) |
 | **RSC compatible** | ❌ No — requires `"use client"` |
 | **`"use client"`** | ✅ Required (controlled input) |

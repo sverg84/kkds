@@ -16,7 +16,7 @@ export function RecipeAuthorDemo() {
           'Comment threads favoring compact avatar-only treatments',
           'System-generated or anonymous content with no author identity',
         ]}
-        composition="Use size='default' (40px avatar) for standalone attribution blocks and size='compact' (32px) when embedded in tight layouts such as card footers. The subtitle prop typically carries a date, recipe count ('12 recipes'), or role label."
+        composition="Use size='default' (40px avatar) for standalone attribution blocks and size='sm' (32px) when embedded in tight layouts such as card footers. The subtitle prop typically carries a date, recipe count ('12 recipes'), or role label."
         accessibility="Avatar image alt text defaults to the user's name. The initials fallback is generated automatically — no additional aria labelling is required."
         example={`<RecipeAuthor
   name={author.name}
@@ -42,16 +42,16 @@ export function RecipeAuthorDemo() {
           <RecipeAuthor name="Yotam Ottolenghi" />
         </Stack>
 
-        <Row label="Compact size — inline on recipe cards">
+        <Row label="sm size — inline on recipe cards">
           <RecipeAuthor
             name="Jamie Oliver"
             avatarUrl="https://i.pravatar.cc/80?img=12"
-            size="compact"
+            size="sm"
           />
           <RecipeAuthor
             name="Nigella Lawson"
             subtitle="@nigella"
-            size="compact"
+            size="sm"
           />
         </Row>
 
@@ -60,7 +60,7 @@ export function RecipeAuthorDemo() {
             <RecipeAuthor
               name="Heston Blumenthal de Rochemont"
               subtitle="The Fat Duck, Bray"
-              size="compact"
+              size="sm"
             />
           </div>
         </Stack>
