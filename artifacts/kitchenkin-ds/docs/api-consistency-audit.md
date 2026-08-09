@@ -1,9 +1,21 @@
 # KKDS Public Component API Consistency Audit
 
-Read-only audit of every public component exported from `@sverg84/kkds-react`.
-No runtime behavior was changed in the phase that produced this document.
-Combobox barrel export + demo are scheduled for migration Phase 1 (required;
-deletion is not an option).
+Historical audit of every public component exported from `@sverg84/kkds-react`.
+
+**How to read this document**
+
+| Layer | Meaning |
+|---|---|
+| Findings / per-component tables | State **at audit time** (Phase 0), before cleanup |
+| Suggestions / migration plan | Recommendations from the audit |
+| Status / **Done** markers / Phase completion notes | What has been **resolved since** the audit |
+
+**Resolution summary (post-audit):** Phase 1 (Combobox export + correctness +
+contract sync + Spinner `size`/`label`) and Phase 2 (direct renames:
+`RecipeAuthor` `sm`, `RecipeSearchBar` `onValueChange`, `formatTagLabel`,
+required `RecipeImage` `alt`) are complete. Deferred items remain under
+Phase 3. See [Breaking changes register](#breaking-changes-register) and
+[Migration plan](#migration-plan).
 
 ## Scope and method
 
@@ -46,27 +58,36 @@ premature cross-platform abstraction):
 
 ---
 
-## Cross-cutting findings
+## Cross-cutting findings (audit-time)
+
+Status notes in parentheses reflect post-audit resolution. Unmarked items were
+intentionally deferred or remain soft guidance.
 
 1. **Public surface docs were wrong.** `src/index.ts` listed `Toggle` under
    “Excluded” while exporting it. `Combobox` exists at
    `src/components/ui/combobox.tsx` with a full compound API but is **not**
    re-exported from the package barrel — a required public gap. `docs/AGENTS.md`
    previously described `./components/*` subpath exports that `package.json`
-   does not expose.
+   does not expose. **(Resolved:** Toggle inventory fixed; Combobox exported +
+   demo; AGENTS export map aligned with `package.json`.)
 2. **Documentation quality split.** Layer 3 has rich JSDoc; Layer 1/2 have
-   almost none (rely on demos in `kkds-site`).
+   almost none (rely on demos in `kkds-site`). **(Partially resolved:** Combobox,
+   Empty, Field, InputGroup, Spinner JSDoc/DocBlocks added in Phase 1; broad
+   Layer 1 JSDoc still light.)
 3. **Contract drift.** Several `*Contract` types disagree with web props
    (`RecipeAuthor` size, `RecipeImage.alt`, `RecipeCard.onPress`,
-   `RecipeMetadata.servings`, `Empty` / `Spinner` shape).
+   `RecipeMetadata.servings`, `Empty` / `Spinner` shape). **(Resolved** for the
+   listed contracts in Phase 1; RecipeCard still does not pass `servings` —
+   deferred.)
 4. **Event naming split.** Base UI uses `onValueChange` / `onCheckedChange` /
    etc.; `RecipeSearchBar` uses `onChange: (value: string) => void`.
+   **(Resolved:** renamed to `onValueChange`.)
 5. **Size vocabulary split.** Primitives use `sm`; `RecipeAuthor` uses
-   `compact`; contract uses `sm`.
+   `compact`; contract uses `sm`. **(Resolved:** `size="sm"`.)
 6. **No `forwardRef`.** Correct for React 19 + Base UI, but Layer 3 roots do
-   not accept `ref` at all.
+   not accept `ref` at all. **(Deferred** — Phase 3.)
 7. **`className` nearly universal** except `RecipeCardSkeleton` ignores
-   `className` when `count === 1`.
+   `className` when `count === 1`. **(Resolved.)**
 
 ```mermaid
 flowchart TB

@@ -1,86 +1,31 @@
-# KitchenKin Design System
+# KKDS docs site (`@workspace/kkds-site`)
 
-This package defines the visual language for the project. Use it whenever you
-build or restyle UI so every surface looks like the same product. It is a real
-workspace package (`@sverg84/kkds-react`): other artifacts depend on it and import
-its theme and components directly.
+This package is the **standalone documentation / preview site** for the
+KitchenKin Design System. It consumes `@sverg84/kkds-react`; it does not publish
+or re-export design-system components.
+
+Authoritative DS package docs: `artifacts/kitchenkin-ds/docs/AGENTS.md`.
 
 ## What's here
 
-- `tokens.json` — the single source of truth (DTCG format): colors (full light
-  and dark sets), typography, spacing, and radius.
-- `scripts/build-tokens.mjs` — generates the outputs below from `tokens.json`.
-- `src/index.css` — GENERATED shadcn theme (web), exported as `./styles.css`.
-- `src/generated/tokens.tsx` — GENERATED hex token object, the package's `.` and
-  `./tokens` entry. Mobile (Expo) and other platforms import this.
-- `public/favicon.svg` — GENERATED app icon from `tokens.json` + the title.
-- `src/components/ui/` — the shadcn component library, themed by the tokens,
-  exported as `./components/*`.
-- `src/components/kkds/` — KitchenKin semantic components (Layer 3) that compose
-  KKDS primitives into food-domain UI. All are RSC-compatible except `RecipeSearchBar` (declares `"use client"`).
-  Exported components:
-  - `RecipeImage` — aspect-ratio-constrained recipe photograph with warm placeholder
-  - `RecipeMetadata` — prep time, cook time, and servings row with icons
-  - `CategoryBadge` — warm secondary badge for recipe categories and cuisines
-  - `AllergenBadge` — muted outline badge for dietary constraints and allergen warnings
-  - `RecipeAuthor` — Avatar + name identity row in default and sm sizes
-  - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
-  - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
-  - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button
-- `src/lib/` (`cn`) and `src/hooks/` — exported as `./lib/*` and `./hooks/*`.
-- `src/App.tsx` — the entry point for the living style guide.
-- `src/preview/DesignSystemBrowser.tsx` — the persistent grouped navigation,
-  branded header, search, deep links, and active page shell.
-- `src/preview/registry.tsx` — preview metadata (`DESIGN_SYSTEM` title,
-  description) and ordered navigation. Overview comes first;
-  Brand/Colors/Fonts/Layout precede Components; Content/Charts/Motion/Applied
-  examples follow when applicable. Each group is a nav section whose entries
-  are its nested pages. Empty optional groups stay hidden.
-- `src/preview/foundations.tsx` — token-driven Overview, Colors, Fonts, and Layout
-  pages.
-- `src/preview/parts.tsx` — shared page helpers:
-  - `Row`, `Stack` — flex layout wrappers with optional labels
-  - `Guidelines` — visual do/don't list (color/component/hierarchy usage)
-  - `DocBlock` — AI-oriented documentation block for KitchenKin components.
-    Fields: `purpose`, `whenToUse`, `whenNotToUse`, `composition`,
-    `accessibility`, `example`. Populate from the source evidence in
-    `docs/audit-phase2.md`.
-- `src/preview/demos/<component>.tsx` — component stories. Keep these stories and
-  the registry aligned with the final web component inventory.
-- `src/preview/demos/kkds/` — KitchenKin semantic component stories. Each file
-  includes a `DocBlock` with AI-oriented guidance.
-- `src/preview/demos/kkds/patterns/` — four applied-example pattern pages:
-  - `recipe-discovery.tsx` — RecipeSearchBar + filter row + RecipeCard grid + app-level pagination
-  - `recipe-detail.tsx` — two-column detail layout (image + author + metadata + badges + ingredients)
-  - `profile-tabs.tsx` — RecipeAuthor header + Tabs with RecipeCard panels
-  - `loading-empty.tsx` — loading, empty, no-results, and error state compositions
-- `docs/consuming-web.md` and `docs/consuming-expo.md` — platform-specific usage.
-- `docs/migrating-web.md` and `docs/migrating-expo.md` — replacing scaffolded or
-  existing local design-system implementations.
-- `docs/audit-phase2.md` — source-evidence audit for all nine KitchenKin components;
-  includes RSC compatibility notes and why each concept was exported vs. kept as a pattern.
-- `docs/patterns.md` — markdown documentation for the four applied-example patterns
-  (Recipe Discovery, Recipe Detail, Profile Tabs, Loading & Empty). The authoritative
-  reference for AI agents building KitchenKin interfaces.
+- `src/preview/` — `DesignSystemBrowser`, registry, foundations, demos
+  (including Combobox and KKDS Layer 3 stories with DocBlocks), and pattern pages
+- `src/preview/demos/` — component family stories; keep aligned with the public
+  surface of `@sverg84/kkds-react`
+- `src/preview/demos/kkds/` — KitchenKin semantic component stories + DocBlocks
+- `src/preview/demos/kkds/patterns/` — applied-example pattern pages
+- `docs/` — site-local notes (`audit-phase2.md`, `patterns.md`); prefer
+  `artifacts/kitchenkin-ds/docs/` for package contracts and consumption guides
 
-Every source file in this package is a `.tsx` file, including token, utility,
-and hook modules with no JSX, so every export below is a single `*.tsx` glob. Do
-not add `.ts` files here.
+## Consuming `@sverg84/kkds-react`
 
-## What this package exports
+Import from the package root barrel only. There are **no** `./components/*`,
+`./lib/*`, or `./hooks/*` subpath exports.
 
-```jsonc
-".":              "./dist/index.js",
-"./tokens":       "./dist/tokens.js",
-"./styles.css":   "./dist/styles.css",
-"./components/*": "./src/components/*.tsx",
-"./lib/*":        "./src/lib/*.tsx",
-"./hooks/*":      "./src/hooks/*.tsx"
-```
-
-Import KitchenKin semantic components from the barrel export:
 ```ts
 import {
+  Button,
+  Combobox,
   RecipeCard,
   RecipeCardSkeleton,
   RecipeImage,
@@ -89,77 +34,34 @@ import {
   CategoryBadge,
   AllergenBadge,
   RecipeSearchBar,
-} from '@sverg84/kkds-react';
+} from "@sverg84/kkds-react"
+import "@sverg84/kkds-react/styles.css"
 ```
 
-Components import each other with relative paths internally. Never use a `@/`
-alias inside this package. Components added through shadcn may use this
-package's `#components/*`, `#lib/*`, and `#hooks/*` imports from `package.json`.
+Published entry points (from kkds-react `package.json`):
 
-## Editing and maintaining the design system
+```jsonc
+".":              { "types": "./dist/index.d.ts", "import": "./dist/index.js", "require": "./dist/index.cjs" },
+"./tokens":       { "types": "./dist/tokens.d.ts", "import": "./dist/tokens.js", "require": "./dist/tokens.cjs" },
+"./tokens.json":  "./tokens.json",
+"./styles.css":   "./dist/styles.css",
+"./package.json": "./package.json"
+```
 
-Edit `tokens.json` only, then run `pnpm tokens`; the dev server also regenerates
-on change. Never hand-edit `src/index.css` or `src/generated/tokens.tsx`.
+## Maintaining demos
 
-Every user-facing web component under `src/components/ui/` must have a family
-story in `src/preview/demos/` covering its variants, sizes, and important states.
-Register each family once in `src/preview/registry.tsx`. If a component changes,
-update its story and registry entry in the same change and note meaningful
-additions or customizations in "What's here" above.
+Every user-facing web component exported from `@sverg84/kkds-react` should have
+a family story under `src/preview/demos/` covering variants, sizes, and
+important states. Register each family once in `src/preview/registry.tsx`.
 
-KitchenKin semantic components live under `src/components/kkds/`. Add a `DocBlock`
-to each new component's demo page. Update `docs/audit-phase2.md` and
-`docs/patterns.md` when adding new components or patterns.
+When a component API changes in kkds-react, update the matching demo and
+registry entry in the same change. For KitchenKin semantic components, keep the
+DocBlock accurate (`purpose`, `whenToUse`, `whenNotToUse`, `composition`,
+`accessibility`, `example`).
 
-Native components live under `src/components/native/`. Match an existing web
-component family's public API wherever React Native supports it, and document
-platform-required differences in "What's here". Native components are not
-imported into the web-only Vite preview.
-
-Keep `DESIGN_SYSTEM.title` and `DESIGN_SYSTEM.description` accurate. Update
-`NAV_GROUPS` whenever the system gains or loses a foundation, content guideline,
-chart, motion rule, or applied example.
-
-## Prototyping on the canvas
-
-Use the mockup-sandbox skill's "Design systems" flow. It creates a sandbox entry
-for `@sverg84/kkds-react` and renders mockups using this package's theme and components.
-
-## Consuming this package
-
-Never copy token values, component source, hooks, or these docs into a consuming
-artifact. Add `@sverg84/kkds-react` as a `workspace:*` dependency, run `pnpm install`,
-and import directly from this package.
-
-Read only the guides required by the current task:
+## Related guides
 
 - Building or styling web UI: `artifacts/kitchenkin-ds/docs/consuming-web.md`
-- Building or styling Expo UI: `artifacts/kitchenkin-ds/docs/consuming-expo.md`
 - Building KitchenKin UI patterns: `artifacts/kitchenkin-ds/docs/patterns.md`
-- Replacing an existing or scaffolded web theme/component library:
-  `artifacts/kitchenkin-ds/docs/migrating-web.md`
-- Replacing existing or scaffolded Expo theme/hooks/components:
-  `artifacts/kitchenkin-ds/docs/migrating-expo.md`
-
-A freshly scaffolded app counts as a migration when it still contains local
-theme, hook, or component copies that this package supersedes. Read the platform
-consumption guide first, then its migration guide before authoring UI.
-
-For web/static consumers, follow the workspace dependency placement rules from
-the pnpm-workspace skill. Expo is a runtime consumer, so the package belongs in
-`dependencies`.
-
-Before migrating an entire app, render one platform-appropriate primitive from
-the package and run the consumer's typecheck and dev server. Proceed only after
-the import resolves and the primitive uses this design system's theme.
-
-## Universal rules
-
-- Match exact token values. Do not invent colors, fonts, spacing, or radii in a
-  consuming app.
-- Keep product data, navigation, application state, and product-specific
-  compositions in the app. Product-agnostic visual primitives belong here.
-- Read these docs in place. Do not copy them into another artifact.
-- When building KitchenKin interfaces, read `docs/patterns.md` first — it
-  documents which KKDS components compose each major UI pattern and what layout
-  conventions to follow.
+- Public API consistency audit: `artifacts/kitchenkin-ds/docs/api-consistency-audit.md`
+- Source-evidence audit (Layer 3): `artifacts/kitchenkin-ds/docs/audit-phase2.md`

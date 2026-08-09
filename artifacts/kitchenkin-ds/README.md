@@ -212,7 +212,7 @@ application.
 
 If your own application also uses Tailwind v4, both stylesheets coexist without
 conflict. Do not add a separate `@import "tailwindcss"` that scans
-`node_modules/@sverg84/kkds` — the utilities are already embedded in
+`node_modules/@sverg84/kkds-react` — the utilities are already embedded in
 `dist/styles.css`.
 
 ---

@@ -37,7 +37,7 @@ export interface RecipeSearchBarProps {
  *
  * **When not to use:** Command palette or autocomplete interactions — use a
  * command-palette library such as `cmdk` directly (`Command` is not part of
- * the `@sverg84/kkds` public API). Prefer Combobox for searchable option picking.
+ * the `@sverg84/kkds-react` public API). Prefer Combobox for searchable option picking.
  *
  * **Framework integration:** This component is intentionally framework-agnostic.
  * In a Next.js app, wrap it with a client component that syncs `value` with

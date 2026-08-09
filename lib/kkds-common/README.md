@@ -71,10 +71,10 @@ cd ../../artifacts/kitchenkin-ds && pnpm tokens
 └────────────────────┬─────────────────────┬──────────────┘
                      │                     │
            ┌─────────▼──────┐   ┌──────────▼──────────┐
-           │  @sverg84/kkds  │   │  @sverg84/kkds-mobile │
-           │  React / web   │   │  React Native / Expo  │
-           │  Radix, CSS    │   │     (future)          │
-           └────────────────┘   └───────────────────────┘
+           │ @sverg84/kkds-react │   │  @sverg84/kkds-mobile │
+           │  React / web        │   │  React Native / Expo  │
+           │  Base UI, CSS       │   │     (future)          │
+           └─────────────────────┘   └───────────────────────┘
 ```
 
 See `artifacts/kitchenkin-ds/docs/architecture.md` for the full architecture guide.

@@ -43,14 +43,14 @@ Mobile support is enabled, not forced. The quality of the web implementation is 
                          │ workspace:*
              ┌───────────▼──────────────┐
              │   artifacts/kitchenkin-ds │
-             │     @sverg84/kkds         │
+             │   @sverg84/kkds-react     │
              │                          │
              │  React components         │
-             │  Radix UI primitives      │
+             │  Base UI primitives       │
              │  CSS / Tailwind v4        │
              │  shadcn/ui curated subset │
              │  lucide-react icons       │
-             │  next-themes, sonner      │
+             │  next-themes              │
              │                          │
              │  Exports (dist/):         │
              │    .         → all        │
@@ -79,7 +79,7 @@ Mobile support is enabled, not forced. The quality of the web implementation is 
 
              ┌─────────────────────────────────────────────┐
              │            KitchenKin Web App                │
-             │         depends on @sverg84/kkds             │
+             │      depends on @sverg84/kkds-react          │
              └─────────────────────────────────────────────┘
 
              ┌─────────────────────────────────────────────┐

@@ -11,7 +11,7 @@ paths = [ "/kitchenkin-ds/" ]
 localPort = 20227
 
 [services.development]
-run = "pnpm --filter @sverg84/kkds run dev"
+run = "pnpm --filter @sverg84/kkds-react run dev"
 
 [services.env]
 PORT = "20227"
@@ -22,7 +22,7 @@ serve = "static"
 publicDir = "artifacts/kitchenkin-ds/dist"
 
 [services.production.build]
-args = ["pnpm", "--filter", "@sverg84/kkds", "run", "build:preview"]
+args = ["pnpm", "--filter", "@sverg84/kkds-react", "run", "build:preview"]
 
 [services.production.build.env]
 NODE_ENV = "production"
