@@ -7,5 +7,10 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@workspace/kkds-site",
+    "@workspace/api-spec",
+    "@workspace/api-client-react",
+    "@workspace/api-zod"
+  ]
 }
