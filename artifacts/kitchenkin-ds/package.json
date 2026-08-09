@@ -43,8 +43,7 @@
     "build": "pnpm run build:lib",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "pretypecheck": "pnpm theme",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepublishOnly": "pnpm run build:lib"
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "react": ">=19.0.0",
