@@ -33,14 +33,14 @@ const SEMANTIC = [
     duration: parseInt(d.fast),
     ease: e.exit,
     description: "Overlays dismissing — faster than enter for responsiveness.",
-    use: "Dialog close, Sheet dismiss",
+    use: "Dialog close, overlay dismiss",
   },
   {
     name: "toast.enter",
     duration: parseInt(d.slow),
     ease: e.enter,
     description: "Notification slides in — slow enough to read.",
-    use: "Toast / Sonner entry",
+    use: "App-level toast / notification entry (toast UI is not a KKDS export)",
   },
   {
     name: "navigation.standard",

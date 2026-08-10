@@ -28,38 +28,19 @@ its theme and components directly.
   - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
   - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
   - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button
-- `src/lib/` (`cn`) and `src/hooks/` — re-exported from the package barrel.
-- `src/App.tsx` — the entry point for the living style guide.
-- `src/preview/DesignSystemBrowser.tsx` — the persistent grouped navigation,
-  branded header, search, deep links, and active page shell.
-- `src/preview/registry.tsx` — preview metadata (`DESIGN_SYSTEM` title,
-  description) and ordered navigation. Overview comes first;
-  Brand/Colors/Fonts/Layout precede Components; Content/Charts/Motion/Applied
-  examples follow when applicable. Each group is a nav section whose entries
-  are its nested pages. Empty optional groups stay hidden.
-- `src/preview/foundations.tsx` — token-driven Overview, Colors, Fonts, and Layout
-  pages.
-- `src/preview/parts.tsx` — shared page helpers:
-  - `Row`, `Stack` — flex layout wrappers with optional labels
-  - `Guidelines` — visual do/don't list (color/component/hierarchy usage)
-  - `DocBlock` — AI-oriented documentation block for KitchenKin components.
-    Fields: `purpose`, `whenToUse`, `whenNotToUse`, `composition`,
-    `accessibility`, `example`. Populate from the source evidence in
-    `docs/audit-phase2.md`.
-- `src/preview/demos/<component>.tsx` — component stories. Keep these stories and
-  the registry aligned with the final web component inventory.
-- `src/preview/demos/kkds/` — KitchenKin semantic component stories. Each file
-  includes a `DocBlock` with AI-oriented guidance.
-- `src/preview/demos/kkds/patterns/` — four applied-example pattern pages:
-  - `recipe-discovery.tsx` — RecipeSearchBar + filter row + RecipeCard grid + app-level pagination
-  - `recipe-detail.tsx` — two-column detail layout (image + author + metadata + badges + ingredients)
-  - `profile-tabs.tsx` — RecipeAuthor header + Tabs with RecipeCard panels
-  - `loading-empty.tsx` — loading, empty, no-results, and error state compositions
+- `src/lib/` (`cn`) and `src/hooks/` (`useIsMobile`) — re-exported from the
+  package barrel.
+- **Documentation / living style guide** lives in the separate consumer package
+  `@workspace/kkds-site` (`artifacts/kkds-site/`), not in this package. That site
+  owns `src/preview/` (registry, foundations, demos, pattern pages) and imports
+  `@sverg84/kkds-react` like any other consumer. See
+  `artifacts/kkds-site/docs/AGENTS.md`.
 - `docs/consuming-web.md` and `docs/consuming-expo.md` — platform-specific usage.
 - `docs/migrating-web.md` and `docs/migrating-expo.md` — replacing scaffolded or
   existing local design-system implementations.
-- `docs/audit-phase2.md` — source-evidence audit for all nine KitchenKin components;
-  includes RSC compatibility notes and why each concept was exported vs. kept as a pattern.
+- `docs/audit-phase2.md` — source-evidence audit for KitchenKin Layer 3 concepts;
+  includes RSC notes and why each concept was exported vs. kept as a pattern
+  (e.g. FavoriteButton remains a pattern).
 - `docs/api-consistency-audit.md` — public API consistency audit (prop naming,
   className, refs, render props, controlled APIs, events, docs gaps) with a
   phased migration plan. Phase 1 (Combobox + correctness) and Phase 2 (direct
@@ -109,27 +90,24 @@ package's `#components/*`, `#lib/*`, and `#hooks/*` imports from `package.json`.
 
 ## Editing and maintaining the design system
 
-Edit `tokens.json` only, then run `pnpm tokens`; the dev server also regenerates
-on change. Never hand-edit `src/index.css` or `src/generated/tokens.tsx`.
+Edit `tokens.json` only, then run `pnpm tokens`; the package Vite preview also
+regenerates on change when run. Never hand-edit `src/index.css` or
+`src/generated/tokens.tsx`.
 
-Every user-facing web component under `src/components/ui/` must have a family
-story in `src/preview/demos/` covering its variants, sizes, and important states.
-Register each family once in `src/preview/registry.tsx`. If a component changes,
-update its story and registry entry in the same change and note meaningful
-additions or customizations in "What's here" above.
+Every user-facing web component exported from this package should have a family
+story under `artifacts/kkds-site/src/preview/demos/` covering variants, sizes,
+and important states. Register each family once in
+`artifacts/kkds-site/src/preview/registry.tsx`. If a component API changes,
+update the matching demo and registry entry in the same change.
 
-KitchenKin semantic components live under `src/components/kkds/`. Add a `DocBlock`
-to each new component's demo page. Update `docs/audit-phase2.md` and
-`docs/patterns.md` when adding new components or patterns.
+KitchenKin semantic components live under `src/components/kkds/`. Add or update a
+`DocBlock` on the corresponding kkds-site demo page. Update
+`docs/audit-phase2.md` and `docs/patterns.md` when adding new components or
+patterns.
 
-Native components live under `src/components/native/`. Match an existing web
-component family's public API wherever React Native supports it, and document
-platform-required differences in "What's here". Native components are not
-imported into the web-only Vite preview.
-
-Keep `DESIGN_SYSTEM.title` and `DESIGN_SYSTEM.description` accurate. Update
-`NAV_GROUPS` whenever the system gains or loses a foundation, content guideline,
-chart, motion rule, or applied example.
+There is no shipped `src/components/native/` tree in this package today. Future
+React Native work belongs in `@sverg84/kkds-mobile` (see
+`docs/mobile-readiness.md` and `docs/consuming-expo.md`).
 
 ## Prototyping on the canvas
 

@@ -20,6 +20,7 @@ import { SpinnerDemo } from "./demos/spinner";
 import { SwitchDemo } from "./demos/switch";
 import { TabsDemo } from "./demos/tabs";
 import { TextareaDemo } from "./demos/textarea";
+import { ToggleDemo } from "./demos/toggle";
 import { AllergenBadgeDemo } from "./demos/kkds/allergen-badge";
 import { CategoryBadgeDemo } from "./demos/kkds/category-badge";
 import { RecipeAuthorDemo } from "./demos/kkds/recipe-author";
@@ -169,6 +170,13 @@ export const NAV_GROUPS: NavGroup[] = [
         name: "Switch",
         description: "Binary preference controls and states.",
         Page: SwitchDemo,
+      },
+      {
+        id: "toggle",
+        name: "Toggle",
+        description:
+          "Pressed two-state controls for icon or text affordances (not form switches).",
+        Page: ToggleDemo,
       },
       {
         id: "field",
@@ -394,7 +402,7 @@ export const NAV_GROUPS: NavGroup[] = [
         id: "pattern-loading-empty",
         name: "Loading & empty states",
         description:
-          "KitchenKin loading philosophy: RecipeCardSkeleton, Empty (intrinsic), Empty (no results), and Alert (error) — all four states in one page.",
+          "KitchenKin loading philosophy: RecipeCardSkeleton, Empty (intrinsic), and Empty (no results), plus guidance for app-owned error compositions.",
         Page: LoadingEmptyPattern,
       },
     ],

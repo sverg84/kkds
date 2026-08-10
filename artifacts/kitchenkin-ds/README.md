@@ -179,7 +179,7 @@ These are the primary exports KKDS is designed around:
 |----------------------|---------|----------------------------------------|
 | `RecipeCard`         | No*     | Composite recipe card with image, metadata, badges |
 | `RecipeImage`        | No*     | Aspect-ratio image wrapper             |
-| `RecipeMetadata`     | No*     | Time, servings, difficulty row         |
+| `RecipeMetadata`     | No*     | Prep time, cook time, and servings row |
 | `RecipeAuthor`       | No*     | Avatar + author name                   |
 | `CategoryBadge`      | No*     | Pill badge for a recipe category       |
 | `AllergenBadge`      | No*     | Pill badge for an allergen             |
@@ -196,11 +196,13 @@ to restore per-component RSC granularity.
 ## Accessibility
 
 All KKDS semantic components delegate accessibility semantics to their
-underlying shadcn/Base UI primitives. Interactive components (`RecipeSearchBar`) expose `aria-label` and `aria-pressed` / `role` via the
-underlying Base UI `Toggle` and input primitives. Ensure that:
+underlying shadcn/Base UI primitives. Ensure that:
 
-- `RecipeSearchBar`'s `placeholder` is set to a locale-appropriate string.
-- Images in `RecipeImage` carry a descriptive `alt` attribute.
+- `RecipeSearchBar`'s `placeholder` is set to a locale-appropriate string; the
+  input exposes an accessible name (`aria-label="Search recipes"` by default).
+- `RecipeImage` always receives a required `alt` string (`alt=""` when decorative).
+- Icon-only `Toggle` controls (including app-owned favorite compositions) set
+  `aria-label`.
 
 ---
 

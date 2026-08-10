@@ -21,9 +21,12 @@ Within this pnpm workspace, declare the workspace dependency instead:
 }
 ```
 
-Then run `pnpm --filter @workspace/kitchenkin-ds run build:lib` once (or add a
-`prepare` script to the design system package so it runs automatically on
-install).
+Then build the publishable libraries once (or ensure `dist/` already exists):
+
+```sh
+pnpm --filter @sverg84/kkds-common run build
+pnpm --filter @sverg84/kkds-react run build:lib
+```
 
 ## Theme
 
@@ -45,16 +48,25 @@ consumer.
 
 ## Components and helpers
 
-Import every provided primitive, `cn`, and toast API directly from the package
-root:
+Import primitives, semantic components, `cn`, and hooks from the package root
+barrel. There are **no** `./components/*`, `./lib/*`, or `./hooks/*` subpath
+exports.
 
 ```tsx
-import { Button, Card, Badge, Input } from "@sverg84/kkds-react";
-import { cn } from "@sverg84/kkds-react";
-import { useToast, Toaster } from "@sverg84/kkds-react";
-
-// Sonner-based toast (re-exported as SonnerToaster to avoid name conflict)
-import { SonnerToaster } from "@sverg84/kkds-react";
+import {
+  Button,
+  Card,
+  Badge,
+  Input,
+  Combobox,
+  Toggle,
+  RecipeCard,
+  RecipeImage,
+  Spinner,
+  Empty,
+  cn,
+  useIsMobile,
+} from "@sverg84/kkds-react";
 
 // Token object (hex values, for non-CSS consumers)
 import { tokens } from "@sverg84/kkds-react/tokens";
@@ -64,8 +76,25 @@ Use the package component whenever it provides the required family. Keep
 product-specific compositions in the app, but compose them from package
 primitives rather than recreating those primitives locally.
 
-The packaged `Toaster` and toast hook share one in-memory store. Do not call a
-local toast hook while rendering the packaged `Toaster`.
+### Not exported (do not import)
+
+The following appear in older guides or shadcn catalogs but are **not** part of
+the `@sverg84/kkds-react` public API today:
+
+- `Alert`, `Item` / `ItemContent`, `ButtonGroup`, `Sheet`, `Tooltip`
+- `Toast` / `Toaster`, `SonnerToaster`, `useToast`, `ToggleGroup`
+- `FavoriteButton` — compose Layer 1 `Toggle` in the app/pattern layer
+
+For transient notifications, use an application-level toast library. For error
+panels, compose `Empty` + `Button` (see `docs/patterns.md`).
+
+### Framework escape hatches
+
+`RecipeImage` accepts `renderImage` and `RecipeCard` accepts `renderLink` (plus
+`renderImage` passthrough) so frameworks like Next.js can supply `Image` / `Link`
+without KKDS depending on Next. Prefer these named hatches over forking the
+components. Keep `RecipeCard` `action` controls separate from the `href` /
+`renderLink` navigation surface so interactive elements are not nested.
 
 ## Verify
 

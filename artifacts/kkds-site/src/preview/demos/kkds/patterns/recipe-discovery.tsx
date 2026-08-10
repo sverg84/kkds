@@ -91,11 +91,13 @@ export function RecipeDiscoveryPattern() {
         </p>
         <p className="text-muted-foreground leading-relaxed">
           A filterable, searchable recipe grid. RecipeSearchBar feeds a query string into your
-          data hook; category filters narrow results further. RecipeCardSkeleton holds the grid
-          shape while data is pending, preventing layout shift when results arrive.
+          data hook; app-owned filter chips narrow results further (do not use CategoryBadge as
+          an interactive selected-filter control). RecipeCardSkeleton holds the grid shape while
+          data is pending, preventing layout shift when results arrive.
         </p>
         <div className="flex flex-wrap gap-2 pt-1">
           <code className="rounded bg-muted px-2 py-0.5 text-xs">RecipeSearchBar</code>
+          <code className="rounded bg-muted px-2 py-0.5 text-xs">filter chips (app)</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">RecipeCard</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">RecipeCardSkeleton</code>
           <code className="rounded bg-muted px-2 py-0.5 text-xs">Empty</code>

@@ -2,6 +2,8 @@
 
 Patterns are recommended compositions of KKDS primitives and KitchenKin components. They encode layout conventions, state-management strategies, and interaction models that are too application-specific to export as components but too important to leave undocumented.
 
+Compose only APIs that exist on the `@sverg84/kkds-react` public barrel today. Application-owned pieces (filter chips, FavoriteButton, ingredient rows, pagination, error panels) stay in the app or docs-site pattern demos.
+
 ---
 
 ## 1. Recipe Discovery
@@ -13,22 +15,24 @@ Any surface that presents a filterable, searchable list of recipes — the publi
 | Role | Component |
 |---|---|
 | Search entry point | `RecipeSearchBar` (client component) |
-| Category filters | `CategoryBadge` or Toggle group (application choice) |
+| Category filters | **App-owned filter chips** (interactive buttons or toggles). Do **not** use `CategoryBadge` as a selected-filter control — badges are non-interactive labels for display on cards/detail. |
 | Content grid | `RecipeCard` × N in a responsive grid |
+| Card actions (e.g. favorite) | App-owned composition of Layer 1 `Toggle` via `RecipeCard` `action` |
 | Loading state | `RecipeCardSkeleton count={n}` |
 | Empty / no-results state | KKDS `Empty` + food-forward copy |
-| Pagination | App-level — compose with `Button` + `<nav>` or a pagination library of your choice (`Pagination` is not part of the `@sverg84/kkds-react` public API) |
+| Error state | App-owned panel: compose `Empty` (or a simple bordered region) + `Button` retry — there is no public `Alert` export |
+| Pagination | App-level — compose with `Button` + `<nav>` or a pagination library (`Pagination` is not part of the public API) |
 
 ### Layout conventions
 ```
 ┌─────────────────────────────────┐
 │  RecipeSearchBar (full width)   │
 ├─────────────────────────────────┤
-│  [Italian] [Vegan] [Quick] …   │  ← CategoryBadge filter row
+│  [Italian] [Vegan] [Quick] …   │  ← app-owned filter chip row
 ├─────────────────────────────────┤
 │  ┌───────┐ ┌───────┐ ┌───────┐ │
 │  │ Card  │ │ Card  │ │ Card  │ │  ← 1→2→3 column responsive grid
-│  └───────┘ └───────┘ └───────┘ │     grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+│  └───────┘ └───────┘ └───────┘ │     grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 │  ┌───────┐ ┌───────┐ ┌───────┐ │     gap-6
 │  │ Card  │ │ Card  │ │ Card  │ │
 │  └───────┘ └───────┘ └───────┘ │
@@ -42,7 +46,7 @@ Any surface that presents a filterable, searchable list of recipes — the publi
 - Feed `query` and `activeCategory` into your data-fetching hook (TanStack Query `useQuery` or `useInfiniteQuery`).
 - Show `RecipeCardSkeleton count={6}` while the query is pending.
 - Show the `Empty` component when the query succeeds but returns zero results, with copy that reflects whether the list is intrinsically empty or filtered-empty (no results for query).
-- Show an `Alert` with a retry action when the query errors.
+- On query errors, show an app-owned error composition with a single retry `Button` (not a KKDS `Alert`).
 
 ### Breakpoints
 - Mobile (< `md`): 1 column, `RecipeSearchBar` stacked above filters.
@@ -64,11 +68,12 @@ The full recipe view — shows a single recipe's image, author, metadata, ingred
 | Role | Component |
 |---|---|
 | Hero image | `RecipeImage aspectRatio={4/3}` (left column) |
+| Favorite / save action | App-owned `Toggle` composition (pattern), not a KKDS export |
 | Attribution | `RecipeAuthor` (right column, below title) |
 | Time & servings | `RecipeMetadata` (right column) |
-| Category tags | `CategoryBadge` × N (right column) |
+| Category tags | `CategoryBadge` × N (right column) — display labels only |
 | Allergen info | `AllergenBadge` × N (right column, separate section) |
-| Ingredient rows | KKDS `Item` + `ItemContent` |
+| Ingredient rows | App-owned list markup (e.g. bordered `divide-y` rows) — there is no public `Item` / `ItemContent` export |
 | Instruction steps | Numbered `<ol>` with KKDS `Separator` between steps |
 
 ### Layout conventions
@@ -77,7 +82,7 @@ The full recipe view — shows a single recipe's image, author, metadata, ingred
 │                          │  Recipe title (h1)          │
 │   RecipeImage (4:3)      │  RecipeAuthor               │
 │                          │  RecipeMetadata             │
-│   [♡ favorite]         │  [Italian] [Dinner] [Quick] │
+│   [♡ favorite]           │  [Italian] [Dinner] [Quick] │
 │                          │                             │
 │                          │  Contains: [Eggs] [Dairy]   │
 │                          │                             │
@@ -187,18 +192,37 @@ Wrap the skeleton grid in a `<div aria-busy="true" aria-label="Loading recipes">
 - **Food-flavoured when natural.** "Ready to discover something delicious?" uses the brand voice without being forced.
 
 ### Error state pattern
-Use the KKDS `Alert` component in `destructive` variant. Include:
-1. A one-sentence acknowledgement ("We couldn't load your recipes.")
+There is **no** public `Alert` component in `@sverg84/kkds-react`. Compose an error panel from exported primitives, for example:
+
+1. `Empty` (or a bordered `div`) with a one-sentence acknowledgement ("We couldn't load your recipes.").
 2. A reassurance that user data is safe when relevant.
 3. A single recovery action (`Button variant="outline"` labelled "Try again").
+
+Toast notifications are also **not** exported (`Toaster` / `SonnerToaster` / `useToast` are excluded). Use an application-level toast library if you need transient notices.
+
+---
+
+## Framework escape hatches (web)
+
+These named render props keep framework integration out of KKDS while preserving component semantics. They are **not** a general polymorphism API.
+
+| Hatch | Where | Purpose |
+|---|---|---|
+| `renderImage` | `RecipeImage` (passthrough from `RecipeCard`) | Swap the underlying `<img>` for Next.js `Image` (or similar) while KKDS keeps aspect ratio, clipping, and placeholder |
+| `renderLink` | `RecipeCard` | Swap the default `<a>` for Next.js `Link` (or similar) while KKDS keeps the inset link surface and focus treatment |
+
+### `action` + `href` interaction
+When `href` (or `renderLink`) is set, the card's navigation surface is a single interactive region. Pass favorites and other controls through `action` so they remain **separate** interactive elements above that surface. Do not nest buttons/links inside the card body when the card itself is a link.
+
+See the Recipe Card and Recipe Image demos on the docs site for working examples.
 
 ---
 
 ## Component index by pattern
 
-| Pattern | RecipeCard | RecipeCardSkeleton | RecipeSearchBar | RecipeImage | RecipeAuthor | RecipeMetadata | CategoryBadge | AllergenBadge |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| Recipe Discovery | ✓ | ✓ | ✓ | — | — | — | ✓ | — |
-| Recipe Detail | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Profile Tabs | ✓ | ✓ | — | — | ✓ | — | — | — |
-| Loading & Empty | — | ✓ | — | — | — | — | — | — |
+| Pattern | RecipeCard | RecipeCardSkeleton | RecipeSearchBar | RecipeImage | RecipeAuthor | RecipeMetadata | CategoryBadge | AllergenBadge | Empty | Toggle (app pattern) |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Recipe Discovery | ✓ | ✓ | ✓ | — | — | — | display only | — | ✓ | via `action` |
+| Recipe Detail | — | — | — | ✓ | ✓ | ✓ | ✓ | ✓ | — | favorite control |
+| Profile Tabs | ✓ | ✓ | — | — | ✓ | — | — | — | ✓ | — |
+| Loading & Empty | — | ✓ | — | — | — | — | — | — | ✓ | — |
