@@ -1,5 +1,13 @@
 # @sverg84/kkds-react
 
+## 0.2.2
+
+### Patch Changes
+
+- 9e1a6f6: Remove the unused in-package Vite preview SPA; the package is library-only and docs live in kkds-site.
+- Updated dependencies [9e1a6f6]
+  - @sverg84/kkds-common@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes
