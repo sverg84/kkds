@@ -16,8 +16,8 @@ export function RecipeImageDemo() {
           "General-purpose image containers outside recipe contexts",
           "Non-food UI photography",
         ]}
-        composition="Always provide alt (required). Pass alt=\"\" only when the image is intentionally decorative. Use aspectRatio={4/3} on detail pages and the default 16/9 in card grids. For Next.js Image (or similar), pass renderImage — KKDS still owns aspect ratio, clipping, background, and sizing."
-        accessibility="The alt prop is required. Meaningful alt describes the dish; alt=\"\" marks decorative images. Placeholder graphics use the alt value as their text label when present."
+        composition={'Always provide alt (required). Pass alt="" only when the image is intentionally decorative. Use aspectRatio={4/3} on detail pages and the default 16/9 in card grids. For Next.js Image (or similar), pass renderImage — KKDS still owns aspect ratio, clipping, background, and sizing.'}
+        accessibility={'The alt prop is required. Meaningful alt describes the dish; alt="" marks decorative images. Placeholder graphics use the alt value as their text label when present.'}
         example={`<RecipeImage
   src={recipe.imageUrl}
   alt={recipe.title}
