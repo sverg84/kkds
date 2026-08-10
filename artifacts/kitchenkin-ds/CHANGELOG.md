@@ -1,5 +1,16 @@
 # @sverg84/kkds-react
 
+## 0.3.0
+
+### Minor Changes
+
+- 5d8e2b8: Improve accessibility before broader adoption: restore RecipeSearchBar clear focus, name Combobox icon controls, raise light-theme contrast for primary/muted/ring tokens, align focus rings, and honor prefers-reduced-motion.
+
+### Patch Changes
+
+- Updated dependencies [5d8e2b8]
+  - @sverg84/kkds-common@0.3.0
+
 ## 0.2.2
 
 ### Patch Changes
