@@ -1,82 +1,64 @@
 # Consuming KitchenKin Design System in Expo apps
 
-Read `artifacts/kitchenkin-ds/docs/AGENTS.md` first. React Native does
-not consume the web CSS or DOM components. It imports portable tokens, native
-theme/hooks, and native components directly from this package. If the Expo app
-still contains scaffolded or existing local theme/hooks/components, also read
-`artifacts/kitchenkin-ds/docs/migrating-expo.md` before writing UI.
+Read `artifacts/kitchenkin-ds/docs/AGENTS.md` and
+`artifacts/kitchenkin-ds/docs/mobile-readiness.md` first.
 
-## Native theme and fonts
+**Current status:** `@sverg84/kkds-mobile` does **not** ship yet. Expo apps
+cannot import React Native component paths from `@sverg84/kkds-react`. Share
+tokens, motion, domain types, and component contracts from
+`@sverg84/kkds-common`, and implement native UI in the app (or a future mobile
+package) against those contracts.
 
-Build the shared light/dark palette, numeric radius and spacing conversion, and
-registered typography names in `src/lib/native-theme.tsx`. Convert CSS lengths
-once inside this package:
-
-```tsx
-import { tokens } from "@workspace/kitchenkin-ds/tokens";
-
-const radius = tokens.radius.endsWith("rem")
-  ? Number.parseFloat(tokens.radius) * 16
-  : Number.parseFloat(tokens.radius);
-```
-
-Export `useColors` from `src/hooks/use-colors.tsx`. Export a font hook from
-`src/hooks/use-fonts.tsx` that loads every required weight through `useFonts` and
-returns `fontsLoaded` and `fontError`. Use exact registered names such as
-`Inter_400Regular`, not CSS family names.
-
-Expo imports these concrete paths directly:
+## Shared foundation (`@sverg84/kkds-common`)
 
 ```tsx
-import { nativeTheme } from "@workspace/kitchenkin-ds/lib/native-theme";
-import { useColors } from "@workspace/kitchenkin-ds/hooks/use-colors";
-import { useDesignSystemFonts } from "@workspace/kitchenkin-ds/hooks/use-fonts";
+import {
+  tokens,
+  motion,
+  type RecipeSummary,
+  type RecipeCardContract,
+  allergenLabel,
+  categoryLabel,
+} from "@sverg84/kkds-common";
 ```
 
-Keep the root layout's existing SplashScreen gating around the shared font
-hook's `fontsLoaded` and `fontError` result.
+- Colors are hex strings; radius/spacing are CSS length strings — convert `rem`
+  to density-independent pixels once in your Expo theme helper.
+- Map `motion.*` `{ duration, ease }` specs to Reanimated (or `Animated`) in the
+  app; ease values are CSS `cubic-bezier(...)` strings.
+- Implement Layer 3 concepts by satisfying the `*Contract` interfaces with React
+  Native primitives. Navigation stays platform-specific (no speculative
+  `onPress` fields on the shared contracts).
 
-## Native components
+## What not to import
 
-Before writing screens, inventory the app's visual building blocks and add the
-product-agnostic families it needs under `src/components/native/`. Typical
-families include Button (including `size="icon"`), typography, Input, Textarea,
-Label and Field, Card, Badge, Toggle or ToggleGroup, Empty, Spinner, and
-Skeleton.
+Do **not** import web DOM components, `styles.css`, `cn`, or
+`@sverg84/kkds-react` hooks into React Native.
 
-When `src/components/ui/` has a web counterpart, match its family exports, prop
-names, variants, sizes, defaults, and state semantics wherever React Native
-supports them. Implement with native primitives and document platform-required
-differences in the base `AGENTS.md` inventory.
+There are also **no** published paths such as:
 
-Import native primitives directly:
+- `@sverg84/kkds-react/components/native/*`
+- `@workspace/kitchenkin-ds/...` (legacy name — do not use)
 
-```tsx
-import { Badge } from "@workspace/kitchenkin-ds/components/native/badge";
-import { Button } from "@workspace/kitchenkin-ds/components/native/button";
-import { Card } from "@workspace/kitchenkin-ds/components/native/card";
-```
+`ToggleGroup`, `Alert`, `Toast` / `Toaster`, and similar web catalog items are
+not public KKDS exports on web either; treat them as app decisions on mobile.
 
-Keep product data, navigation, state, and domain compositions in Expo. A
-pet-adoption `DogCard`, for example, stays app-owned but composes package Card,
-Button, Badge, and typography primitives.
+## Native components (app-owned until kkds-mobile)
 
-## Dependencies and assets
+Until `@sverg84/kkds-mobile` exists, keep product-agnostic native primitives in
+the Expo app (or a private workspace package). Prefer matching the web family's
+prop names where React Native supports them, and document platform differences
+locally.
 
-When native package source imports `react-native`, Expo modules, or font
-packages, declare compatible versions in this package's peer and development
-dependencies and in the consuming Expo artifact's dependencies.
-
-Metro resolves the workspace package through pnpm symlinks. Do not copy source
-or token values. Loose binary assets may still need copying into Expo because
-Metro does not watch sibling artifact folders by default.
-
-Set `app.json`'s literal `splash.backgroundColor` from
-`tokens.color.light.background` and keep it synchronized when that token changes.
+Typical early families: Button, typography, Input, Textarea, Label/Field, Card,
+Badge, Toggle, Empty, Spinner, Skeleton — plus RecipeCard / RecipeImage
+implementations driven by the shared contracts.
 
 ## Verify
 
-Import and render
-`@workspace/kitchenkin-ds/components/native/button`, then run Expo
-typecheck and the development workflow. The import, native theme, and font hook
-must resolve before broader screen work begins.
+1. Install `@sverg84/kkds-common` and import `tokens` + one domain type.
+2. Run Expo typecheck and the development workflow.
+3. Confirm theme conversion from tokens before broader screen work.
+
+When `kkds-mobile` lands, migrate app-local primitives to that package using the
+same contracts — not by copying web component source.

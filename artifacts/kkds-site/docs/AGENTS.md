@@ -26,6 +26,7 @@ Import from the package root barrel only. There are **no** `./components/*`,
 import {
   Button,
   Combobox,
+  Toggle,
   RecipeCard,
   RecipeCardSkeleton,
   RecipeImage,

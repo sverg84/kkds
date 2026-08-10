@@ -118,11 +118,21 @@ Mobile support is enabled, not forced. The quality of the web implementation is 
 | React components | `src/components/ui/` (Layer 1 — shadcn/ui) |
 | KKDS custom primitives | `src/components/ui/` (Layer 2) |
 | KitchenKin semantic components | `src/components/kkds/` (Layer 3) |
-| Hooks | `src/hooks/` |
-| Utilities | `src/lib/` |
-| Design system preview | `src/preview/` (dev only) |
+| Hooks | `src/hooks/` (`useIsMobile`) |
+| Utilities | `src/lib/` (`cn`) |
 
 **Depends on:** `@sverg84/kkds-common` (re-exports motion, domain types, contracts).
+
+**Does not own:** the documentation browser / living style guide. That is
+`@workspace/kkds-site` (`artifacts/kkds-site/`), which consumes this package.
+
+---
+
+### `@workspace/kkds-site` (`artifacts/kkds-site/`)
+
+Standalone docs and preview application. Owns `src/preview/` (registry,
+foundations, demos, pattern pages). Depends on `@sverg84/kkds-react` via
+`workspace:*`. Does not publish design-system components.
 
 ---
 
@@ -177,7 +187,7 @@ Governance:
 | React Native StyleSheet | | | ✓ |
 | lucide-react icons | | ✓ | |
 | react-native-svg icons | | | ✓ |
-| Browser hooks (useMobile) | | ✓ | |
+| Browser hooks (`useIsMobile`) | | ✓ | |
 | Native device hooks | | | ✓ |
 | Radix UI primitives | | ✓ | |
 | Expo / NativeBase primitives | | | ✓ |

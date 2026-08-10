@@ -122,18 +122,17 @@ Concepts that are too tightly coupled to the app's data layer (Prisma, TanStack 
 
 ---
 
-### 8. FavoriteButton
+### 8. FavoriteButton (pattern — not exported)
 
 | Field | Value |
 |---|---|
-| **Why it exists** | The heart-toggle pattern for favoriting recipes appears in the favorites flow and is referenced in all three recipe list contexts. Its pressed/unpressed visual state and accessible label are a KitchenKin convention. |
-| **Source files** | `app/api/recipes/[id]/favorite/route.ts` (API), `favorites-recipe-list.tsx` (consumer), `app/recipe/[id]/page.tsx` (detail action) |
-| **Design language** | Heart icon, `fill-destructive` when pressed, brief scale animation on press, ghost variant, accessible aria-label |
-| **Suggested API** | `isFavorited?: boolean`, `onToggle?: (next: boolean) => void`, `disabled?: boolean`, `size?: 'default' \| 'sm' \| 'lg'`, `className?: string` |
-| **Layer verdict** | ✅ Exported KKDS component |
-| **RSC compatible** | ❌ No — requires `"use client"` |
-| **`"use client"`** | ✅ Required (manages pressed state) |
-| **Composing primitives** | `Toggle` |
+| **Why it exists** | The heart-toggle pattern for favoriting recipes appears on recipe cards and detail pages. The pressed/unpressed visual state and accessible label are a KitchenKin convention. |
+| **Source files** | Application favorites API + list/detail consumers; docs-site demo helper at `artifacts/kkds-site/src/preview/demos/kkds/favorite-button.tsx` |
+| **Design language** | Heart icon composed with Layer 1 `Toggle` (`variant="outline"`, `size="sm"`), accessible `aria-label` |
+| **Suggested app API** | App-owned: `isFavorited` / `onToggle` (or equivalent) wired to favorites mutations — **not** a KKDS export |
+| **Layer verdict** | ❌ **Not** an exported KKDS component — documented pattern / site-local composition |
+| **Architectural reasoning** | `Toggle` is the public primitive. Favorite behavior (persistence, optimistic UI, auth) belongs to the application or pattern layer. Promote to Layer 3 only if multiple KitchenKin surfaces share a stable API with evidence of recurrence. |
+| **Composing primitives** | `Toggle` (from `@sverg84/kkds-react`) |
 
 ---
 
@@ -169,12 +168,17 @@ The following concepts exist in the source but are too coupled to application in
 ### Recipe Detail layout (pattern)
 
 - **Why not a component:** The two-column grid, edit/delete actions, ingredient list, and instruction list are all application-specific page structure.
-- **Document as:** "Recipe detail" pattern showing layout using `RecipeImage`, `RecipeAuthor`, `RecipeMetadata`, `CategoryBadge`, `AllergenBadge`, and KKDS primitives.
+- **Document as:** "Recipe detail" pattern showing layout using `RecipeImage`, `RecipeAuthor`, `RecipeMetadata`, `CategoryBadge`, `AllergenBadge`, and exported primitives (`Separator`, `Button`). Ingredient and instruction rows are plain markup compositions — not KKDS `Item` exports.
 
 ### Recipe Discovery layout (pattern)
 
 - **Why not a component:** Infinite scroll wiring, URL-based search parameter management, and router integration are app responsibilities.
-- **Document as:** "Recipe discovery" pattern showing `RecipeSearchBar` + `RecipeCard` grid + `RecipeCardSkeleton` + empty state composition.
+- **Document as:** "Recipe discovery" pattern showing `RecipeSearchBar` + app-owned filter chips + `RecipeCard` grid + `RecipeCardSkeleton` + `Empty` compositions. Category filters are interactive app controls, not `CategoryBadge` (badges are non-interactive labels).
+
+### FavoriteButton (pattern)
+
+- **Why not a component:** Favoriting is application state (auth, persistence, optimistic updates). The visual pressed control is already covered by Layer 1 `Toggle`.
+- **Document as:** Compose `Toggle` + icon in the app (or keep a local helper). Pass the result through `RecipeCard`'s `action` slot; keep it a separate interactive element from the card's `href` / `renderLink` surface.
 
 ---
 
@@ -182,6 +186,9 @@ The following concepts exist in the source but are too coupled to application in
 
 | Concept | Reason |
 |---|---|
+| `FavoriteButton` | App/favorites behavior; compose Layer 1 `Toggle` in the pattern layer |
+| Filter chips | Interactive selection controls; app-owned until a shared primitive is justified |
+| Error banners / toasts | Not in the public barrel (`Alert`, `Toast` / `Toaster`, `Sonner` are excluded) — compose `Empty` + `Button`, or use an app-level toast library |
 | `RecipeForm` | Tightly coupled to `react-hook-form`, `zod`, image upload API, and server actions |
 | `RecipeListShell` | Requires TanStack Query `useInfiniteQuery` + connection pagination |
 | Auth components (`LoginForm`, `OAuthButton`, `UserMenu`) | Tightly coupled to Better Auth's `authClient.useSession()` |

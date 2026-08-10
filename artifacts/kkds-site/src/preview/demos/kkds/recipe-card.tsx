@@ -49,12 +49,12 @@ export function RecipeCardDemo() {
           "Any surface that presents multiple recipes in a grid layout",
         ]}
         whenNotToUse={[
-          "Compact list rows where an Item primitive is more space-efficient",
+          "Compact list rows — keep those as app-owned markup until a shared Item primitive exists",
           "Search result snippets or autocomplete suggestions",
           "Related-recipe references that only need a title and thumbnail",
         ]}
-        composition="Always render in a responsive grid: grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3. Provide href to make the entire card a navigable link (the recipe title becomes the accessible link name). Pair with RecipeCardSkeleton count={n} for loading states — use the identical grid class so skeleton and live card occupy the same columns at every breakpoint."
-        accessibility="When href is provided the card is wrapped in a semantic <a> and its title becomes the accessible link label. Avoid nesting interactive elements inside an href card — that creates nested interactive regions which fail WCAG 2.1."
+        composition="Always render in a responsive grid: grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3. Provide href (or renderLink) to make the card navigable. Pass favorites through action so they stay a separate interactive element from the link surface. Pair with RecipeCardSkeleton count={n} using the identical grid class."
+        accessibility="When href/renderLink is provided the card exposes a single navigation surface labelled by the title. Keep action controls outside that surface — nested interactive elements fail WCAG 2.1."
         example={`<RecipeCard
   title={recipe.title}
   description={recipe.description}
@@ -63,6 +63,9 @@ export function RecipeCardDemo() {
   prepTime={recipe.prepTime}
   cookTime={recipe.cookTime}
   href={'/recipe/' + recipe.id}
+  action={<FavoriteToggle />}
+  renderLink={(props) => <a {...props} />}
+  renderImage={(props) => <img {...props} />}
 />`}
       />
 
@@ -79,9 +82,56 @@ export function RecipeCardDemo() {
           </div>
         </Stack>
 
-        <Stack label="With href — keyboard navigable link card">
+        <Stack label="With href + action (separate interactive elements)">
+          <p className="text-xs text-muted-foreground max-w-prose">
+            The favorite control uses the <code className="rounded bg-muted px-1">action</code>{" "}
+            slot above the navigation surface. Do not nest buttons inside the card
+            body when <code className="rounded bg-muted px-1">href</code> is set.
+          </p>
           <div className="max-w-sm">
             <RecipeCard {...SAMPLE_RECIPES[1]} href="#recipe-2" />
+          </div>
+        </Stack>
+
+        <Stack label="renderLink escape hatch (framework Link stand-in)">
+          <p className="text-xs text-muted-foreground max-w-prose">
+            Swap the default anchor for Next.js{" "}
+            <code className="rounded bg-muted px-1">Link</code> (or similar) while
+            KKDS keeps the inset focus ring and hit target. This demo adds a data
+            attribute to prove the hatch is used.
+          </p>
+          <div className="max-w-sm">
+            <RecipeCard
+              {...SAMPLE_RECIPES[0]}
+              href="#recipe-render-link"
+              renderLink={({ href, className, children, ...rest }) => (
+                <a
+                  href={href}
+                  className={className}
+                  data-kkds-render-link="true"
+                  {...rest}
+                >
+                  {children}
+                </a>
+              )}
+            />
+          </div>
+        </Stack>
+
+        <Stack label="renderImage passthrough (framework Image stand-in)">
+          <div className="max-w-sm">
+            <RecipeCard
+              {...SAMPLE_RECIPES[1]}
+              renderImage={({ src, alt, priority, className }) => (
+                <img
+                  src={src}
+                  alt={alt}
+                  className={className}
+                  loading={priority ? "eager" : "lazy"}
+                  data-kkds-render-image="true"
+                />
+              )}
+            />
           </div>
         </Stack>
 

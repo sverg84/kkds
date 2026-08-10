@@ -1,186 +1,143 @@
-# Component Classification — Platform-Neutral Concept vs Web Implementation
+# Component Classification — Shipped vs Excluded vs Future
 
-Every exported component in `@sverg84/kkds-react` is documented below with:
-- **Concept** — the platform-neutral intent (what it means, what data it needs, what it communicates to users)
-- **Web implementation** — browser-specific details (HTML elements, CSS, Radix, Framer Motion, DOM APIs)
-- **Mobile notes** — what a future React Native implementation would need to adapt
+This document classifies KKDS concepts against the **current** `@sverg84/kkds-react`
+public barrel (`artifacts/kitchenkin-ds/src/index.ts`). It is not a wishlist
+presented as inventory.
 
-This classification guides which parts belong in `kkds-common` vs `kkds-web`.
+Status key:
+
+- **Shipped / exported** — importable from `@sverg84/kkds-react` today
+- **Explicitly excluded** — deliberately omitted from the public surface
+- **Pattern / app-owned** — documented composition, not a package export
+- **Potential future candidate** — may be considered later with product evidence
 
 ---
 
-## Layer 3: KitchenKin Semantic Components
+## Layer 3: KitchenKin Semantic Components (shipped)
 
 ### RecipeCard
 
-**Concept (platform-neutral):**
-- Canonical recipe summary: the primary content unit in KitchenKin
-- Image hierarchy → food photograph first, then metadata
-- Metadata hierarchy → title, tags, description, prep/cook time
-- Loading behaviour → RecipeCardSkeleton must match this layout exactly
-- Accessibility → must be navigable as a single interactive unit
-- Contract → `RecipeCardContract` in `kkds-common`
+**Status:** Shipped / exported
 
-**Web implementation:**
-- `<article>` wrapping, optional `<a>` for keyboard-navigable linking
-- `href` prop — web navigation only (not in contract)
-- CSS Grid via Tailwind classes
-- `hover:shadow-lg transition-shadow` — browser hover state
-- Radix `Card`, `CardHeader`, `CardContent`, `CardFooter`
+**Concept (platform-neutral):** Canonical recipe summary — image, title, tags,
+description, prep/cook time. Contract: `RecipeCardContract` (no navigation fields).
 
-**Mobile notes:**
-- Use `<Pressable>` instead of `<a>` — map `onPress` to navigation
-- No `href` — use React Navigation or Expo Router
-- Use `Image` instead of `<img>` with `objectFit: "cover"`
-- Hover states don't exist — replace with `activeOpacity` or scale press animation
+**Web implementation:** Optional `href` / `renderLink` for navigation; `action`
+slot for separate controls; `renderImage` passthrough to `RecipeImage`.
 
----
+**Mobile notes:** Implement against the contract; add native press/navigation on
+the mobile package only — do not backfill speculative `onPress` into kkds-common.
 
 ### RecipeImage
 
-**Concept:** Aspect-ratio constrained food photograph with a warm branded placeholder when no image is provided.
+**Status:** Shipped / exported · Contract: `RecipeImageContract` (`alt` required)
 
-**Web implementation:**
-- Radix `AspectRatio` wrapper
-- CSS `object-fit: cover` via Tailwind
-- `<img>` element with `alt` attribute
-
-**Mobile notes:**
-- React Native `Image` with explicit width/height or `aspectRatio` style
-- No CSS `object-fit` — use `resizeMode: "cover"`
-- No aspect ratio wrapper needed — use `style={{ aspectRatio: 16/9 }}`
-
----
+**Web:** AspectRatio + `<img>` or `renderImage` override · **Mobile:** RN `Image` + `aspectRatio`
 
 ### RecipeMetadata
 
-**Concept:** Compact display of preparation and cooking time side by side with clock icon emphasis.
+**Status:** Shipped / exported · Contract includes `prepTime`, `cookTime`, `servings`
 
-**Web implementation:** `lucide-react` `Clock` icon, flex row, Tailwind typography classes.
-
-**Mobile notes:** `react-native-svg` or `lucide-react-native` for icon; `View` + `Text` for layout.
-
----
+**Note:** There is no `difficulty` prop on the current API.
 
 ### RecipeAuthor
 
-**Concept:** Identity row pairing a user's avatar with their display name and optional subtitle (e.g. "Home baker · 42 recipes").
-
-**Web implementation:** Radix `Avatar` with fallback initials, flex row, Tailwind `gap` classes.
-
-**Mobile notes:** React Native `Image` (circular via `borderRadius`), `View`, `Text`.
-
----
+**Status:** Shipped / exported · `size?: "default" | "sm"`
 
 ### RecipeSearchBar
 
-**Concept:** Controlled search input with an inline clear action when text is present.
+**Status:** Shipped / exported · Controlled `value` + `onValueChange`
 
-**Web implementation:**
-- `<input type="search">` wrapped in a positioned container
-- `lucide-react` `Search` and `X` icons
-- `onClick` on the clear button
+### RecipeCardSkeleton
 
-**Mobile notes:**
-- React Native `TextInput` with `returnKeyType="search"`
-- `onChangeText` instead of `onChange`
-- `Pressable` for clear button
+**Status:** Shipped / exported · `count` may render a convenience grid when `> 1`
+
+### AllergenBadge / CategoryBadge
+
+**Status:** Shipped / exported · Display labels (not interactive filter controls)
 
 ---
 
-### AllergenBadge
+## Layer 2: KKDS Custom Primitives (shipped)
 
-**Concept:** Compact label that communicates a dietary constraint or allergen warning. Should visually recede compared to category badges — it is a warning, not a highlight.
-
-**Web implementation:** Radix `Badge` with `variant="outline"`, muted styling.
-
-**Mobile notes:** React Native `View` + `Text` with border, same muted colour from `tokens.color.light.muted`.
-
----
-
-### CategoryBadge
-
-**Concept:** Warm, secondary label for recipe cuisines and styles. Higher visual weight than AllergenBadge since categories are browseable filters.
-
-**Web implementation:** Radix `Badge` with `variant="secondary"`.
-
-**Mobile notes:** `View` + `Text` with background from `tokens.color.light.secondary`.
-
----
-
-## Layer 2: KKDS Custom Primitives
-
-### Spinner
-
-**Concept:** Indeterminate loading indicator. Communicates that an operation is in progress but duration is unknown.
-
-**Web implementation:** `lucide-react` `Loader2Icon` with CSS `animate-spin`. Screen reader text via visually-hidden `<span>`.
-
-**Mobile notes:** React Native `ActivityIndicator` — native, no CSS animation needed. Size + colour from tokens.
-
-### Empty
-
-**Concept:** Structured empty state that guides users when no content exists. Provides an icon, title, description, and optional call-to-action.
-
-**Web implementation:** Flexbox centred layout, lucide-react icon slot, Tailwind prose.
-
-**Mobile notes:** `View` centred via `alignItems: "center"`, `Text`, `Pressable` for action.
-
-### ButtonGroup
-
-**Concept:** A set of related actions that share visual attachment — presented as a single compound control.
-
-**Web implementation:** CSS border-radius manipulation on first/last children, `overflow-hidden` container.
-
-**Mobile notes:** `View` with `flexDirection: "row"`, first/last child border radius applied manually.
-
-### Field
-
-**Concept:** A form field pairing a label with an input, description, and error message in a consistent vertical stack.
-
-**Web implementation:** `htmlFor` association between `<label>` and `<input>`. Radix `Label`.
-
-**Mobile notes:** No `htmlFor` — accessibility via `accessibilityLabel` or `aria-*` equivalents.
-
-### Item / ItemGroup
-
-**Concept:** A flexible list row pairing media (avatar or icon) with title, description, and optional trailing actions.
-
-**Web implementation:** Flex row, `role="listitem"`, hover state.
-
-**Mobile notes:** `Pressable` + `View` + `Text`. No `role="listitem"` — use `accessibilityRole="none"` or infer from context.
-
----
-
-## Layer 1: Curated shadcn/ui Primitives
-
-These are web-only. They wrap Radix UI and are deeply coupled to the browser. Their mobile equivalents would be entirely different primitives (React Native built-ins or libraries like RNUI, Tamagui).
-
-| Component | Web coupling | Mobile strategy |
+| Component | Status | Notes |
 |---|---|---|
-| Button | `<button>`, focus ring, onClick | `Pressable` |
-| Input | `<input>`, onChange | `TextInput` |
-| Dialog | Radix Dialog, browser focus trap | `Modal` |
-| Sheet | Radix Dialog + CSS translate | `BottomSheet` |
-| Popover | Radix Popover, DOM positioning | Platform popover |
-| DropdownMenu | Radix DropdownMenu | `ActionSheet` |
-| Tabs | Radix Tabs | `ScrollView` + `Pressable` |
-| ScrollArea | Radix ScrollArea, CSS overflow | `ScrollView` |
-| Toast / Toaster | Radix Toast, DOM portals | Toast from RN library |
-| Tooltip | Radix Tooltip, `mouseenter` | `Pressable` + `Modal` |
+| Empty (+ parts) | Shipped | Compound layout; `EmptyContract` is a content model |
+| Field (+ parts) | Shipped | Form field stacking |
+| InputGroup (+ parts) | Shipped | Addon composition |
+| Spinner | Shipped | `size` + `label` aligned with `SpinnerContract` |
 
 ---
 
-## Web-Specific APIs to Document
+## Layer 1: Curated shadcn / Base UI (shipped)
 
-The following props exist in web components and have no direct equivalent in `kkds-common` contracts. Future implementations should handle them per-platform:
+These wrap Base UI / DOM APIs and are web-only:
 
-| Prop | Component | Web binding | Mobile equivalent |
+AlertDialog, AspectRatio, Avatar, Badge, Button, Card, Combobox, Dialog,
+DropdownMenu, Input, Label, Popover, ScrollArea, Select, Separator, Skeleton,
+Switch, Tabs, Textarea, **Toggle**
+
+---
+
+## Explicitly excluded from the public API
+
+Listed in the barrel exclusion comment and **not** exported. Do not document them
+as available KKDS components:
+
+| Concept | Notes |
+|---|---|
+| Alert | Use `Empty` + `Button` or app UI for errors |
+| Toast / Toaster / Sonner / useToast | Use an app-level toast library |
+| Sheet | Excluded overlay |
+| Tooltip | Excluded |
+| ToggleGroup | Excluded (single `Toggle` is shipped) |
+| ButtonGroup | Not implemented / not exported |
+| Item / ItemContent / ItemGroup | Not implemented / not exported |
+| Accordion, Breadcrumb, Calendar, Carousel, Chart, Checkbox, Collapsible, Command, ContextMenu, Drawer, Form, HoverCard, InputOtp, Menubar, NavigationMenu, Pagination, Progress, RadioGroup, Resizable, Sidebar, Slider, Table | Excluded catalog |
+
+---
+
+## Pattern / app-owned (not exported)
+
+| Concept | Guidance |
+|---|---|
+| FavoriteButton | Compose Layer 1 `Toggle` + icon; wire favorites state in the app |
+| Filter chips | Interactive selection row in discovery — not `CategoryBadge` |
+| Ingredient / instruction rows | Plain markup + `Separator` as needed |
+| Pagination controls | `Button` + `<nav>` or a library |
+| Error banners | Compose exported primitives; no public `Alert` |
+
+---
+
+## Potential future candidates
+
+Promote only with KitchenKin product evidence and an explicit API decision:
+
+- FavoriteButton as Layer 3 (if a stable cross-surface API emerges)
+- Filter chip / segmented control primitive
+- Item row primitive for dense lists
+- Alert / toast family (if product standardizes on one)
+- ButtonGroup, Sheet, Tooltip, ToggleGroup
+
+Until then, keep them out of the public barrel and out of “shipped” docs.
+
+---
+
+## Web-specific APIs (shipped on web, not in contracts)
+
+| Prop | Component | Role | Mobile equivalent (future package) |
 |---|---|---|---|
-| `href` | RecipeCard | `<a href>` | `onPress` + navigator |
-| `ref` | Button, Input, etc. | `React.forwardRef` + DOM ref | `React.forwardRef` + native ref |
-| `className` | All | Tailwind CSS class strings | `style` prop |
-| `onClick` | Many | `MouseEvent` handler | `onPress` |
-| `MouseEvent` | Button internals | Browser mouse event | N/A |
-| `htmlFor` | Label | `<label for>` | `accessibilityLabel` |
-| `type="submit"` | Button | HTML form submission | N/A |
+| `href` / `renderLink` | RecipeCard | Navigation surface | Native press + navigator |
+| `renderImage` | RecipeImage / RecipeCard | Framework image override | RN `Image` / Expo Image |
+| `action` | RecipeCard | Separate control slot | Same composition idea |
+| `className` | Most roots | Tailwind escape hatch | `style` / NativeWind |
+| `ref` | DOM / Base UI roots | React 19 ref-as-prop | Native refs |
+
+---
+
+## Hooks & utilities (shipped)
+
+| Export | Status |
+|---|---|
+| `useIsMobile` | Shipped (web implementation) |
+| `cn` | Shipped (web) |
