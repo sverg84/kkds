@@ -7,13 +7,14 @@ its theme and components directly.
 
 ## What's here
 
-- `tokens.json` — the single source of truth (DTCG format): colors (full light
-  and dark sets), typography, spacing, and radius.
-- `scripts/build-tokens.mjs` — generates the outputs below from `tokens.json`.
+- Token source of truth lives in `@sverg84/kkds-common` (`tokens.json`, DTCG
+  format): colors (full light and dark sets), typography, spacing, and radius.
+- `scripts/build-theme.mjs` (`pnpm theme`) — generates `src/index.css` and
+  `public/favicon.svg` from `@sverg84/kkds-common/tokens.json`.
 - `src/index.css` — GENERATED shadcn theme (web), exported as `./styles.css`.
-- `src/generated/tokens.tsx` — GENERATED hex token object, the package's `.` and
+- `src/generated/tokens.tsx` — hex token object, the package's `.` and
   `./tokens` entry. Mobile (Expo) and other platforms import this.
-- `public/favicon.svg` — GENERATED app icon from `tokens.json` + the title.
+- `public/favicon.svg` — GENERATED app icon from tokens + the title.
 - `src/components/ui/` — the shadcn / Base UI component library, themed by the
   tokens, re-exported from the package barrel (`@sverg84/kkds-react`), including
   `Combobox` (searchable/filterable option selection).
@@ -90,8 +91,15 @@ package's `#components/*`, `#lib/*`, and `#hooks/*` imports from `package.json`.
 
 ## Editing and maintaining the design system
 
-Edit `tokens.json` only, then run `pnpm tokens`; the package Vite preview also
-regenerates on change when run. Never hand-edit `src/index.css` or
+Edit tokens in `@sverg84/kkds-common` only, then regenerate:
+
+```sh
+pnpm --filter @sverg84/kkds-common run tokens
+pnpm --filter @sverg84/kkds-react run theme
+```
+
+Or rebuild the library (`pnpm --filter @sverg84/kkds-react run build:lib`), which
+runs `theme` before `tsup` and CSS packaging. Never hand-edit `src/index.css` or
 `src/generated/tokens.tsx`.
 
 Every user-facing web component exported from this package should have a family
