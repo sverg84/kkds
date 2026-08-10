@@ -1,36 +1,24 @@
 ---
 name: kkds-site standalone config
-description: Key differences between artifacts/kkds-site (standalone, root path) and artifacts/kitchenkin-ds (monorepo library with preview at /kitchenkin-ds/).
+description: Key differences between artifacts/kkds-site (standalone docs Vite app) and artifacts/kitchenkin-ds (library-only @sverg84/kkds-react). Historical note about the old /kitchenkin-ds/ preview.
 ---
 
-`artifacts/kkds-site` is a self-contained copy of the KKDS documentation site configured for root-path deployment. Key differences from the monorepo `artifacts/kitchenkin-ds`:
+`artifacts/kkds-site` is the only Vite docs/preview app. `artifacts/kitchenkin-ds` (`@sverg84/kkds-react`) is a library built with `theme` + `tsup` + `build:css` — no Vite SPA, no Replit artifact.
 
-**vite.config.ts**
+**kkds-site vite.config.ts**
 - `base: "/"` hardcoded — no `BASE_PATH` env var needed
 - `PORT` is optional: `Number(process.env.PORT ?? "5173")` — no throw if missing
 - No `resolve.alias` block (KKDS components use relative imports, not `@/`)
 
-**package.json**
+**kkds-site package.json**
 - Name: `@workspace/kkds-site` (required for artifact.toml filter compatibility)
 - No library fields (`exports`, `main`, `module`, `types`, `files`, `peerDependencies`)
-- No `tsup` devDependency
-- `imports` field preserved for `#components/*`, `#lib/*`, `#hooks/*` path aliases (these are unused in practice — source uses relative imports)
-- `build` script: `node scripts/build-tokens.mjs && vite build` (no lib build)
-- `react`/`react-dom` in `dependencies` (not `devDependencies` like the library)
-
-**tsconfig.json**
-- Standalone (no `extends: "../../tsconfig.base.json"`)
-- No `references` array (removed `lib/api-client-react` reference)
-- No `paths` alias for `@/*`
+- No `tsup` — consumes `@sverg84/kkds-react` as a workspace dependency
+- `react`/`react-dom` in `dependencies`
 
 **artifact.toml**
-- `serve = "static"`, `publicDir = "artifacts/kkds-site/dist"` (not `dist/public`)
+- Only `artifacts/kkds-site/.replit-artifact/artifact.toml` exists for deploy
+- `serve = "static"`, `publicDir = "artifacts/kkds-site/dist"`
 - `rewrites: /* → /index.html` for client-side routing
 
-**Copy pitfalls**
-- `cp -r src/ dst/` when `dst/` exists merges but does NOT overwrite existing files. Must `rm -rf dst/ && cp -r src/ dst/` to guarantee replacement.
-- Nested copy artifacts to watch for: `src/src/`, `public/public/`, `hooks/hooks/`.
-- Scaffold leaves behind: `src/App.tsx` (wouter/react-query), `src/pages/`, `src/hooks/use-toast.ts` (`.ts` not `.tsx`), `src/generatedhooks/`.
-
-**Why:**
-The monorepo kitchenkin-ds artifact was deployed at `/kitchenkin-ds/` and required `BASE_PATH` env var; Replit's deployment healthcheck was failing because the api-server was included. The standalone site removes all API/DB/auth dependencies and deploys clean from `/`.
+**Historical:** kitchenkin-ds previously shipped a Vite preview at `/kitchenkin-ds/` (required `BASE_PATH`, port 20227). That SPA and its Replit design-system artifact were removed; docs live solely on kkds-site at `/`.

@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*", "vite.config.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
     "incremental": true,
@@ -15,7 +15,7 @@
     "esModuleInterop": true,
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "types": ["node", "vite/client"],
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "#components/*": ["./src/components/*"],
