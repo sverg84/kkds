@@ -38,7 +38,7 @@ export function RecipeSearchBarDemo() {
           'Multi-field filter forms where search is one of many inputs and should not dominate',
         ]}
         composition="Control via React state or URL search params. Connect onClear to reset both the input value and any active query state (results, pagination). The clear button appears automatically when value is truthy."
-        accessibility="The input has an implicit role='searchbox'. Pair with a live region (aria-live='polite') that announces result counts: '12 recipes found' or 'No results for chicken pasta'."
+        accessibility="Uses type='search' with aria-label (default 'Search recipes', overridable via ariaLabel). Clearing returns focus to the input. Pair with a live region (aria-live='polite') that announces result counts: '12 recipes found' or 'No results for chicken pasta'."
         example={`<RecipeSearchBar
   value={query}
   onValueChange={setQuery}

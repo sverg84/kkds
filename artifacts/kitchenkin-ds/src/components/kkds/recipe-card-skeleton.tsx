@@ -78,6 +78,9 @@ export interface RecipeCardSkeletonProps {
  * **Layout:** `count > 1` renders the standard KitchenKin responsive grid
  * (`1 col → 2 col → 3 col`). Override with `className` for custom layouts.
  *
+ * **Accessibility:** Roots expose `aria-busy="true"` and
+ * `aria-label="Loading recipes"` so assistive tech announces the loading state.
+ *
  * **RSC compatible:** Yes.
  */
 export function RecipeCardSkeleton({
@@ -85,11 +88,17 @@ export function RecipeCardSkeleton({
   className,
 }: RecipeCardSkeletonProps) {
   if (count === 1) {
-    return <RecipeCardSkeletonItem className={className} />;
+    return (
+      <div aria-busy="true" aria-label="Loading recipes">
+        <RecipeCardSkeletonItem className={className} />
+      </div>
+    );
   }
 
   return (
     <div
+      aria-busy="true"
+      aria-label="Loading recipes"
       className={cn(
         'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3',
         className,

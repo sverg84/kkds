@@ -1,13 +1,14 @@
 "use client";
 
-import { Search, X } from 'lucide-react';
+import * as React from "react";
+import { Search, X } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from '../ui/input-group';
-import { cn } from '../../lib/utils';
+} from "../ui/input-group";
+import { cn } from "../../lib/utils";
 
 export interface RecipeSearchBarProps {
   /** The current search query value (controlled). */
@@ -21,6 +22,11 @@ export interface RecipeSearchBarProps {
    * If omitted, clearing still calls `onValueChange('')`.
    */
   onClear?: () => void;
+  /**
+   * Accessible name for the search input.
+   * Defaults to `"Search recipes"`.
+   */
+  ariaLabel?: string;
   className?: string;
 }
 
@@ -43,8 +49,10 @@ export interface RecipeSearchBarProps {
  * In a Next.js app, wrap it with a client component that syncs `value` with
  * `useSearchParams()` and `router.push()`.
  *
- * **Accessibility:** The input has `aria-label="Search recipes"` by default.
- * The clear button announces itself as "Clear search".
+ * **Accessibility:** Uses `type="search"` with `aria-label` (default
+ * `"Search recipes"`, overridable via `ariaLabel`). The clear button announces
+ * itself as "Clear search". Activating clear returns focus to the input so
+ * keyboard users are not stranded when the clear control unmounts.
  *
  * **`"use client"` boundary:** Required — managed via controlled props.
  *
@@ -54,13 +62,20 @@ export interface RecipeSearchBarProps {
 export function RecipeSearchBar({
   value,
   onValueChange,
-  placeholder = 'Search recipes…',
+  placeholder = "Search recipes…",
   onClear,
+  ariaLabel = "Search recipes",
   className,
 }: RecipeSearchBarProps) {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
   const handleClear = () => {
-    onValueChange('');
+    onValueChange("");
     onClear?.();
+    // Clear unmounts when value becomes empty — restore focus to the input.
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
   };
 
   return (
@@ -70,11 +85,12 @@ export function RecipeSearchBar({
       </InputGroupAddon>
 
       <InputGroupInput
-        type="text"
+        ref={inputRef}
+        type="search"
         value={value}
         onChange={(e) => onValueChange(e.target.value)}
         placeholder={placeholder}
-        aria-label="Search recipes"
+        aria-label={ariaLabel}
       />
 
       {value && (

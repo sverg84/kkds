@@ -42,8 +42,8 @@ function getInitials(name: string): string {
  * - `default` — 40px avatar, `text-base` name. Used on profile headers.
  * - `sm` — 32px avatar, `text-sm` name. Used inline on recipe cards or lists.
  *
- * **Accessibility:** Avatar images should have a meaningful `alt` attribute;
- * this component uses `name` as the alt text automatically.
+ * **Accessibility:** Avatar images use `alt=""` because the author `name` is
+ * rendered as adjacent visible text (avoids duplicate announcements).
  *
  * **RSC compatible:** Yes. The `Avatar` primitive owns its own `"use client"`
  * boundary (Radix UI).
@@ -60,7 +60,7 @@ export function RecipeAuthor({
   return (
     <div className={cn('flex items-center gap-3', className)}>
       <Avatar className={cn(isSm ? 'size-8' : 'size-10')}>
-        {avatarUrl && <AvatarImage src={avatarUrl} alt={name} />}
+        {avatarUrl && <AvatarImage src={avatarUrl} alt="" />}
         <AvatarFallback className={cn(isSm ? 'text-xs' : 'text-sm')}>
           {getInitials(name)}
         </AvatarFallback>

@@ -12,17 +12,17 @@ export const tokens = {
       "popover": "#f4f5e4",
       "popoverForeground": "#6b4226",
       "primary": "#ff7b54",
-      "primaryForeground": "#6b4226",
+      "primaryForeground": "#3d2412",
       "secondary": "#f4a261",
-      "secondaryForeground": "#6b4226",
+      "secondaryForeground": "#3d2412",
       "muted": "#e8e9d6",
-      "mutedForeground": "#957661",
+      "mutedForeground": "#7a5a45",
       "accent": "#e76f51",
-      "accentForeground": "#6b4226",
+      "accentForeground": "#3d2412",
       "destructive": "#e7000b",
       "destructiveForeground": "#fff5f0",
       "input": "#e5e5e5",
-      "ring": "#a1a1a1",
+      "ring": "#7a5c45",
       "chart1": "#f54900",
       "chart2": "#009689",
       "chart3": "#104e64",
@@ -116,4 +116,5 @@ export const tokens = {
 } as const;
 
 export type Tokens = typeof tokens;
+
 export default tokens;

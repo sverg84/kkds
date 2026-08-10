@@ -251,9 +251,29 @@
 }
 
 @layer components {
-  [data-slot="recipe-card-link"]:focus
+  [data-slot="recipe-card-link"]:focus-visible
     + [data-slot="recipe-card-focus-indicator"] {
     box-shadow: inset 0 0 0 2px hsl(var(--ring));
+  }
+
+  /*
+   * Prefer reduced motion for overlay enter/exit animations (tw-animate-css).
+   * Open/closed state still changes; decorative motion is suppressed.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="dialog-overlay"],
+    [data-slot="dialog-content"],
+    [data-slot="alert-dialog-overlay"],
+    [data-slot="alert-dialog-content"],
+    [data-slot="popover-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="dropdown-menu-sub-content"],
+    [data-slot="select-content"],
+    [data-slot="combobox-content"] {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
