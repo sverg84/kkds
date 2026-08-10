@@ -30,7 +30,11 @@ function Spinner({
       data-slot="spinner"
       role="status"
       aria-label={label}
-      className={cn("animate-spin", spinnerSizeClass[size], className)}
+      className={cn(
+        "animate-spin motion-reduce:animate-none",
+        spinnerSizeClass[size],
+        className,
+      )}
       {...props}
     />
   );

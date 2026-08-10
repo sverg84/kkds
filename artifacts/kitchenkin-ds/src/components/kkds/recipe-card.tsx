@@ -67,7 +67,12 @@ const LINK_CLASSNAME = "absolute inset-0 z-[2] rounded-[inherit] outline-none";
  * directly in a two-column layout.
  *
  * **Navigation:** Pass `href` to make the entire card a link. The focus ring
- * appears on the wrapping anchor rather than the card itself.
+ * appears on the wrapping anchor rather than the card itself (keyboard
+ * `:focus-visible` only).
+ *
+ * **renderLink:** Must return the focusable link element itself as the first
+ * child before the focus-indicator sibling — wrapping the link in an extra
+ * node breaks the adjacent-sibling focus ring.
  *
  * **RSC compatible:** Yes — all composed components are RSC-compatible.
  */
