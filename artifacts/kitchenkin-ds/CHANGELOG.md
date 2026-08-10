@@ -1,5 +1,13 @@
 # @sverg84/kkds-react
 
+## 0.2.1
+
+### Patch Changes
+
+- d16e1b4: Align package README and barrel docs with the public API after stabilization: correct hook naming (`useIsMobile`), remove inaccurate API claims, and clarify FavoriteButton as a composition pattern rather than an export.
+- Updated dependencies [d16e1b4]
+  - @sverg84/kkds-common@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

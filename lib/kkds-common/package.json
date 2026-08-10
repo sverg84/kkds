@@ -1,6 +1,6 @@
 {
   "name": "@sverg84/kkds-common",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "KitchenKin Design System — platform-neutral tokens, types, motion, and domain contracts",
   "license": "MIT",
