@@ -12,8 +12,13 @@ export interface RecipeImageRenderProps {
 export interface RecipeImageProps {
   /** URL of the food photograph. When omitted a warm branded placeholder is shown. */
   src?: string | null;
-  /** Accessible description of the image. Also used to generate the placeholder text. */
-  alt?: string | null;
+  /**
+   * Accessible description of the image. Required.
+   * Pass `alt=""` for intentionally decorative images.
+   * Also used as the placeholder graphic label when `src` is missing (falls
+   * back to `"Recipe image"` for URL encoding when `alt` is empty).
+   */
+  alt: string;
   /** Width-to-height ratio. Defaults to 16/9 — the standard card ratio in KitchenKin. */
   aspectRatio?: number;
   /**
@@ -43,8 +48,9 @@ export interface RecipeImageProps {
  * **When not to use:** Thumbnails for non-recipe content (use a plain `<img>`
  * or the AspectRatio primitive directly).
  *
- * **Accessibility:** Always provide a meaningful `alt` string. The placeholder
- * uses the `alt` value as its text label.
+ * **Accessibility:** Always provide a meaningful `alt` string (or `alt=""` when
+ * decorative). The placeholder graphic uses the alt value as its text label
+ * when present.
  *
  * **RSC compatible:** Yes — no hooks or client-side interactivity.
  */
@@ -56,16 +62,16 @@ export function RecipeImage({
   className,
   renderImage,
 }: RecipeImageProps) {
-  const displayAlt = alt ?? "Recipe image";
+  const placeholderLabel = alt || "Recipe image";
   const imgSrc =
     src ??
     `https://placeholder.pics/svg/640x480/FCEFD5/C07E4A-f4ead5/${encodeURIComponent(
-      displayAlt,
+      placeholderLabel,
     )}`;
 
   const imageProps: RecipeImageRenderProps = {
     src: imgSrc,
-    alt: displayAlt,
+    alt,
     priority,
     className: "h-full w-full object-cover",
   };

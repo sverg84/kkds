@@ -19,15 +19,15 @@
  * the API stable:
  *
  *   Included: AlertDialog, AspectRatio, Avatar, Badge, Button, Card,
- *     Dialog, DropdownMenu, Input, Label, Popover, ScrollArea, Select,
- *     Separator, Skeleton, Switch, Tabs, Textarea
+ *     Combobox, Dialog, DropdownMenu, Input, Label, Popover, ScrollArea,
+ *     Select, Separator, Skeleton, Switch, Tabs, Textarea, Toggle
  *
  *   Excluded (too heavy, undocumented, or app-specific):
  *     Accordion, Alert, Breadcrumb, Calendar, Carousel, Chart, Checkbox,
  *     Collapsible, Command, ContextMenu, Drawer, Form, HoverCard, InputOtp,
  *     Menubar, NavigationMenu, Pagination, Progress, RadioGroup, Resizable,
- *     Sheet, Sidebar, Slider, Sonner, Table, Toast / Toaster, Toggle,
- *     ToggleGroup, Tooltip
+ *     Sheet, Sidebar, Slider, Sonner, Table, Toast / Toaster, ToggleGroup,
+ *     Tooltip
  *
  * ─── Hooks ───────────────────────────────────────────────────────────────────
  *   useMobile
@@ -76,6 +76,7 @@ export * from "./components/ui/avatar";
 export * from "./components/ui/badge";
 export * from "./components/ui/button";
 export * from "./components/ui/card";
+export * from "./components/ui/combobox";
 export * from "./components/ui/dialog";
 export * from "./components/ui/dropdown-menu";
 export * from "./components/ui/input";

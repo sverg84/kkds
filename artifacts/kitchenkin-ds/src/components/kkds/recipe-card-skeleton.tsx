@@ -11,9 +11,9 @@ import { cn } from '../../lib/utils';
  * A single skeleton card that matches the RecipeCard layout exactly,
  * preventing cumulative layout shift when real content loads.
  */
-function RecipeCardSkeletonItem() {
+function RecipeCardSkeletonItem({ className }: { className?: string }) {
   return (
-    <Card className="h-full overflow-hidden">
+    <Card className={cn("h-full overflow-hidden", className)}>
       {/* Image area — 16:9 */}
       <div className="aspect-video w-full">
         <Skeleton className="h-full w-full rounded-none" />
@@ -85,7 +85,7 @@ export function RecipeCardSkeleton({
   className,
 }: RecipeCardSkeletonProps) {
   if (count === 1) {
-    return <RecipeCardSkeletonItem />;
+    return <RecipeCardSkeletonItem className={className} />;
   }
 
   return (

@@ -7,12 +7,24 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '@sverg84/kkds-react';
-import { Stack } from '../parts';
+} from "@sverg84/kkds-react";
+import { Guidelines, Stack } from "../parts";
 
 export function SelectDemo() {
   return (
     <div className="max-w-sm space-y-6 rounded-xl border bg-card p-6 text-card-foreground">
+      <Guidelines
+        items={[
+          {
+            kind: "do",
+            text: "Use Select for closed, predefined option lists without type-ahead search.",
+          },
+          {
+            kind: "dont",
+            text: "Use Select when users need to filter options by typing — use Combobox instead. For free-text recipe search, use RecipeSearchBar.",
+          },
+        ]}
+      />
       <Stack label="Grouped">
         <Select>
           <SelectTrigger>

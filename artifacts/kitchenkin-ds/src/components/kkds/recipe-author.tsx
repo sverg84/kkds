@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { cn } from '../../lib/utils';
 
-export type RecipeAuthorSize = 'default' | 'compact';
+export type RecipeAuthorSize = 'default' | 'sm';
 
 export interface RecipeAuthorProps {
   /** Display name of the author. Used for the initials fallback. */
@@ -10,7 +10,7 @@ export interface RecipeAuthorProps {
   avatarUrl?: string | null;
   /** Secondary line below the name — email, username, or role. */
   subtitle?: string | null;
-  /** Visual size. `compact` is used inline (e.g. inside a card); `default` is used on profile headers. */
+  /** Visual size. `sm` is used inline (e.g. inside a card); `default` is used on profile headers. */
   size?: RecipeAuthorSize;
   className?: string;
 }
@@ -40,7 +40,7 @@ function getInitials(name: string): string {
  *
  * **Sizes:**
  * - `default` — 40px avatar, `text-base` name. Used on profile headers.
- * - `compact` — 32px avatar, `text-sm` name. Used inline on recipe cards or lists.
+ * - `sm` — 32px avatar, `text-sm` name. Used inline on recipe cards or lists.
  *
  * **Accessibility:** Avatar images should have a meaningful `alt` attribute;
  * this component uses `name` as the alt text automatically.
@@ -55,13 +55,13 @@ export function RecipeAuthor({
   size = 'default',
   className,
 }: RecipeAuthorProps) {
-  const isCompact = size === 'compact';
+  const isSm = size === 'sm';
 
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      <Avatar className={cn(isCompact ? 'size-8' : 'size-10')}>
+      <Avatar className={cn(isSm ? 'size-8' : 'size-10')}>
         {avatarUrl && <AvatarImage src={avatarUrl} alt={name} />}
-        <AvatarFallback className={cn(isCompact ? 'text-xs' : 'text-sm')}>
+        <AvatarFallback className={cn(isSm ? 'text-xs' : 'text-sm')}>
           {getInitials(name)}
         </AvatarFallback>
       </Avatar>
@@ -70,7 +70,7 @@ export function RecipeAuthor({
         <p
           className={cn(
             'font-medium leading-tight truncate',
-            isCompact ? 'text-sm' : 'text-base',
+            isSm ? 'text-sm' : 'text-base',
           )}
         >
           {name}

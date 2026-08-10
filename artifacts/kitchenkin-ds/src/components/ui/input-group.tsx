@@ -1,5 +1,13 @@
 "use client"
 
+/**
+ * InputGroup — input/textarea with inline or block addons.
+ *
+ * InputGroupButton sizes (`xs`, `sm`, `icon-xs`, …) are local to this compound
+ * and differ from Button’s `default` / `sm` / `lg` / `icon` scale. Used by
+ * RecipeSearchBar and ComboboxInput.
+ */
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 

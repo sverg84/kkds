@@ -13,8 +13,10 @@ export interface CategoryBadgeProps {
 /**
  * Normalises a raw KitchenKin tag string to a human-readable label.
  * "GLUTEN_FREE" → "Gluten Free", "italian" → "Italian"
+ *
+ * Shared by CategoryBadge and AllergenBadge for generalized tag vocabulary.
  */
-export function formatCategoryLabel(tag: string): string {
+export function formatTagLabel(tag: string): string {
   return tag
     .replace(/_/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase());
@@ -40,7 +42,7 @@ export function formatCategoryLabel(tag: string): string {
 export function CategoryBadge({ label, className }: CategoryBadgeProps) {
   return (
     <Badge variant="secondary" className={cn(className)}>
-      {formatCategoryLabel(label)}
+      {formatTagLabel(label)}
     </Badge>
   );
 }

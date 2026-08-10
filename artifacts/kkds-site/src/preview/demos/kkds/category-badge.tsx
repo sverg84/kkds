@@ -9,7 +9,7 @@ export function CategoryBadgeDemo() {
   return (
     <div className="space-y-6">
       <DocBlock
-        purpose="Warm secondary badge for recipe categories, meal types, and cuisines. The built-in formatCategoryLabel normaliser converts database enum values (SCREAMING_SNAKE_CASE) to Title Case — pass raw API values directly without pre-processing."
+        purpose="Warm secondary badge for recipe categories, meal types, and cuisines. The built-in formatTagLabel normaliser converts database enum values (SCREAMING_SNAKE_CASE) to Title Case — pass raw API values directly without pre-processing."
         whenToUse={[
           'Recipe card tag row below the title',
           'Recipe detail page category section',

@@ -10,7 +10,7 @@ function ControlledDemo() {
     <div className="space-y-2">
       <RecipeSearchBar
         value={value}
-        onChange={setValue}
+        onValueChange={setValue}
         placeholder="Search recipes…"
       />
       {value && (
@@ -26,21 +26,22 @@ export function RecipeSearchBarDemo() {
   return (
     <div className="space-y-6">
       <DocBlock
-        purpose="Client-side controlled search input with a Search icon prefix and an inline clear button. Framework-agnostic — wire value and onChange to local React state or URL search params. The clear button renders automatically when value is non-empty."
+        purpose="Client-side controlled search input with a Search icon prefix and an inline clear button. Framework-agnostic — wire value and onValueChange to local React state or URL search params. The clear button renders automatically when value is non-empty. Distinct from Combobox (option picking) and Select (closed lists)."
         whenToUse={[
           'Recipe discovery page as the primary search entry point',
           'Any KitchenKin surface implementing recipe search or ingredient filtering',
         ]}
         whenNotToUse={[
           'Non-recipe search flows — use a plain InputGroup instead',
-          'Site-level command palette — use the Command component',
+          'Searchable option picking — use Combobox',
+          'Closed predefined lists — use Select',
           'Multi-field filter forms where search is one of many inputs and should not dominate',
         ]}
         composition="Control via React state or URL search params. Connect onClear to reset both the input value and any active query state (results, pagination). The clear button appears automatically when value is truthy."
         accessibility="The input has an implicit role='searchbox'. Pair with a live region (aria-live='polite') that announces result counts: '12 recipes found' or 'No results for chicken pasta'."
         example={`<RecipeSearchBar
   value={query}
-  onChange={setQuery}
+  onValueChange={setQuery}
   onClear={() => setQuery('')}
   placeholder="Search recipes, ingredients, or cuisines…"
 />`}
@@ -55,7 +56,7 @@ export function RecipeSearchBarDemo() {
 
         <Stack label="Empty state — placeholder visible">
           <div className="max-w-md">
-            <RecipeSearchBar value="" onChange={() => {}} />
+            <RecipeSearchBar value="" onValueChange={() => {}} />
           </div>
         </Stack>
 
@@ -63,7 +64,7 @@ export function RecipeSearchBarDemo() {
           <div className="max-w-md">
             <RecipeSearchBar
               value="chicken pasta"
-              onChange={() => {}}
+              onValueChange={() => {}}
             />
           </div>
         </Stack>
@@ -72,7 +73,7 @@ export function RecipeSearchBarDemo() {
           <div className="max-w-md">
             <RecipeSearchBar
               value=""
-              onChange={() => {}}
+              onValueChange={() => {}}
               placeholder="Try 'pasta', 'vegan', or 'quick dinner'…"
             />
           </div>

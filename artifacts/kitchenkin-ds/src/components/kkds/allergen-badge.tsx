@@ -1,6 +1,6 @@
 import { Badge } from '../ui/badge';
 import { cn } from '../../lib/utils';
-import { formatCategoryLabel } from './category-badge';
+import { formatTagLabel } from './category-badge';
 
 export interface AllergenBadgeProps {
   /**
@@ -36,7 +36,7 @@ export function AllergenBadge({ label, className }: AllergenBadgeProps) {
       variant="outline"
       className={cn('text-muted-foreground', className)}
     >
-      {formatCategoryLabel(label)}
+      {formatTagLabel(label)}
     </Badge>
   );
 }

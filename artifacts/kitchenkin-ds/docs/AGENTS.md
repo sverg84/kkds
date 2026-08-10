@@ -14,8 +14,9 @@ its theme and components directly.
 - `src/generated/tokens.tsx` — GENERATED hex token object, the package's `.` and
   `./tokens` entry. Mobile (Expo) and other platforms import this.
 - `public/favicon.svg` — GENERATED app icon from `tokens.json` + the title.
-- `src/components/ui/` — the shadcn component library, themed by the tokens,
-  exported as `./components/*`.
+- `src/components/ui/` — the shadcn / Base UI component library, themed by the
+  tokens, re-exported from the package barrel (`@sverg84/kkds-react`), including
+  `Combobox` (searchable/filterable option selection).
 - `src/components/kkds/` — KitchenKin semantic components (Layer 3) that compose
   KKDS primitives into food-domain UI. All are RSC-compatible except `RecipeSearchBar` (declares `"use client"`).
   Exported components:
@@ -23,11 +24,11 @@ its theme and components directly.
   - `RecipeMetadata` — prep time, cook time, and servings row with icons
   - `CategoryBadge` — warm secondary badge for recipe categories and cuisines
   - `AllergenBadge` — muted outline badge for dietary constraints and allergen warnings
-  - `RecipeAuthor` — Avatar + name identity row in default and compact sizes
+  - `RecipeAuthor` — Avatar + name identity row in default and sm sizes
   - `RecipeCard` — primary recipe content unit (image + title + tags + metadata)
   - `RecipeCardSkeleton` — loading placeholder matching RecipeCard dimensions exactly
   - `RecipeSearchBar` *(client)* — controlled search input with icon prefix and clear button
-- `src/lib/` (`cn`) and `src/hooks/` — exported as `./lib/*` and `./hooks/*`.
+- `src/lib/` (`cn`) and `src/hooks/` — re-exported from the package barrel.
 - `src/App.tsx` — the entry point for the living style guide.
 - `src/preview/DesignSystemBrowser.tsx` — the persistent grouped navigation,
   branded header, search, deep links, and active page shell.
@@ -59,6 +60,11 @@ its theme and components directly.
   existing local design-system implementations.
 - `docs/audit-phase2.md` — source-evidence audit for all nine KitchenKin components;
   includes RSC compatibility notes and why each concept was exported vs. kept as a pattern.
+- `docs/api-consistency-audit.md` — public API consistency audit (prop naming,
+  className, refs, render props, controlled APIs, events, docs gaps) with a
+  phased migration plan. Phase 1 (Combobox + correctness) and Phase 2 (direct
+  pre-adoption renames: `sm`, `onValueChange`, `formatTagLabel`, required `alt`)
+  are complete.
 - `docs/patterns.md` — markdown documentation for the four applied-example patterns
   (Recipe Discovery, Recipe Detail, Profile Tabs, Loading & Empty). The authoritative
   reference for AI agents building KitchenKin interfaces.
@@ -69,14 +75,19 @@ not add `.ts` files here.
 
 ## What this package exports
 
+Public entry points (see `package.json` `exports`):
+
 ```jsonc
-".":              "./dist/index.js",
-"./tokens":       "./dist/tokens.js",
+".":              { "types": "./dist/index.d.ts", "import": "./dist/index.js", "require": "./dist/index.cjs" },
+"./tokens":       { "types": "./dist/tokens.d.ts", "import": "./dist/tokens.js", "require": "./dist/tokens.cjs" },
+"./tokens.json":  "./tokens.json",
 "./styles.css":   "./dist/styles.css",
-"./components/*": "./src/components/*.tsx",
-"./lib/*":        "./src/lib/*.tsx",
-"./hooks/*":      "./src/hooks/*.tsx"
+"./package.json": "./package.json"
 ```
+
+There are **no** `./components/*`, `./lib/*`, or `./hooks/*` subpath exports.
+Import components, hooks, and `cn` from the package root barrel
+(`@sverg84/kkds-react`). The barrel inventory lives in `src/index.ts`.
 
 Import KitchenKin semantic components from the barrel export:
 ```ts

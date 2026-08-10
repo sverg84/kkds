@@ -139,7 +139,7 @@ import { RecipeSearchBar } from "@sverg84/kkds-react";
 export default function Page() {
   // RecipeSearchBar is a client component — you can import it from a Server
   // Component; Next.js handles the boundary automatically.
-  return <RecipeSearchBar value="" onChange={() => {}} />;
+  return <RecipeSearchBar value="" onValueChange={() => {}} />;
 }
 ```
 
@@ -212,7 +212,7 @@ application.
 
 If your own application also uses Tailwind v4, both stylesheets coexist without
 conflict. Do not add a separate `@import "tailwindcss"` that scans
-`node_modules/@sverg84/kkds` — the utilities are already embedded in
+`node_modules/@sverg84/kkds-react` — the utilities are already embedded in
 `dist/styles.css`.
 
 ---

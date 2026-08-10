@@ -25,9 +25,11 @@ export function RecipeCardSkeletonDemo() {
 
       <div className="rounded-xl border bg-card p-6 space-y-10">
         <Stack label="Single skeleton">
-          <div className="max-w-sm">
-            <RecipeCardSkeleton />
-          </div>
+          <RecipeCardSkeleton />
+        </Stack>
+
+        <Stack label="Single skeleton with className (max-w-sm on root Card)">
+          <RecipeCardSkeleton className="max-w-sm" />
         </Stack>
 
         <Stack label="Grid of 6 (matches live recipe list layout)">
